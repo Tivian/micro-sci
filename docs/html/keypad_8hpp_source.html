@@ -69,50 +69,70 @@ $(function() {
 <div class="title">keypad.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef KEYPAD_HPP</span></div>
+<a href="keypad_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef KEYPAD_HPP</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define KEYPAD_HPP</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;utility.hpp&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="utility_8hpp.html">utility.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;avr/io.h&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define KEYPAD_DEBOUNCE 10 // ms</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define KEYPAD_DEBOUNCE 50 // ms</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="keypad_8hpp.html#a54dd17893e74ac422a2bba0df76bac0a">    8</a></span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define KEYPAD_C1 { &amp;PORTB, PB0 }</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define KEYPAD_C2 { &amp;PORTB, PB1 }</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define KEYPAD_C3 { &amp;PORTB, PB2 }</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define KEYPAD_C4 { &amp;PORTC, PC0 }</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define KEYPAD_C5 { &amp;PORTC, PC1 }</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="keypad_8hpp.html#ad11df07a933f381cf9b85cac48d01215">   10</a></span>&#160;<span class="preprocessor">#define KEYPAD_C2 { &amp;PORTB, PB1 }</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="keypad_8hpp.html#a2e7fa073a71257bab00e5e820478fab0">   11</a></span>&#160;<span class="preprocessor">#define KEYPAD_C3 { &amp;PORTB, PB2 }</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="keypad_8hpp.html#ae392e420b5b0d242072357e90d214a7a">   12</a></span>&#160;<span class="preprocessor">#define KEYPAD_C4 { &amp;PORTC, PC0 }</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="keypad_8hpp.html#a34bbb9794059fc695e48c48d19db09f3">   13</a></span>&#160;<span class="preprocessor">#define KEYPAD_C5 { &amp;PORTC, PC1 }</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="keypad_8hpp.html#a708ff21b77a9f9589c01e0321550330b">   14</a></span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define KEYPAD_R1 { &amp;PORTD, PD7 }</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#define KEYPAD_R2 { &amp;PORTD, PD6 }</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define KEYPAD_R3 { &amp;PORTB, PB7 }</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define KEYPAD_R4 { &amp;PORTD, PD4 }</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define KEYPAD_R5 { &amp;PORTD, PD3 }</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define KEYPAD_R6 { &amp;PORTD, PD2 }</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define KEYPAD_R7 { &amp;PORTD, PD1 }</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define KEYPAD_R8 { &amp;PORTD, PD0 }</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">namespace </span>Keypad {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;constexpr <span class="keyword">static</span> <a class="code" href="structpin__t.html">pin_t</a> cols[] = {</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    KEYPAD_C1, KEYPAD_C2, KEYPAD_C3,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    KEYPAD_C4, KEYPAD_C5</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="keypad_8hpp.html#ad1543d5ace8f30156ae6f89bd409fc54">   16</a></span>&#160;<span class="preprocessor">#define KEYPAD_R2 { &amp;PORTD, PD6 }</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="keypad_8hpp.html#a6637f0668e995fc2a5947d49c1bafbaa">   17</a></span>&#160;<span class="preprocessor">#define KEYPAD_R3 { &amp;PORTB, PB7 }</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="keypad_8hpp.html#a38ca2780ca758243969c71b76b522877">   18</a></span>&#160;<span class="preprocessor">#define KEYPAD_R4 { &amp;PORTD, PD4 }</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="keypad_8hpp.html#a72d8a86503660877cb3a931848e29b05">   19</a></span>&#160;<span class="preprocessor">#define KEYPAD_R5 { &amp;PORTD, PD3 }</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="keypad_8hpp.html#af5966d88e1fd4cb6fd53bf9f7b3d1080">   20</a></span>&#160;<span class="preprocessor">#define KEYPAD_R6 { &amp;PORTD, PD2 }</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="keypad_8hpp.html#ad929824d9fb7373bbbba1c189697d282">   21</a></span>&#160;<span class="preprocessor">#define KEYPAD_R7 { &amp;PORTD, PD1 }</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="keypad_8hpp.html#aa5a91b4ba95c56ad7550b090a0f7145a">   22</a></span>&#160;<span class="preprocessor">#define KEYPAD_R8 { &amp;PORTD, PD0 }</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="keypad_8hpp.html#a52bc9155d366b57d0c247759a845f450">   23</a></span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="namespace_keypad.html">   24</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_keypad.html">Keypad</a> {</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="namespace_keypad.html#a3e9b2d60076d14fbac9b23f7a46bfc6f">   25</a></span>&#160;constexpr <span class="keyword">static</span> <a class="code" href="structpin__t.html">pin_t</a> <a class="code" href="namespace_keypad.html#a3e9b2d60076d14fbac9b23f7a46bfc6f">cols</a>[] = {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="keypad_8hpp.html#ad11df07a933f381cf9b85cac48d01215">KEYPAD_C1</a>, <a class="code" href="keypad_8hpp.html#a2e7fa073a71257bab00e5e820478fab0">KEYPAD_C2</a>, <a class="code" href="keypad_8hpp.html#ae392e420b5b0d242072357e90d214a7a">KEYPAD_C3</a>,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="keypad_8hpp.html#a34bbb9794059fc695e48c48d19db09f3">KEYPAD_C4</a>, <a class="code" href="keypad_8hpp.html#a708ff21b77a9f9589c01e0321550330b">KEYPAD_C5</a></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;constexpr <span class="keyword">static</span> <a class="code" href="structpin__t.html">pin_t</a> rows[] = {</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    KEYPAD_R1, KEYPAD_R2, KEYPAD_R3,</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    KEYPAD_R4, KEYPAD_R5, KEYPAD_R6,</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    KEYPAD_R7, KEYPAD_R8</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="namespace_keypad.html#a03ab3ab49f667092a074db8c88766c58">   30</a></span>&#160;constexpr <span class="keyword">static</span> <a class="code" href="structpin__t.html">pin_t</a> <a class="code" href="namespace_keypad.html#a03ab3ab49f667092a074db8c88766c58">rows</a>[] = {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="keypad_8hpp.html#ad1543d5ace8f30156ae6f89bd409fc54">KEYPAD_R1</a>, <a class="code" href="keypad_8hpp.html#a6637f0668e995fc2a5947d49c1bafbaa">KEYPAD_R2</a>, <a class="code" href="keypad_8hpp.html#a38ca2780ca758243969c71b76b522877">KEYPAD_R3</a>,</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="keypad_8hpp.html#a72d8a86503660877cb3a931848e29b05">KEYPAD_R4</a>, <a class="code" href="keypad_8hpp.html#af5966d88e1fd4cb6fd53bf9f7b3d1080">KEYPAD_R5</a>, <a class="code" href="keypad_8hpp.html#ad929824d9fb7373bbbba1c189697d282">KEYPAD_R6</a>,</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="keypad_8hpp.html#aa5a91b4ba95c56ad7550b090a0f7145a">KEYPAD_R7</a>, <a class="code" href="keypad_8hpp.html#a52bc9155d366b57d0c247759a845f450">KEYPAD_R8</a></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;};</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;constexpr uint8_t NONE = 0xFF;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="namespace_keypad.html#a4bb8bc5d3eb32db6f59a59c39a74265c">   36</a></span>&#160;constexpr uint8_t <a class="code" href="namespace_keypad.html#a4bb8bc5d3eb32db6f59a59c39a74265c">NONE</a> = 0xFF;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">void</span> init();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;uint8_t scan();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespace_keypad.html#a32681d11497c815a1f95720b6c5fe19e">init</a>();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;uint8_t <a class="code" href="namespace_keypad.html#a0899d4ad9df3422434f86ba9e9b6d32e">scan</a>();</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="anamespace_keypad_html_a32681d11497c815a1f95720b6c5fe19e"><div class="ttname"><a href="namespace_keypad.html#a32681d11497c815a1f95720b6c5fe19e">Keypad::init</a></div><div class="ttdeci">void init()</div><div class="ttdef"><b>Definition:</b> keypad.cpp:9</div></div>
+<div class="ttc" id="akeypad_8hpp_html_a708ff21b77a9f9589c01e0321550330b"><div class="ttname"><a href="keypad_8hpp.html#a708ff21b77a9f9589c01e0321550330b">KEYPAD_C5</a></div><div class="ttdeci">#define KEYPAD_C5</div><div class="ttdef"><b>Definition:</b> keypad.hpp:13</div></div>
+<div class="ttc" id="akeypad_8hpp_html_a34bbb9794059fc695e48c48d19db09f3"><div class="ttname"><a href="keypad_8hpp.html#a34bbb9794059fc695e48c48d19db09f3">KEYPAD_C4</a></div><div class="ttdeci">#define KEYPAD_C4</div><div class="ttdef"><b>Definition:</b> keypad.hpp:12</div></div>
+<div class="ttc" id="anamespace_keypad_html_a3e9b2d60076d14fbac9b23f7a46bfc6f"><div class="ttname"><a href="namespace_keypad.html#a3e9b2d60076d14fbac9b23f7a46bfc6f">Keypad::cols</a></div><div class="ttdeci">constexpr static pin_t cols[]</div><div class="ttdef"><b>Definition:</b> keypad.hpp:25</div></div>
 <div class="ttc" id="astructpin__t_html"><div class="ttname"><a href="structpin__t.html">pin_t</a></div><div class="ttdef"><b>Definition:</b> utility.hpp:16</div></div>
+<div class="ttc" id="akeypad_8hpp_html_ad11df07a933f381cf9b85cac48d01215"><div class="ttname"><a href="keypad_8hpp.html#ad11df07a933f381cf9b85cac48d01215">KEYPAD_C1</a></div><div class="ttdeci">#define KEYPAD_C1</div><div class="ttdef"><b>Definition:</b> keypad.hpp:9</div></div>
+<div class="ttc" id="akeypad_8hpp_html_ae392e420b5b0d242072357e90d214a7a"><div class="ttname"><a href="keypad_8hpp.html#ae392e420b5b0d242072357e90d214a7a">KEYPAD_C3</a></div><div class="ttdeci">#define KEYPAD_C3</div><div class="ttdef"><b>Definition:</b> keypad.hpp:11</div></div>
+<div class="ttc" id="akeypad_8hpp_html_a2e7fa073a71257bab00e5e820478fab0"><div class="ttname"><a href="keypad_8hpp.html#a2e7fa073a71257bab00e5e820478fab0">KEYPAD_C2</a></div><div class="ttdeci">#define KEYPAD_C2</div><div class="ttdef"><b>Definition:</b> keypad.hpp:10</div></div>
+<div class="ttc" id="akeypad_8hpp_html_af5966d88e1fd4cb6fd53bf9f7b3d1080"><div class="ttname"><a href="keypad_8hpp.html#af5966d88e1fd4cb6fd53bf9f7b3d1080">KEYPAD_R5</a></div><div class="ttdeci">#define KEYPAD_R5</div><div class="ttdef"><b>Definition:</b> keypad.hpp:19</div></div>
+<div class="ttc" id="akeypad_8hpp_html_a52bc9155d366b57d0c247759a845f450"><div class="ttname"><a href="keypad_8hpp.html#a52bc9155d366b57d0c247759a845f450">KEYPAD_R8</a></div><div class="ttdeci">#define KEYPAD_R8</div><div class="ttdef"><b>Definition:</b> keypad.hpp:22</div></div>
+<div class="ttc" id="anamespace_keypad_html_a4bb8bc5d3eb32db6f59a59c39a74265c"><div class="ttname"><a href="namespace_keypad.html#a4bb8bc5d3eb32db6f59a59c39a74265c">Keypad::NONE</a></div><div class="ttdeci">constexpr uint8_t NONE</div><div class="ttdef"><b>Definition:</b> keypad.hpp:36</div></div>
+<div class="ttc" id="akeypad_8hpp_html_ad929824d9fb7373bbbba1c189697d282"><div class="ttname"><a href="keypad_8hpp.html#ad929824d9fb7373bbbba1c189697d282">KEYPAD_R6</a></div><div class="ttdeci">#define KEYPAD_R6</div><div class="ttdef"><b>Definition:</b> keypad.hpp:20</div></div>
+<div class="ttc" id="akeypad_8hpp_html_ad1543d5ace8f30156ae6f89bd409fc54"><div class="ttname"><a href="keypad_8hpp.html#ad1543d5ace8f30156ae6f89bd409fc54">KEYPAD_R1</a></div><div class="ttdeci">#define KEYPAD_R1</div><div class="ttdef"><b>Definition:</b> keypad.hpp:15</div></div>
+<div class="ttc" id="akeypad_8hpp_html_a38ca2780ca758243969c71b76b522877"><div class="ttname"><a href="keypad_8hpp.html#a38ca2780ca758243969c71b76b522877">KEYPAD_R3</a></div><div class="ttdeci">#define KEYPAD_R3</div><div class="ttdef"><b>Definition:</b> keypad.hpp:17</div></div>
+<div class="ttc" id="akeypad_8hpp_html_aa5a91b4ba95c56ad7550b090a0f7145a"><div class="ttname"><a href="keypad_8hpp.html#aa5a91b4ba95c56ad7550b090a0f7145a">KEYPAD_R7</a></div><div class="ttdeci">#define KEYPAD_R7</div><div class="ttdef"><b>Definition:</b> keypad.hpp:21</div></div>
+<div class="ttc" id="anamespace_keypad_html_a03ab3ab49f667092a074db8c88766c58"><div class="ttname"><a href="namespace_keypad.html#a03ab3ab49f667092a074db8c88766c58">Keypad::rows</a></div><div class="ttdeci">constexpr static pin_t rows[]</div><div class="ttdef"><b>Definition:</b> keypad.hpp:30</div></div>
+<div class="ttc" id="akeypad_8hpp_html_a72d8a86503660877cb3a931848e29b05"><div class="ttname"><a href="keypad_8hpp.html#a72d8a86503660877cb3a931848e29b05">KEYPAD_R4</a></div><div class="ttdeci">#define KEYPAD_R4</div><div class="ttdef"><b>Definition:</b> keypad.hpp:18</div></div>
+<div class="ttc" id="akeypad_8hpp_html_a6637f0668e995fc2a5947d49c1bafbaa"><div class="ttname"><a href="keypad_8hpp.html#a6637f0668e995fc2a5947d49c1bafbaa">KEYPAD_R2</a></div><div class="ttdeci">#define KEYPAD_R2</div><div class="ttdef"><b>Definition:</b> keypad.hpp:16</div></div>
+<div class="ttc" id="anamespace_keypad_html"><div class="ttname"><a href="namespace_keypad.html">Keypad</a></div><div class="ttdef"><b>Definition:</b> keypad.hpp:24</div></div>
+<div class="ttc" id="anamespace_keypad_html_a0899d4ad9df3422434f86ba9e9b6d32e"><div class="ttname"><a href="namespace_keypad.html#a0899d4ad9df3422434f86ba9e9b6d32e">Keypad::scan</a></div><div class="ttdeci">uint8_t scan()</div><div class="ttdef"><b>Definition:</b> keypad.cpp:17</div></div>
+<div class="ttc" id="autility_8hpp_html"><div class="ttname"><a href="utility_8hpp.html">utility.hpp</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

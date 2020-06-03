@@ -1,0 +1,164 @@
+\hypertarget{calculator_8cpp}{}\doxysection{src/calculator.cpp File Reference}
+\label{calculator_8cpp}\index{src/calculator.cpp@{src/calculator.cpp}}
+{\ttfamily \#include \char`\"{}calculator.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}loader.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}rand.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}stack.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utility.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}lcd.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03}{anonymous\+\_\+namespace\{calculator.\+cpp\}}}
+\item 
+ \mbox{\hyperlink{namespace_calculator}{Calculator}}
+\item 
+ \mbox{\hyperlink{namespace_calculator_1_1anonymous__namespace_02calculator_8cpp_03}{Calculator\+::anonymous\+\_\+namespace\{calculator.\+cpp\}}}
+\item 
+ \mbox{\hyperlink{namespace_calculator_1_1_tokens}{Calculator\+::\+Tokens}}
+\item 
+ \mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::\+Variable}} \+: uint8\+\_\+t \{ \newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15af0eb7d3744a505b30d39a341351faa3d}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::X}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15a1b9724b5cd2d2e4dac6370cca919e668}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::Y}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15ae799c1230323d96cbb91c2e4cd420989}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::A}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15af528e3538ddbb500a88620b0ab4fa56d}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::B}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15aed4bb8e3ff0176f1540dba3bfa90ff40}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::C}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15adf068067ed6909e8b7b23ba46f6d392d}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::D}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15ac090d5ec90a39f246c35c8833476121a}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::E}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15a117648e77895ef2c81e43ae2f1cba37e}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::F}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+long double \mbox{\hyperlink{calculator_8cpp_a8d660775d7c88e70b54126ec1544d16b}{evaluate}} (bool)
+\item 
+void \mbox{\hyperlink{calculator_8cpp_ad06271b0762cda2ab4572531d199447a}{get\+\_\+token}} (uint8\+\_\+t, \mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} \&)
+\item 
+long double \mbox{\hyperlink{namespace_calculator_1_1_tokens_acbebc26fa9a0a61a53781c906bb77906}{Calculator\+::\+Tokens\+::eval}} (uint8\+\_\+t id)
+\item 
+bool \mbox{\hyperlink{namespace_calculator_1_1_tokens_a9d20b76232815ee34c0b1a9f39328e45}{Calculator\+::\+Tokens\+::is\+\_\+unary}} ()
+\item 
+bool \mbox{\hyperlink{namespace_calculator_1_1_tokens_aac1fbdf7d5a30ee5c4bfdd6b9a9c7b67}{Calculator\+::\+Tokens\+::is\+\_\+associative}} (uint8\+\_\+t with)
+\item 
+long double \mbox{\hyperlink{calculator_8cpp_a9a1a22e0965f69422fad6a02d11cfa26}{pow10}} (uint8\+\_\+t x)
+\item 
+long double \mbox{\hyperlink{calculator_8cpp_aaedd0a7306a6f29b72b385afadab085c}{parse}} ()
+\item 
+void \mbox{\hyperlink{calculator_8cpp_a77c2d4697961f2c81bd37a085dfc65a9}{to\+\_\+reverse\+\_\+polish\+\_\+notation}} ()
+\item 
+\mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} \mbox{\hyperlink{calculator_8cpp_a4b1f02b7b513d7cad5688f4680f5d9e6}{get\+\_\+token}} (uint8\+\_\+t id)
+\item 
+void \mbox{\hyperlink{calculator_8cpp_af158da034aeab1686ed09a9cd6a07816}{add}} (uint8\+\_\+t id, bool \mbox{\hyperlink{main_8cpp_ac8bb3912a3ce86b15842e79d0b421204}{clear}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} \mbox{\hyperlink{calculator_8cpp_a1b8f5f97f6dbaccc53eaacc20ea1eaa3}{get\+\_\+token}} (uint8\+\_\+t)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_a3792e454cf635e1c7a3ee1ccf08267db}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::input}} \mbox{[}\mbox{\hyperlink{stack_8hpp_a6423a880df59733d2d9b509c7718d3a9}{S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE}} $\ast$2\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_a8fca76af0ae43d594482f8d4133957d1}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::output}} \mbox{[}\mbox{\hyperlink{stack_8hpp_a6423a880df59733d2d9b509c7718d3a9}{S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE}} $\ast$2\mbox{]}
+\item 
+long double \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_af45bcc39709334b7170b88e624b3de0c}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::numbers}} \mbox{[}\mbox{\hyperlink{stack_8hpp_a6423a880df59733d2d9b509c7718d3a9}{S\+T\+A\+C\+K\+\_\+\+S\+I\+ZE}}\mbox{]}
+\item 
+long double \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_a9bd11d9ae9fa24112eaf699a90a93049}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::args}} \mbox{[}8\mbox{]}
+\item 
+long double \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_afdfacc2147d5f1690c58cb78e93e6f78}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::vars}} \mbox{[}8\mbox{]}
+\item 
+long double \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_ac0e9939e187b73b10f3b68dec9e6062e}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::answer}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_a349c341955855c4cd602d222cf2dfc91}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::raw}} = 0
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_aab7d5f9765ab3166a19aba8237622121}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::idx}} = 0
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_a81296f232ede29dc3ba5ac20c6c46a5e}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::from}} = 0
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_ae3e0f18c3859d47a9583fe759975e46b}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::to}} = 0
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_a130341a87643576baa2294e665fd6e93}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::expr\+\_\+from}} = 0
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_a0a1faafac612ccc1cd1776938f556fae}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::expr\+\_\+to}} = 0
+\item 
+\mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_a292cb320028a155d010615fca6f3cda5}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::token}}
+\item 
+\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0}{Error}} \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_a194fda778b1633ef9f44afd37c27c3ba}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::error}} = \mbox{\hyperlink{keymap_8hpp_a8c91b08661656e1fbbfc7c1309c154c5ab50339a10e1de285ac99d4c3990b8693}{Error\+::\+N\+O\+NE}}
+\item 
+const char M\+S\+G\+\_\+\+S\+Y\+N\+T\+AX\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{namespace_calculator_1_1anonymous__namespace_02calculator_8cpp_03_a6006f2a52c307568ca8d12aceb6b5549}{Calculator\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::\+P\+R\+O\+G\+M\+EM}} = \char`\"{} Syntax E\+R\+R\+OR\char`\"{}
+\begin{DoxyCompactList}\small\item\em 123456789012345 \end{DoxyCompactList}\item 
+const char $\ast$const error\+\_\+msg\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{namespace_calculator_a1bd437e9bbd2486985bde3a4cc85d184}{Calculator\+::\+P\+R\+O\+G\+M\+EM}}
+\item 
+const char S\+T\+R\+\_\+\+C\+O\+M\+MA\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_ab5c3a03e8857f0e19d246da0a2cc2ff6}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::\+P\+R\+O\+G\+M\+EM}} = \char`\"{},\char`\"{}
+\item 
+const Token list\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{namespace_calculator_1_1_tokens_ab3951d0c483306a814a911769a0f5abc}{Calculator\+::\+Tokens\+::\+P\+R\+O\+G\+M\+EM}}
+\item 
+constexpr uint8\+\_\+t \mbox{\hyperlink{namespace_calculator_1_1_tokens_a5910dbd7e948169563ca1c0d01cb5c73}{Calculator\+::\+Tokens\+::\+N\+U\+M\+B\+E\+R\+\_\+\+F\+L\+AG}} = 0b10000000
+\item 
+constexpr uint8\+\_\+t \mbox{\hyperlink{namespace_calculator_1_1_tokens_ad464f2059225d0e9db5544572872d98f}{Calculator\+::\+Tokens\+::\+N\+U\+M\+B\+E\+R\+\_\+\+M\+A\+SK}} = 0b01111111
+\item 
+constexpr long double \mbox{\hyperlink{namespace_calculator_1_1_tokens_aea08773e484d348eddba2e66a95130dd}{Calculator\+::\+Tokens\+::\+C\+O\+N\+S\+T\+\_\+\+PI}} = 3.\+1415926535897932384626433832795L
+\item 
+constexpr long double \mbox{\hyperlink{namespace_calculator_1_1_tokens_ada2d3c50f5ab455e0917863d3aaca881}{Calculator\+::\+Tokens\+::\+C\+O\+N\+S\+T\+\_\+E}} = 2.\+7182818284590452353602874713527L
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{calculator_8cpp_af158da034aeab1686ed09a9cd6a07816}\label{calculator_8cpp_af158da034aeab1686ed09a9cd6a07816}} 
+\index{calculator.cpp@{calculator.cpp}!add@{add}}
+\index{add@{add}!calculator.cpp@{calculator.cpp}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily void add (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{id,  }\item[{bool}]{clear }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{calculator_8cpp_a8d660775d7c88e70b54126ec1544d16b}\label{calculator_8cpp_a8d660775d7c88e70b54126ec1544d16b}} 
+\index{calculator.cpp@{calculator.cpp}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!calculator.cpp@{calculator.cpp}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily long double evaluate (\begin{DoxyParamCaption}\item[{bool}]{expr = {\ttfamily false} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{calculator_8cpp_a4b1f02b7b513d7cad5688f4680f5d9e6}\label{calculator_8cpp_a4b1f02b7b513d7cad5688f4680f5d9e6}} 
+\index{calculator.cpp@{calculator.cpp}!get\_token@{get\_token}}
+\index{get\_token@{get\_token}!calculator.cpp@{calculator.cpp}}
+\doxysubsubsection{\texorpdfstring{get\_token()}{get\_token()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} get\+\_\+token (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{id }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{calculator_8cpp_ad06271b0762cda2ab4572531d199447a}\label{calculator_8cpp_ad06271b0762cda2ab4572531d199447a}} 
+\index{calculator.cpp@{calculator.cpp}!get\_token@{get\_token}}
+\index{get\_token@{get\_token}!calculator.cpp@{calculator.cpp}}
+\doxysubsubsection{\texorpdfstring{get\_token()}{get\_token()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void get\+\_\+token (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{id,  }\item[{\mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} \&}]{token }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{calculator_8cpp_aaedd0a7306a6f29b72b385afadab085c}\label{calculator_8cpp_aaedd0a7306a6f29b72b385afadab085c}} 
+\index{calculator.cpp@{calculator.cpp}!parse@{parse}}
+\index{parse@{parse}!calculator.cpp@{calculator.cpp}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily long double parse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{calculator_8cpp_a9a1a22e0965f69422fad6a02d11cfa26}\label{calculator_8cpp_a9a1a22e0965f69422fad6a02d11cfa26}} 
+\index{calculator.cpp@{calculator.cpp}!pow10@{pow10}}
+\index{pow10@{pow10}!calculator.cpp@{calculator.cpp}}
+\doxysubsubsection{\texorpdfstring{pow10()}{pow10()}}
+{\footnotesize\ttfamily long double pow10 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{x }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{calculator_8cpp_a77c2d4697961f2c81bd37a085dfc65a9}\label{calculator_8cpp_a77c2d4697961f2c81bd37a085dfc65a9}} 
+\index{calculator.cpp@{calculator.cpp}!to\_reverse\_polish\_notation@{to\_reverse\_polish\_notation}}
+\index{to\_reverse\_polish\_notation@{to\_reverse\_polish\_notation}!calculator.cpp@{calculator.cpp}}
+\doxysubsubsection{\texorpdfstring{to\_reverse\_polish\_notation()}{to\_reverse\_polish\_notation()}}
+{\footnotesize\ttfamily void to\+\_\+reverse\+\_\+polish\+\_\+notation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{calculator_8cpp_a1b8f5f97f6dbaccc53eaacc20ea1eaa3}\label{calculator_8cpp_a1b8f5f97f6dbaccc53eaacc20ea1eaa3}} 
+\index{calculator.cpp@{calculator.cpp}!get\_token@{get\_token}}
+\index{get\_token@{get\_token}!calculator.cpp@{calculator.cpp}}
+\doxysubsubsection{\texorpdfstring{get\_token}{get\_token}}
+{\footnotesize\ttfamily void get\+\_\+token}
+

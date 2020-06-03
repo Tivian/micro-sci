@@ -1,0 +1,149 @@
+\hypertarget{calculator_8hpp}{}\doxysection{src/calculator.hpp File Reference}
+\label{calculator_8hpp}\index{src/calculator.hpp@{src/calculator.hpp}}
+{\ttfamily \#include $<$avr/pgmspace.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Calculator\+::\+Tokens\+::\+Token}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_calculator}{Calculator}}
+\item 
+ \mbox{\hyperlink{namespace_calculator_1_1_tokens}{Calculator\+::\+Tokens}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0}{Calculator\+::\+Error}} \+: uint8\+\_\+t \{ \newline
+\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0ab50339a10e1de285ac99d4c3990b8693}{Calculator\+::\+Error\+::\+N\+O\+NE}}, 
+\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0aba2b45bdc11e2a4a6e86aab2ac693cbb}{Calculator\+::\+Error\+::\+E\+M\+P\+TY}}, 
+\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0a3dee5c76b66ffa6cc917386bdfaeb2b5}{Calculator\+::\+Error\+::\+S\+Y\+N\+T\+AX}}, 
+\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0a0134b04a942cbc5336958c8cd09b82f3}{Calculator\+::\+Error\+::\+O\+V\+E\+R\+F\+L\+OW}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0a977ea5b844282f3a37228bb5f9546f17}{Calculator\+::\+Error\+::\+I\+N\+V\+A\+L\+I\+D\+\_\+\+R\+A\+N\+GE}}, 
+\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0aed10ce6f42d65015f9b4fe0a664f6be8}{Calculator\+::\+Error\+::\+M\+I\+S\+M\+A\+T\+C\+H\+E\+D\+\_\+\+O\+P\+E\+R\+A\+T\+OR}}, 
+\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0a20dd16f2d1d035225208dbcac6632128}{Calculator\+::\+Error\+::\+M\+I\+S\+M\+A\+T\+C\+H\+E\+D\+\_\+\+P\+A\+R\+E\+N\+T\+H\+E\+S\+ES}}, 
+\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0a4526535521f3765837fa0ddfa196c33d}{Calculator\+::\+Error\+::\+N\+E\+S\+T\+I\+N\+G\+\_\+\+N\+O\+T\+\_\+\+A\+L\+L\+O\+W\+ED}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0ac56ddb8056b120c9d5fee05981f219c6}{Calculator\+::\+Error\+::\+O\+U\+T\+\_\+\+O\+F\+\_\+\+M\+E\+M\+O\+RY}}, 
+\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0a696b031073e74bf2cb98e5ef201d4aa3}{Calculator\+::\+Error\+::\+U\+N\+K\+N\+O\+WN}} = 0x\+FF
+ \}
+\item 
+enum \mbox{\hyperlink{namespace_calculator_1_1_tokens_aa2c51d9b2a0736700ee2542f128c576d}{Calculator\+::\+Tokens\+::\+Type}} \+: uint8\+\_\+t \{ \newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_aa2c51d9b2a0736700ee2542f128c576dab22f521f17b09d0fd389e231f8f6d66d}{Calculator\+::\+Tokens\+::\+Type\+::\+N\+U\+M\+E\+R\+IC}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_aa2c51d9b2a0736700ee2542f128c576da9a0a6908b09b9740133dfc9a162987fb}{Calculator\+::\+Tokens\+::\+Type\+::\+S\+Y\+M\+B\+O\+L\+IC}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_aa2c51d9b2a0736700ee2542f128c576da986496ca5b23669b8661171566a167c3}{Calculator\+::\+Tokens\+::\+Type\+::\+O\+P\+E\+R\+A\+T\+OR}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_aa2c51d9b2a0736700ee2542f128c576da6a72a6a776662a244f82d31e9274a07b}{Calculator\+::\+Tokens\+::\+Type\+::\+F\+U\+N\+C\+T\+I\+ON}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_aa2c51d9b2a0736700ee2542f128c576da756a113833040dfb33e27830fba5e901}{Calculator\+::\+Tokens\+::\+Type\+::\+C\+O\+M\+P\+O\+U\+ND}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_aa2c51d9b2a0736700ee2542f128c576daa72e4a34f10af98a9814d865e717399f}{Calculator\+::\+Tokens\+::\+Type\+::\+S\+P\+E\+C\+I\+AL}}
+ \}
+\item 
+enum \mbox{\hyperlink{namespace_calculator_1_1_tokens_a430db79a1001ed74cb804b95ff7c77af}{Calculator\+::\+Tokens\+::\+Assoc}} \+: uint8\+\_\+t \{ \mbox{\hyperlink{namespace_calculator_1_1_tokens_a430db79a1001ed74cb804b95ff7c77afa684d325a7303f52e64011467ff5c5758}{Calculator\+::\+Tokens\+::\+Assoc\+::\+L\+E\+FT}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a430db79a1001ed74cb804b95ff7c77afa21507b40c80068eda19865706fdc2403}{Calculator\+::\+Tokens\+::\+Assoc\+::\+R\+I\+G\+HT}}
+ \}
+\item 
+enum \mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97}{Calculator\+::\+Tokens\+::\+Name}} \+: uint8\+\_\+t \{ \newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97ae4b45484e30bd7af6060ee95c8f2a57a}{Calculator\+::\+Tokens\+::\+S\+T\+OP}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a17cb8dcd1a9e51bad16bde37a2c58de4}{Calculator\+::\+Tokens\+::\+C\+O\+M\+MA}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a35c63821a7c88775050868916612d960}{Calculator\+::\+Tokens\+::\+L\+E\+F\+T\+\_\+\+P\+A\+R\+E\+NT}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a966c7b809cd0a8f7192b486a0b29911b}{Calculator\+::\+Tokens\+::\+R\+I\+G\+H\+T\+\_\+\+P\+A\+R\+E\+NT}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a4107aa0cd6857dcef7591c7fb27904ac}{Calculator\+::\+Tokens\+::\+Z\+E\+RO}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97ab9064bb81c663742d8129e603772dcf9}{Calculator\+::\+Tokens\+::\+O\+NE}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97ab62c6c9b7122dc74261a1889e3f81fa3}{Calculator\+::\+Tokens\+::\+T\+WO}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a39039e0b35d90ad50c117b39dfb4eb2b}{Calculator\+::\+Tokens\+::\+T\+H\+R\+EE}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a02ee8a89089b6fca81743a71928656cc}{Calculator\+::\+Tokens\+::\+F\+O\+UR}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a5fbc8b18f1592550158ad674dd0d8565}{Calculator\+::\+Tokens\+::\+F\+I\+VE}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a158b93a1fd13d745450fe5231aa85ce4}{Calculator\+::\+Tokens\+::\+S\+IX}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a52f9c8620bde4c6bba64948d9483f11a}{Calculator\+::\+Tokens\+::\+S\+E\+V\+EN}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a95d5714cb84222b3aaa52e68dde2f6c8}{Calculator\+::\+Tokens\+::\+E\+I\+G\+HT}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97ad4cbb00e29f51c593b525f663add1995}{Calculator\+::\+Tokens\+::\+N\+I\+NE}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a206f065c1656726842997e69c8b01c54}{Calculator\+::\+Tokens\+::\+P\+O\+I\+NT}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97ae09dec1068c93346f2a7d52231adf057}{Calculator\+::\+Tokens\+::\+S\+CI}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a57b98ae7e623459d9f7c70130ee15f00}{Calculator\+::\+Tokens\+::\+V\+A\+R\+\_\+X}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97aedb8837dcfdfccc5cff97fb5758a8676}{Calculator\+::\+Tokens\+::\+V\+A\+R\+\_\+Y}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97abccc354c38a3fa5cf3da3d04be347eaa}{Calculator\+::\+Tokens\+::\+V\+A\+R\+\_\+A}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97ad30f13d782a7009463a765becd05875e}{Calculator\+::\+Tokens\+::\+V\+A\+R\+\_\+B}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97ae89e50b61940df1c01e1cdef477b1a24}{Calculator\+::\+Tokens\+::\+V\+A\+R\+\_\+C}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a8aea19f342d3f30e009756e336d38f77}{Calculator\+::\+Tokens\+::\+V\+A\+R\+\_\+D}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a81cf27835161a297d0ffd045ed5b1f46}{Calculator\+::\+Tokens\+::\+V\+A\+R\+\_\+E}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a792d56b08c980e1080ec639fc3bf7eb5}{Calculator\+::\+Tokens\+::\+V\+A\+R\+\_\+F}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a49219930e3e7b509fa15796419f0ba29}{Calculator\+::\+Tokens\+::\+A\+NS}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a2c46eefe40f09fd9bc28a4c698a75608}{Calculator\+::\+Tokens\+::\+R\+ND}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a32482a4b7b7392b383b2ee4854a111e3}{Calculator\+::\+Tokens\+::\+E\+U\+L\+ER}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a0d5f63dc079e5424ad2c85562a1e3447}{Calculator\+::\+Tokens\+::\+PI}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a00c0c227dce33d32da4433e08a8ce713}{Calculator\+::\+Tokens\+::\+OR}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a884deb7531ab0fc8ea2ca40081c3a6a0}{Calculator\+::\+Tokens\+::\+X\+OR}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a9135bb332b72e051952e8dc2dd8e5aaf}{Calculator\+::\+Tokens\+::\+A\+ND}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a4bcf2105a199d0efaa6e258efe2b1d91}{Calculator\+::\+Tokens\+::\+S\+U\+B\+T\+R\+A\+CT}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a07a486785ae39423fcc1e2916dd32901}{Calculator\+::\+Tokens\+::\+A\+DD}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a5c782e5d64045f98af2d031aaecc2224}{Calculator\+::\+Tokens\+::\+M\+O\+D\+U\+LO}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a69e6301e31da305a68b1002fe5328b68}{Calculator\+::\+Tokens\+::\+M\+U\+L\+T\+I\+P\+LY}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a9d9309c8b27a862fd3242a76caf10dcb}{Calculator\+::\+Tokens\+::\+D\+I\+V\+I\+DE}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a90a24176016e099eefececd15635d614}{Calculator\+::\+Tokens\+::\+C\+O\+M\+B\+I\+N\+A\+T\+I\+ON}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a184d6759ce0b13e2a2af38402cb5d73c}{Calculator\+::\+Tokens\+::\+P\+E\+R\+M\+U\+T\+A\+T\+I\+ON}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a83f29be6c501512ad02f889a45217c73}{Calculator\+::\+Tokens\+::\+P\+O\+W\+ER}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97abab9f42bb38865a0ba3b2af063779fd2}{Calculator\+::\+Tokens\+::\+M\+I\+N\+US}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a12365e83e236869acafb77e8bfd5d42b}{Calculator\+::\+Tokens\+::\+P\+L\+US}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a322b0a315ec73ee54bcbf65a5b9451eb}{Calculator\+::\+Tokens\+::\+R\+O\+OT}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a2d6e4d57703c7fcae585ee9cf0553fb8}{Calculator\+::\+Tokens\+::\+I\+N\+V\+E\+RT}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a4429a78fe2093cc702d7b63af1233ea6}{Calculator\+::\+Tokens\+::\+F\+A\+C\+T\+O\+R\+I\+AL}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a30237f198d489605e2f330d8755bb557}{Calculator\+::\+Tokens\+::\+S\+I\+NE}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97aa39635a228fdd2da185f5e3b7c629aa0}{Calculator\+::\+Tokens\+::\+C\+O\+S\+I\+NE}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97ab3278c7dbd797a042b70aff5d93cedf4}{Calculator\+::\+Tokens\+::\+T\+A\+N\+G\+E\+NT}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a43f5567e1e6b8b33f9c6baae50d4c5d2}{Calculator\+::\+Tokens\+::\+A\+R\+C\+S\+IN}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a58ea3fea1d48f104baa6cce562415e6a}{Calculator\+::\+Tokens\+::\+A\+R\+C\+C\+OS}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a9d6864bacb2f4fb0b870622caf047b0c}{Calculator\+::\+Tokens\+::\+A\+R\+C\+T\+AN}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97afd23ac98a08225861466fa860207c9b3}{Calculator\+::\+Tokens\+::\+S\+I\+NH}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97af4fe73ee0807eaa1673130048d17bf60}{Calculator\+::\+Tokens\+::\+C\+O\+SH}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a1e8eda3a8d9bc3668221f387b964c75b}{Calculator\+::\+Tokens\+::\+T\+A\+NH}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a204ddb4b69d524f05e316f8321f59b87}{Calculator\+::\+Tokens\+::\+L\+O\+G10}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a27e13f5a36eef3d546ebac6382fd5769}{Calculator\+::\+Tokens\+::\+LN}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a7f2f312e218cea34fa4130bc74cbe3f9}{Calculator\+::\+Tokens\+::\+S\+Q\+RT}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97abc5f4f29482bbaab305e8d74d49e84ce}{Calculator\+::\+Tokens\+::\+E\+X\+P\+O\+N\+E\+NT}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a07cba0dc7c8b4494e5f01697902326e6}{Calculator\+::\+Tokens\+::\+A\+BS}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a4b904f3009a35b4868e1294206a775aa}{Calculator\+::\+Tokens\+::\+M\+I\+N\+I\+M\+UM}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a0d515526f084243200a9cb8e47f4e1ec}{Calculator\+::\+Tokens\+::\+M\+A\+X\+I\+M\+UM}}, 
+\newline
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97aa0d0a62264561f6cd6a797305c8842d8}{Calculator\+::\+Tokens\+::\+S\+UM}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a7d9a1326bd479b1907549f6939043590}{Calculator\+::\+Tokens\+::\+I\+N\+T\+E\+G\+R\+AL}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a40d2986448c0a87c6797c95091c323fb}{Calculator\+::\+Tokens\+::\+D\+E\+R\+I\+V\+A\+T\+I\+VE}}, 
+\mbox{\hyperlink{namespace_calculator_1_1_tokens_a652f16a2d099531395e928aed542fa97a258a44a3c813da9b3fe016e3682d71b7}{Calculator\+::\+Tokens\+::\+L\+E\+N\+G\+TH}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespace_calculator_a78a49e09996aca67a416719a7688e0ea}{Calculator\+::add}} (uint8\+\_\+t id)
+\item 
+void \mbox{\hyperlink{namespace_calculator_a1b09cd6efe57e49f66b193a15b5a97d5}{Calculator\+::set}} (uint8\+\_\+t id, uint8\+\_\+t pos)
+\item 
+\mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} \mbox{\hyperlink{namespace_calculator_ae4061965a67ca667b1f2f670dbbc629a}{Calculator\+::get}} (uint8\+\_\+t id)
+\item 
+void \mbox{\hyperlink{namespace_calculator_ac4a03e4c7d48d4d9bbb3d1c3708dd01f}{Calculator\+::clear}} ()
+\item 
+long double \mbox{\hyperlink{namespace_calculator_a0740d3083036e7320cd70150b836f259}{Calculator\+::evaluate}} ()
+\item 
+\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0}{Error}} \mbox{\hyperlink{namespace_calculator_ade24dae66f776266038a28272f44b3b7}{Calculator\+::check}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespace_calculator_ad0ef1827bd447b68eb531fcd74d4bc07}{Calculator\+::at}} ()
+\item 
+const char $\ast$ \mbox{\hyperlink{namespace_calculator_a02ae523911fcccd9b150dea927e83755}{Calculator\+::get\+\_\+msg}} ()
+\end{DoxyCompactItemize}

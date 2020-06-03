@@ -1,0 +1,126 @@
+\hypertarget{main_8cpp}{}\doxysection{src/main.cpp File Reference}
+\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+{\ttfamily \#include \char`\"{}lcd.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}keypad.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}keymap.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}blink.\+hpp\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}calculator.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+{\ttfamily \#include $<$avr/interrupt.\+h$>$}\newline
+{\ttfamily \#include $<$avr/wdt.\+h$>$}\newline
+{\ttfamily \#include $<$util/delay.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}loader.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_a79c69d27a952133625892ec8161d311b}{show\+\_\+title}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_a2d034c35be9fc2c7bae579d1a8ee4bfe}{print\+\_\+hex}} (uint8\+\_\+t v, bool space=true)
+\item 
+void \mbox{\hyperlink{main_8cpp_ad78215648d9fe8a6c8ff7c35c62ce42d}{print}} (long double v)
+\item 
+void \mbox{\hyperlink{main_8cpp_a9403ab7e3644453b7d960cf0a2986b3b}{error}} (\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0}{Calculator\+::\+Error}} err)
+\item 
+void \mbox{\hyperlink{main_8cpp_aa3ddaf553561ad00ad661cb330fed158}{add}} (uint8\+\_\+t id)
+\item 
+void \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} (long double val)
+\item 
+void \mbox{\hyperlink{main_8cpp_ac8bb3912a3ce86b15842e79d0b421204}{clear}} ()
+\item 
+void \mbox{\hyperlink{main_8cpp_aff6af5d8e6a73c7a528868a2abdc0ad3}{interpret}} (uint8\+\_\+t key)
+\item 
+int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\item 
+\mbox{\hyperlink{main_8cpp_a43905d6fb5c4d433a49f527fa6ab811f}{I\+SR}} (W\+D\+T\+\_\+vect)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const char left\+\_\+arrow\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{main_8cpp_a31c584a8c2c9efec04cdcca8494288fb}{P\+R\+O\+G\+M\+EM}} = \{ 0x00, 0x02, 0x06, 0x0E, 0x1E, 0x0E, 0x06, 0x02 \}
+\item 
+bool \mbox{\hyperlink{main_8cpp_a6b217b97599067df311467b9f4eaa8a7}{displaying}} = false
+\begin{DoxyCompactList}\small\item\em Shows whether the calculation result is being displayed right now. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_aa3ddaf553561ad00ad661cb330fed158}\label{main_8cpp_aa3ddaf553561ad00ad661cb330fed158}} 
+\index{main.cpp@{main.cpp}!add@{add}}
+\index{add@{add}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily void add (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{id }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_ac8bb3912a3ce86b15842e79d0b421204}\label{main_8cpp_ac8bb3912a3ce86b15842e79d0b421204}} 
+\index{main.cpp@{main.cpp}!clear@{clear}}
+\index{clear@{clear}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}\label{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}} 
+\index{main.cpp@{main.cpp}!display@{display}}
+\index{display@{display}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily void display (\begin{DoxyParamCaption}\item[{long double}]{val }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_a9403ab7e3644453b7d960cf0a2986b3b}\label{main_8cpp_a9403ab7e3644453b7d960cf0a2986b3b}} 
+\index{main.cpp@{main.cpp}!error@{error}}
+\index{error@{error}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{error()}{error()}}
+{\footnotesize\ttfamily void error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0}{Calculator\+::\+Error}}}]{err }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_aff6af5d8e6a73c7a528868a2abdc0ad3}\label{main_8cpp_aff6af5d8e6a73c7a528868a2abdc0ad3}} 
+\index{main.cpp@{main.cpp}!interpret@{interpret}}
+\index{interpret@{interpret}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{interpret()}{interpret()}}
+{\footnotesize\ttfamily void interpret (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{key }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_a43905d6fb5c4d433a49f527fa6ab811f}\label{main_8cpp_a43905d6fb5c4d433a49f527fa6ab811f}} 
+\index{main.cpp@{main.cpp}!ISR@{ISR}}
+\index{ISR@{ISR}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{ISR()}{ISR()}}
+{\footnotesize\ttfamily I\+SR (\begin{DoxyParamCaption}\item[{W\+D\+T\+\_\+vect}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_ad78215648d9fe8a6c8ff7c35c62ce42d}\label{main_8cpp_ad78215648d9fe8a6c8ff7c35c62ce42d}} 
+\index{main.cpp@{main.cpp}!print@{print}}
+\index{print@{print}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily void print (\begin{DoxyParamCaption}\item[{long double}]{v }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_a2d034c35be9fc2c7bae579d1a8ee4bfe}\label{main_8cpp_a2d034c35be9fc2c7bae579d1a8ee4bfe}} 
+\index{main.cpp@{main.cpp}!print\_hex@{print\_hex}}
+\index{print\_hex@{print\_hex}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{print\_hex()}{print\_hex()}}
+{\footnotesize\ttfamily void print\+\_\+hex (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{v,  }\item[{bool}]{space = {\ttfamily true} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8cpp_a79c69d27a952133625892ec8161d311b}\label{main_8cpp_a79c69d27a952133625892ec8161d311b}} 
+\index{main.cpp@{main.cpp}!show\_title@{show\_title}}
+\index{show\_title@{show\_title}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{show\_title()}{show\_title()}}
+{\footnotesize\ttfamily void show\+\_\+title (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{main_8cpp_a6b217b97599067df311467b9f4eaa8a7}\label{main_8cpp_a6b217b97599067df311467b9f4eaa8a7}} 
+\index{main.cpp@{main.cpp}!displaying@{displaying}}
+\index{displaying@{displaying}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{displaying}{displaying}}
+{\footnotesize\ttfamily bool displaying = false}
+
+
+
+Shows whether the calculation result is being displayed right now. 
+
+\mbox{\Hypertarget{main_8cpp_a31c584a8c2c9efec04cdcca8494288fb}\label{main_8cpp_a31c584a8c2c9efec04cdcca8494288fb}} 
+\index{main.cpp@{main.cpp}!PROGMEM@{PROGMEM}}
+\index{PROGMEM@{PROGMEM}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{PROGMEM}{PROGMEM}}
+{\footnotesize\ttfamily const char title \mbox{[}$\,$\mbox{]} P\+R\+O\+G\+M\+EM = \{ 0x00, 0x02, 0x06, 0x0E, 0x1E, 0x0E, 0x06, 0x02 \}}
+

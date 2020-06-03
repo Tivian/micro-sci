@@ -1,0 +1,38 @@
+\hypertarget{utility_8hpp}{}\doxysection{src/utility.hpp File Reference}
+\label{utility_8hpp}\index{src/utility.hpp@{src/utility.hpp}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpin__t}{pin\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{utility_8hpp_a6242a25f9d996f0cc4f4cdb911218b75}{A\+R\+R\+A\+Y\+\_\+\+S\+I\+ZE}}(x)~(sizeof(x) / sizeof(x\mbox{[}0\mbox{]}))
+\item 
+\#define \mbox{\hyperlink{utility_8hpp_acf5495926a719aad80975feec317be4b}{D\+DR}}(port)~($\ast$(\&(port) -\/ 1))
+\item 
+\#define \mbox{\hyperlink{utility_8hpp_ac0b8f76e4a1d5c23d0782868f2e632dc}{P\+IN}}(port)~($\ast$(\&(port) -\/ 2))
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{utility_8hpp_a6242a25f9d996f0cc4f4cdb911218b75}\label{utility_8hpp_a6242a25f9d996f0cc4f4cdb911218b75}} 
+\index{utility.hpp@{utility.hpp}!ARRAY\_SIZE@{ARRAY\_SIZE}}
+\index{ARRAY\_SIZE@{ARRAY\_SIZE}!utility.hpp@{utility.hpp}}
+\doxysubsubsection{\texorpdfstring{ARRAY\_SIZE}{ARRAY\_SIZE}}
+{\footnotesize\ttfamily \#define A\+R\+R\+A\+Y\+\_\+\+S\+I\+ZE(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(sizeof(x) / sizeof(x\mbox{[}0\mbox{]}))}
+
+\mbox{\Hypertarget{utility_8hpp_acf5495926a719aad80975feec317be4b}\label{utility_8hpp_acf5495926a719aad80975feec317be4b}} 
+\index{utility.hpp@{utility.hpp}!DDR@{DDR}}
+\index{DDR@{DDR}!utility.hpp@{utility.hpp}}
+\doxysubsubsection{\texorpdfstring{DDR}{DDR}}
+{\footnotesize\ttfamily \#define D\+DR(\begin{DoxyParamCaption}\item[{}]{port }\end{DoxyParamCaption})~($\ast$(\&(port) -\/ 1))}
+
+\mbox{\Hypertarget{utility_8hpp_ac0b8f76e4a1d5c23d0782868f2e632dc}\label{utility_8hpp_ac0b8f76e4a1d5c23d0782868f2e632dc}} 
+\index{utility.hpp@{utility.hpp}!PIN@{PIN}}
+\index{PIN@{PIN}!utility.hpp@{utility.hpp}}
+\doxysubsubsection{\texorpdfstring{PIN}{PIN}}
+{\footnotesize\ttfamily \#define P\+IN(\begin{DoxyParamCaption}\item[{}]{port }\end{DoxyParamCaption})~($\ast$(\&(port) -\/ 2))}
+

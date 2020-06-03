@@ -69,29 +69,31 @@ $(function() {
 <div class="title">utility.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef UTILITY_HPP</span></div>
+<a href="utility_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef UTILITY_HPP</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define UTILITY_HPP</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="utility_8hpp.html#a6242a25f9d996f0cc4f4cdb911218b75">    7</a></span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef DDR</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define DDR(port) (*(&amp;(port) - 1))</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="utility_8hpp.html#acf5495926a719aad80975feec317be4b">   10</a></span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#ifndef PIN</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define PIN(port) (*(&amp;(port) - 2))</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="utility_8hpp.html#ac0b8f76e4a1d5c23d0782868f2e632dc">   14</a></span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="structpin__t.html">   16</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structpin__t.html">pin_t</a> {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">volatile</span> uint8_t* port;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    uint8_t pin;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structpin__t.html#a4cdf8057534b78012eed25f8113f0c58">   17</a></span>&#160;    <span class="keyword">volatile</span> uint8_t* <a class="code" href="structpin__t.html#a4cdf8057534b78012eed25f8113f0c58">port</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structpin__t.html#ae39a065c9c7a74157094d9ff31a2f696">   18</a></span>&#160;    uint8_t <a class="code" href="structpin__t.html#ae39a065c9c7a74157094d9ff31a2f696">pin</a>;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;};</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="astructpin__t_html_ae39a065c9c7a74157094d9ff31a2f696"><div class="ttname"><a href="structpin__t.html#ae39a065c9c7a74157094d9ff31a2f696">pin_t::pin</a></div><div class="ttdeci">uint8_t pin</div><div class="ttdef"><b>Definition:</b> utility.hpp:18</div></div>
 <div class="ttc" id="astructpin__t_html"><div class="ttname"><a href="structpin__t.html">pin_t</a></div><div class="ttdef"><b>Definition:</b> utility.hpp:16</div></div>
+<div class="ttc" id="astructpin__t_html_a4cdf8057534b78012eed25f8113f0c58"><div class="ttname"><a href="structpin__t.html#a4cdf8057534b78012eed25f8113f0c58">pin_t::port</a></div><div class="ttdeci">volatile uint8_t * port</div><div class="ttdef"><b>Definition:</b> utility.hpp:17</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

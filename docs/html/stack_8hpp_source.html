@@ -69,21 +69,29 @@ $(function() {
 <div class="title">stack.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef STACK_HPP</span></div>
+<a href="stack_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef STACK_HPP</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define STACK_HPP</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define STACK_SIZE 64</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">namespace </span>Stack {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; T pop();</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keywordtype">void</span> push(T val);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;uint16_t size();</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;}</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="stack_8hpp.html#a6423a880df59733d2d9b509c7718d3a9">    7</a></span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="namespace_stack.html">    8</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_stack.html">Stack</a> {</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">void</span> <a class="code" href="namespace_stack.html#adab1284b8929385d4020356fb52c8139">clear</a>();</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;uint8_t <a class="code" href="namespace_stack.html#ab2f60ea86f027f24bcd43e28e33b7cc4">size</a>();</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespace_stack.html#a9000c5ae328da2de4577b0bd22f7cdf2">   11</a></span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; T <a class="code" href="namespace_stack.html#a9000c5ae328da2de4577b0bd22f7cdf2">peek</a>();</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="namespace_stack.html#a1316fa704b86e6bc660c03f6b45afe5b">   12</a></span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; T <a class="code" href="namespace_stack.html#a1316fa704b86e6bc660c03f6b45afe5b">pop</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="namespace_stack.html#ac9384e193f407a77ab7747508f355742">   13</a></span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keywordtype">void</span> <a class="code" href="namespace_stack.html#ac9384e193f407a77ab7747508f355742">push</a>(T val);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="anamespace_stack_html_ac9384e193f407a77ab7747508f355742"><div class="ttname"><a href="namespace_stack.html#ac9384e193f407a77ab7747508f355742">Stack::push</a></div><div class="ttdeci">void push(T val)</div></div>
+<div class="ttc" id="anamespace_stack_html_a1316fa704b86e6bc660c03f6b45afe5b"><div class="ttname"><a href="namespace_stack.html#a1316fa704b86e6bc660c03f6b45afe5b">Stack::pop</a></div><div class="ttdeci">T pop()</div></div>
+<div class="ttc" id="anamespace_stack_html_adab1284b8929385d4020356fb52c8139"><div class="ttname"><a href="namespace_stack.html#adab1284b8929385d4020356fb52c8139">Stack::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition:</b> stack.cpp:12</div></div>
+<div class="ttc" id="anamespace_stack_html"><div class="ttname"><a href="namespace_stack.html">Stack</a></div><div class="ttdef"><b>Definition:</b> stack.hpp:8</div></div>
+<div class="ttc" id="anamespace_stack_html_ab2f60ea86f027f24bcd43e28e33b7cc4"><div class="ttname"><a href="namespace_stack.html#ab2f60ea86f027f24bcd43e28e33b7cc4">Stack::size</a></div><div class="ttdeci">uint8_t size()</div><div class="ttdef"><b>Definition:</b> stack.cpp:16</div></div>
+<div class="ttc" id="anamespace_stack_html_a9000c5ae328da2de4577b0bd22f7cdf2"><div class="ttname"><a href="namespace_stack.html#a9000c5ae328da2de4577b0bd22f7cdf2">Stack::peek</a></div><div class="ttdeci">T peek()</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

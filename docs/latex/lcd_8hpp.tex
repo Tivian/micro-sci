@@ -1,0 +1,482 @@
+\hypertarget{lcd_8hpp}{}\doxysection{src/lcd.hpp File Reference}
+\label{lcd_8hpp}\index{src/lcd.hpp@{src/lcd.hpp}}
+{\ttfamily \#include \char`\"{}lcd\+\_\+custom.\+hpp\char`\"{}}\newline
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+{\ttfamily \#include $<$avr/pgmspace.\+h$>$}\newline
+{\ttfamily \#include $<$util/delay.\+h$>$}\newline
+\doxysubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \mbox{\hyperlink{namespace_l_c_d}{L\+CD}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a01212e90283511562039db786f65ba98}{L\+C\+D\+\_\+\+L\+I\+N\+ES}}~2
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a684bb4392e384b7ae7c660d81dacb930}{L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+L\+E\+N\+G\+TH}}~16
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_ae59a728d9dee9f12c817b29d38746ed9}{L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}}~0x40
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_abd056d70a1488ea2eb1aef87e248e234}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1}}~0x00
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a7b317b21058ef031716ba040ef75430a}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2}}~\mbox{\hyperlink{lcd_8hpp_ae59a728d9dee9f12c817b29d38746ed9}{L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}}
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a79ca3fe83448ab158a4c566bf292c260}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP}}~16000
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_ab6ba3c8cdcf1a96b0d4c476eff8f8617}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT}}~5000
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a2f7b5cee5520adc08a0931fbdcddbe26}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+C\+L\+E\+AR}}~2000
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_adff254037e59993bd0817a1112c3d215}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+C\+MD}}~25
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a2ce1ac9b146b7baa7169e27f9cf3a99e}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP}}~64
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_adf773dcbd0827cd15c788065c9197459}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT}}~64
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a5b0632f09757ffe6f018c6ef88cc3296}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE}}~1
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a3ba526ed5c9a7fc2bc68f94ad90ff9c1}{L\+C\+D\+\_\+\+R\+S\+\_\+\+I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}}~false
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a9993ce43cdf8d8cb194c2e23c3d2698d}{L\+C\+D\+\_\+\+R\+S\+\_\+\+D\+A\+TA}}~true
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a459688213267d13ccfbeb2c9004988cb}{L\+C\+D\+\_\+\+C\+LR}}~0      /$\ast$ D\+B0\+: \mbox{\hyperlink{main_8cpp_ac8bb3912a3ce86b15842e79d0b421204}{clear}} \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}}                  $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_ae0e309ccad89222eb3457f2da9f2bb8d}{L\+C\+D\+\_\+\+H\+O\+ME}}~1      /$\ast$ D\+B1\+: return to home position        $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_ae5d757ddb6d94de8c82191b60b40e442}{L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+M\+O\+DE}}~2      /$\ast$ D\+B2\+: set entry mode                 $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_ada766266a0be0d0040fbf86e23b58aa6}{L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NC}}~1      /$\ast$   D\+B1\+: 1=increment, 0=decrement     $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a14d0c7fda147e0dc8cdaa4a2629b3532}{L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+H\+I\+FT}}~0      /$\ast$   D\+B2\+: 1=\mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} shift on           $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a47a809dfec086fdeca93dedc4fb83b44}{L\+C\+D\+\_\+\+ON}}~3      /$\ast$ D\+B3\+: turn lcd/cursor on             $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_ae84f634b0a1661c4d5bbaafd9397732a}{L\+C\+D\+\_\+\+O\+N\+\_\+\+D\+I\+S\+P\+L\+AY}}~2      /$\ast$   D\+B2\+: turn \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} on              $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a47638b5ebbaec9600a0ebf9a55caf802}{L\+C\+D\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+OR}}~1      /$\ast$   D\+B1\+: turn cursor on               $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a5d76592a978537acee615098ce4d80f5}{L\+C\+D\+\_\+\+O\+N\+\_\+\+B\+L\+I\+NK}}~0      /$\ast$     D\+B0\+: blinking cursor ?          $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a3f4f758b80fcfa6c9e4db58e2515c78a}{L\+C\+D\+\_\+\+M\+O\+VE}}~4      /$\ast$ D\+B4\+: move cursor/\mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}}            $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_aaddc2afa9a02bfa748950f2c1e6a204d}{L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+SP}}~3      /$\ast$   D\+B3\+: move \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} (0-\/$>$ cursor) ?  $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a97cdb19acf109ad52ab4994d2ad02cee}{L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+R\+I\+G\+HT}}~2      /$\ast$   D\+B2\+: move right (0-\/$>$ left) ?      $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a50de1697f1da8ab075a6b4d7aeace64e}{L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+ON}}~5      /$\ast$ D\+B5\+: function set                   $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a91d15d8e3008f6cb141406a8b5d0d3c0}{L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+8\+B\+IT}}~4      /$\ast$   D\+B4\+: set 8B\+IT mode (0-\/$>$4B\+IT mode) $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a6c24806bed18d565917165caa3475463}{L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+2\+L\+I\+N\+ES}}~3      /$\ast$   D\+B3\+: two lines (0-\/$>$one line)      $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a48de81358277fe4f2810c2b82f90397e}{L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10\+D\+O\+TS}}~2      /$\ast$   D\+B2\+: 5x10 font (0-\/$>$5x7 font)      $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a3b38de74c362be1781fef1136aa9684c}{L\+C\+D\+\_\+\+C\+G\+R\+AM}}~6      /$\ast$ D\+B6\+: set CG R\+AM address             $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_ae54acf3ccc45b7d6be334a03627740c6}{L\+C\+D\+\_\+\+D\+D\+R\+AM}}~7      /$\ast$ D\+B7\+: set DD R\+AM address             $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_ac8dd1658e235f174d1cabae5c438943d}{L\+C\+D\+\_\+\+B\+U\+SY}}~7      /$\ast$ D\+B7\+: L\+CD is busy                    $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_aad56f8e07634e85663f56888ae97089c}{L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+D\+EC}}~0x04   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} shift off, dec cursor move dir $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a1c62932f252c6262cbef728add9696e4}{L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+D\+E\+C\+\_\+\+S\+H\+I\+FT}}~0x05   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} shift on,  dec cursor move dir $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_ad27ddc4b8d03594662c8757f946dde28}{L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+N\+C\+\_\+}}~0x06   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} shift off, inc cursor move dir $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_afabd0215cc6ae5539dc638dbec44a506}{L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+N\+C\+\_\+\+S\+H\+I\+FT}}~0x07   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} shift on,  inc cursor move dir $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_aa2966175115943883f51e9c90478540c}{L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+FF}}~0x08   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} off                            $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a5163a96b133868975c0738e180b30cb8}{L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+ON}}~0x0C   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} on, cursor off                 $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a470cef85de53e37356b22c66a357a764}{L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+B\+L\+I\+NK}}~0x0D   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} on, cursor off, blink char     $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_af56b6d6bdb6fa48b26106dee5f74ae1f}{L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+OR}}~0x0E   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} on, cursor on                  $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_ac1984ed0db15c6991d34c184fdca5dc6}{L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+B\+L\+I\+NK}}~0x0F   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} on, cursor on, blink char      $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_ac2f0ddce1daaa1bf1a016270a89a264b}{L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+L\+E\+FT}}~0x10   /$\ast$ move cursor left  (decrement)          $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a0ad58e39e053e97d34527fcbe936899b}{L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+R\+I\+G\+HT}}~0x14   /$\ast$ move cursor right (increment)          $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_ab3c34ff1eee238bbe9c677215219fb8e}{L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+S\+P\+\_\+\+L\+E\+FT}}~0x18   /$\ast$ shift \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} left                     $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a9a90bb926f5ba59378af81fe8e246ffb}{L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+S\+P\+\_\+\+R\+I\+G\+HT}}~0x1C   /$\ast$ shift \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} right                    $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_aff4e5baa36a0322eb97557dcb18cd96e}{L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+4\+B\+I\+T\+\_\+1\+L\+I\+NE}}~0x20   /$\ast$ 4-\/bit interface, single line, 5x7 dots $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_ab35032ab368a8bc90798e0c547fb24c2}{L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+4\+B\+I\+T\+\_\+2\+L\+I\+N\+ES}}~0x28   /$\ast$ 4-\/bit interface, dual line,   5x7 dots $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_aa8aeee098cb4c84ec420e00d054abcce}{L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+8\+B\+I\+T\+\_\+1\+L\+I\+NE}}~0x30   /$\ast$ 8-\/bit interface, single line, 5x7 dots $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a160a214f47869f8f98ad5add3a7568db}{L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+8\+B\+I\+T\+\_\+2\+L\+I\+N\+ES}}~0x38   /$\ast$ 8-\/bit interface, dual line,   5x7 dots $\ast$/
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a3e90d5d09ca0b33d440049c09b5ab244}{L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+D\+E\+F\+A\+U\+LT}}~\mbox{\hyperlink{lcd_8hpp_ab35032ab368a8bc90798e0c547fb24c2}{L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+4\+B\+I\+T\+\_\+2\+L\+I\+N\+ES}}
+\item 
+\#define \mbox{\hyperlink{lcd_8hpp_a1849e2087d3034a3fffa67444beed109}{L\+C\+D\+\_\+\+M\+O\+D\+E\+\_\+\+D\+E\+F\+A\+U\+LT}}~(\+\_\+\+BV(\mbox{\hyperlink{lcd_8hpp_ae5d757ddb6d94de8c82191b60b40e442}{L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+M\+O\+DE}}) $\vert$ \+\_\+\+BV(\mbox{\hyperlink{lcd_8hpp_ada766266a0be0d0040fbf86e23b58aa6}{L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NC}}))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_a1c9a188830514801292eb9972ef5ef36}{L\+C\+D\+::init}} ()
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_ad80ac6f49b29c8b2286d4d8c93b840bb}{L\+C\+D\+::pos}} (uint8\+\_\+t x, uint8\+\_\+t y=0)
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_afa699e0beeeee03cce8cef87eba81c4a}{L\+C\+D\+::clear}} ()
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_a468c94709c7144d71a9ea831d43b995a}{L\+C\+D\+::clear}} (uint8\+\_\+t line)
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_aee45ad37f09312f5d9982257e2d37e68}{L\+C\+D\+::home}} ()
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_a5c67124fbb8530a7c8d3eeb1f6ec8b19}{L\+C\+D\+::newline}} ()
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_a3e4fe3b5e959c118b4bb13d570c9711c}{L\+C\+D\+::putc}} (char ch)
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_a9b3473fc337d8c5241cf6ccaa8b626b7}{L\+C\+D\+::puts}} (const char $\ast$str)
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_a5a60808af238c9e0cddb61f00f2b99f1}{L\+C\+D\+::puts}} (const char $\ast$str, uint8\+\_\+t line, bool also\+\_\+clear=false)
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_a8d61ef36ca05eedf98f7abb838ac4eb5}{L\+C\+D\+::puts\+\_\+P}} (P\+G\+M\+\_\+P str)
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_ae622623243865c4fa97713f30baf7456}{L\+C\+D\+::put\+\_\+space}} (uint8\+\_\+t len)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespace_l_c_d_ad9fc5aa78cf110e3de792e5c5bd33a6c}{L\+C\+D\+::put\+\_\+def}} (const uint8\+\_\+t $\ast$ch, uint8\+\_\+t x, uint8\+\_\+t y=0)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespace_l_c_d_afeba13bb072ac30119eebdeb90f9f743}{L\+C\+D\+::put\+\_\+def\+\_\+P}} (P\+G\+M\+\_\+P ch, uint8\+\_\+t x, uint8\+\_\+t y=0)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespace_l_c_d_a033a5906d016e965d45330abd9a34ef1}{L\+C\+D\+::get\+\_\+next\+\_\+char\+\_\+id}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespace_l_c_d_aa1d9ed7721e781872f305d71238000aa}{L\+C\+D\+::define\+\_\+char}} (const uint8\+\_\+t $\ast$ch)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespace_l_c_d_aaf9b206462033b13c077b99915d05314}{L\+C\+D\+::define\+\_\+char}} (const uint8\+\_\+t $\ast$ch, uint8\+\_\+t id)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespace_l_c_d_ad45f4e9d3d26e6a6867d5099ba439a5d}{L\+C\+D\+::define\+\_\+char\+\_\+P}} (P\+G\+M\+\_\+P ch)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespace_l_c_d_a61f83a4f4a1d99feadefdf058ef62e70}{L\+C\+D\+::define\+\_\+char\+\_\+P}} (P\+G\+M\+\_\+P ch, uint8\+\_\+t id)
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_a282b3e184ea50b70d04fc68d2eac5e4a}{L\+C\+D\+::shift\+\_\+left}} ()
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_a1e70f1d1ca1a763e8fdc7888b052c5f5}{L\+C\+D\+::shift\+\_\+right}} ()
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_ae645ee5dae96cf9a26af9c3279d81b5b}{L\+C\+D\+::cursor\+\_\+left}} ()
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_a08d2169de61dd7ddf0f9a9fab58d75a6}{L\+C\+D\+::cursor\+\_\+right}} ()
+\item 
+void \mbox{\hyperlink{namespace_l_c_d_a84b806fd8e155af03e7fa032894f86e4}{L\+C\+D\+::mode}} (bool on=true, bool cursor=false, bool blink=false)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{lcd_8hpp_ac8dd1658e235f174d1cabae5c438943d}\label{lcd_8hpp_ac8dd1658e235f174d1cabae5c438943d}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_BUSY@{LCD\_BUSY}}
+\index{LCD\_BUSY@{LCD\_BUSY}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_BUSY}{LCD\_BUSY}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+B\+U\+SY~7      /$\ast$ D\+B7\+: L\+CD is busy                    $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a3b38de74c362be1781fef1136aa9684c}\label{lcd_8hpp_a3b38de74c362be1781fef1136aa9684c}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_CGRAM@{LCD\_CGRAM}}
+\index{LCD\_CGRAM@{LCD\_CGRAM}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_CGRAM}{LCD\_CGRAM}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+C\+G\+R\+AM~6      /$\ast$ D\+B6\+: set CG R\+AM address             $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a459688213267d13ccfbeb2c9004988cb}\label{lcd_8hpp_a459688213267d13ccfbeb2c9004988cb}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_CLR@{LCD\_CLR}}
+\index{LCD\_CLR@{LCD\_CLR}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_CLR}{LCD\_CLR}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+C\+LR~0      /$\ast$ D\+B0\+: \mbox{\hyperlink{main_8cpp_ac8bb3912a3ce86b15842e79d0b421204}{clear}} \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}}                  $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_ae54acf3ccc45b7d6be334a03627740c6}\label{lcd_8hpp_ae54acf3ccc45b7d6be334a03627740c6}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_DDRAM@{LCD\_DDRAM}}
+\index{LCD\_DDRAM@{LCD\_DDRAM}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_DDRAM}{LCD\_DDRAM}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+D\+D\+R\+AM~7      /$\ast$ D\+B7\+: set DD R\+AM address             $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a79ca3fe83448ab158a4c566bf292c260}\label{lcd_8hpp_a79ca3fe83448ab158a4c566bf292c260}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_DELAY\_BOOTUP@{LCD\_DELAY\_BOOTUP}}
+\index{LCD\_DELAY\_BOOTUP@{LCD\_DELAY\_BOOTUP}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_DELAY\_BOOTUP}{LCD\_DELAY\_BOOTUP}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP~16000}
+
+\mbox{\Hypertarget{lcd_8hpp_a2f7b5cee5520adc08a0931fbdcddbe26}\label{lcd_8hpp_a2f7b5cee5520adc08a0931fbdcddbe26}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_DELAY\_CLEAR@{LCD\_DELAY\_CLEAR}}
+\index{LCD\_DELAY\_CLEAR@{LCD\_DELAY\_CLEAR}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_DELAY\_CLEAR}{LCD\_DELAY\_CLEAR}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+C\+L\+E\+AR~2000}
+
+\mbox{\Hypertarget{lcd_8hpp_adff254037e59993bd0817a1112c3d215}\label{lcd_8hpp_adff254037e59993bd0817a1112c3d215}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_DELAY\_CMD@{LCD\_DELAY\_CMD}}
+\index{LCD\_DELAY\_CMD@{LCD\_DELAY\_CMD}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_DELAY\_CMD}{LCD\_DELAY\_CMD}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+C\+MD~25}
+
+\mbox{\Hypertarget{lcd_8hpp_a5b0632f09757ffe6f018c6ef88cc3296}\label{lcd_8hpp_a5b0632f09757ffe6f018c6ef88cc3296}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_DELAY\_ENABLE\_PULSE@{LCD\_DELAY\_ENABLE\_PULSE}}
+\index{LCD\_DELAY\_ENABLE\_PULSE@{LCD\_DELAY\_ENABLE\_PULSE}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_DELAY\_ENABLE\_PULSE}{LCD\_DELAY\_ENABLE\_PULSE}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE~1}
+
+\mbox{\Hypertarget{lcd_8hpp_ab6ba3c8cdcf1a96b0d4c476eff8f8617}\label{lcd_8hpp_ab6ba3c8cdcf1a96b0d4c476eff8f8617}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_DELAY\_INIT@{LCD\_DELAY\_INIT}}
+\index{LCD\_DELAY\_INIT@{LCD\_DELAY\_INIT}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_DELAY\_INIT}{LCD\_DELAY\_INIT}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT~5000}
+
+\mbox{\Hypertarget{lcd_8hpp_adf773dcbd0827cd15c788065c9197459}\label{lcd_8hpp_adf773dcbd0827cd15c788065c9197459}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_DELAY\_INIT\_4BIT@{LCD\_DELAY\_INIT\_4BIT}}
+\index{LCD\_DELAY\_INIT\_4BIT@{LCD\_DELAY\_INIT\_4BIT}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_DELAY\_INIT\_4BIT}{LCD\_DELAY\_INIT\_4BIT}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT~64}
+
+\mbox{\Hypertarget{lcd_8hpp_a2ce1ac9b146b7baa7169e27f9cf3a99e}\label{lcd_8hpp_a2ce1ac9b146b7baa7169e27f9cf3a99e}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_DELAY\_INIT\_REP@{LCD\_DELAY\_INIT\_REP}}
+\index{LCD\_DELAY\_INIT\_REP@{LCD\_DELAY\_INIT\_REP}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_DELAY\_INIT\_REP}{LCD\_DELAY\_INIT\_REP}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP~64}
+
+\mbox{\Hypertarget{lcd_8hpp_a684bb4392e384b7ae7c660d81dacb930}\label{lcd_8hpp_a684bb4392e384b7ae7c660d81dacb930}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_DISP\_LENGTH@{LCD\_DISP\_LENGTH}}
+\index{LCD\_DISP\_LENGTH@{LCD\_DISP\_LENGTH}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_DISP\_LENGTH}{LCD\_DISP\_LENGTH}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+L\+E\+N\+G\+TH~16}
+
+\mbox{\Hypertarget{lcd_8hpp_aa2966175115943883f51e9c90478540c}\label{lcd_8hpp_aa2966175115943883f51e9c90478540c}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_DISP\_OFF@{LCD\_DISP\_OFF}}
+\index{LCD\_DISP\_OFF@{LCD\_DISP\_OFF}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_DISP\_OFF}{LCD\_DISP\_OFF}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+FF~0x08   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} off                            $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a5163a96b133868975c0738e180b30cb8}\label{lcd_8hpp_a5163a96b133868975c0738e180b30cb8}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_DISP\_ON@{LCD\_DISP\_ON}}
+\index{LCD\_DISP\_ON@{LCD\_DISP\_ON}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_DISP\_ON}{LCD\_DISP\_ON}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+ON~0x0C   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} on, cursor off                 $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a470cef85de53e37356b22c66a357a764}\label{lcd_8hpp_a470cef85de53e37356b22c66a357a764}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_DISP\_ON\_BLINK@{LCD\_DISP\_ON\_BLINK}}
+\index{LCD\_DISP\_ON\_BLINK@{LCD\_DISP\_ON\_BLINK}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_DISP\_ON\_BLINK}{LCD\_DISP\_ON\_BLINK}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+B\+L\+I\+NK~0x0D   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} on, cursor off, blink char     $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_af56b6d6bdb6fa48b26106dee5f74ae1f}\label{lcd_8hpp_af56b6d6bdb6fa48b26106dee5f74ae1f}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_DISP\_ON\_CURSOR@{LCD\_DISP\_ON\_CURSOR}}
+\index{LCD\_DISP\_ON\_CURSOR@{LCD\_DISP\_ON\_CURSOR}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_DISP\_ON\_CURSOR}{LCD\_DISP\_ON\_CURSOR}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+OR~0x0E   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} on, cursor on                  $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_ac1984ed0db15c6991d34c184fdca5dc6}\label{lcd_8hpp_ac1984ed0db15c6991d34c184fdca5dc6}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_DISP\_ON\_CURSOR\_BLINK@{LCD\_DISP\_ON\_CURSOR\_BLINK}}
+\index{LCD\_DISP\_ON\_CURSOR\_BLINK@{LCD\_DISP\_ON\_CURSOR\_BLINK}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_DISP\_ON\_CURSOR\_BLINK}{LCD\_DISP\_ON\_CURSOR\_BLINK}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+B\+L\+I\+NK~0x0F   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} on, cursor on, blink char      $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_aad56f8e07634e85663f56888ae97089c}\label{lcd_8hpp_aad56f8e07634e85663f56888ae97089c}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_ENTRY\_DEC@{LCD\_ENTRY\_DEC}}
+\index{LCD\_ENTRY\_DEC@{LCD\_ENTRY\_DEC}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_ENTRY\_DEC}{LCD\_ENTRY\_DEC}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+D\+EC~0x04   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} shift off, dec cursor move dir $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a1c62932f252c6262cbef728add9696e4}\label{lcd_8hpp_a1c62932f252c6262cbef728add9696e4}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_ENTRY\_DEC\_SHIFT@{LCD\_ENTRY\_DEC\_SHIFT}}
+\index{LCD\_ENTRY\_DEC\_SHIFT@{LCD\_ENTRY\_DEC\_SHIFT}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_ENTRY\_DEC\_SHIFT}{LCD\_ENTRY\_DEC\_SHIFT}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+D\+E\+C\+\_\+\+S\+H\+I\+FT~0x05   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} shift on,  dec cursor move dir $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_ada766266a0be0d0040fbf86e23b58aa6}\label{lcd_8hpp_ada766266a0be0d0040fbf86e23b58aa6}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_ENTRY\_INC@{LCD\_ENTRY\_INC}}
+\index{LCD\_ENTRY\_INC@{LCD\_ENTRY\_INC}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_ENTRY\_INC}{LCD\_ENTRY\_INC}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NC~1      /$\ast$   D\+B1\+: 1=increment, 0=decrement     $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_ad27ddc4b8d03594662c8757f946dde28}\label{lcd_8hpp_ad27ddc4b8d03594662c8757f946dde28}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_ENTRY\_INC\_@{LCD\_ENTRY\_INC\_}}
+\index{LCD\_ENTRY\_INC\_@{LCD\_ENTRY\_INC\_}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_ENTRY\_INC\_}{LCD\_ENTRY\_INC\_}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+N\+C\+\_\+~0x06   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} shift off, inc cursor move dir $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_afabd0215cc6ae5539dc638dbec44a506}\label{lcd_8hpp_afabd0215cc6ae5539dc638dbec44a506}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_ENTRY\_INC\_SHIFT@{LCD\_ENTRY\_INC\_SHIFT}}
+\index{LCD\_ENTRY\_INC\_SHIFT@{LCD\_ENTRY\_INC\_SHIFT}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_ENTRY\_INC\_SHIFT}{LCD\_ENTRY\_INC\_SHIFT}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+N\+C\+\_\+\+S\+H\+I\+FT~0x07   /$\ast$ \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} shift on,  inc cursor move dir $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_ae5d757ddb6d94de8c82191b60b40e442}\label{lcd_8hpp_ae5d757ddb6d94de8c82191b60b40e442}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_ENTRY\_MODE@{LCD\_ENTRY\_MODE}}
+\index{LCD\_ENTRY\_MODE@{LCD\_ENTRY\_MODE}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_ENTRY\_MODE}{LCD\_ENTRY\_MODE}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+M\+O\+DE~2      /$\ast$ D\+B2\+: set entry mode                 $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a14d0c7fda147e0dc8cdaa4a2629b3532}\label{lcd_8hpp_a14d0c7fda147e0dc8cdaa4a2629b3532}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_ENTRY\_SHIFT@{LCD\_ENTRY\_SHIFT}}
+\index{LCD\_ENTRY\_SHIFT@{LCD\_ENTRY\_SHIFT}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_ENTRY\_SHIFT}{LCD\_ENTRY\_SHIFT}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+H\+I\+FT~0      /$\ast$   D\+B2\+: 1=\mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} shift on           $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a50de1697f1da8ab075a6b4d7aeace64e}\label{lcd_8hpp_a50de1697f1da8ab075a6b4d7aeace64e}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_FUNCTION@{LCD\_FUNCTION}}
+\index{LCD\_FUNCTION@{LCD\_FUNCTION}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_FUNCTION}{LCD\_FUNCTION}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+ON~5      /$\ast$ D\+B5\+: function set                   $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a48de81358277fe4f2810c2b82f90397e}\label{lcd_8hpp_a48de81358277fe4f2810c2b82f90397e}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_FUNCTION\_10DOTS@{LCD\_FUNCTION\_10DOTS}}
+\index{LCD\_FUNCTION\_10DOTS@{LCD\_FUNCTION\_10DOTS}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_FUNCTION\_10DOTS}{LCD\_FUNCTION\_10DOTS}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10\+D\+O\+TS~2      /$\ast$   D\+B2\+: 5x10 font (0-\/$>$5x7 font)      $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a6c24806bed18d565917165caa3475463}\label{lcd_8hpp_a6c24806bed18d565917165caa3475463}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_FUNCTION\_2LINES@{LCD\_FUNCTION\_2LINES}}
+\index{LCD\_FUNCTION\_2LINES@{LCD\_FUNCTION\_2LINES}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_FUNCTION\_2LINES}{LCD\_FUNCTION\_2LINES}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+2\+L\+I\+N\+ES~3      /$\ast$   D\+B3\+: two lines (0-\/$>$one line)      $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_aff4e5baa36a0322eb97557dcb18cd96e}\label{lcd_8hpp_aff4e5baa36a0322eb97557dcb18cd96e}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_FUNCTION\_4BIT\_1LINE@{LCD\_FUNCTION\_4BIT\_1LINE}}
+\index{LCD\_FUNCTION\_4BIT\_1LINE@{LCD\_FUNCTION\_4BIT\_1LINE}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_FUNCTION\_4BIT\_1LINE}{LCD\_FUNCTION\_4BIT\_1LINE}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+4\+B\+I\+T\+\_\+1\+L\+I\+NE~0x20   /$\ast$ 4-\/bit interface, single line, 5x7 dots $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_ab35032ab368a8bc90798e0c547fb24c2}\label{lcd_8hpp_ab35032ab368a8bc90798e0c547fb24c2}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_FUNCTION\_4BIT\_2LINES@{LCD\_FUNCTION\_4BIT\_2LINES}}
+\index{LCD\_FUNCTION\_4BIT\_2LINES@{LCD\_FUNCTION\_4BIT\_2LINES}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_FUNCTION\_4BIT\_2LINES}{LCD\_FUNCTION\_4BIT\_2LINES}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+4\+B\+I\+T\+\_\+2\+L\+I\+N\+ES~0x28   /$\ast$ 4-\/bit interface, dual line,   5x7 dots $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a91d15d8e3008f6cb141406a8b5d0d3c0}\label{lcd_8hpp_a91d15d8e3008f6cb141406a8b5d0d3c0}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_FUNCTION\_8BIT@{LCD\_FUNCTION\_8BIT}}
+\index{LCD\_FUNCTION\_8BIT@{LCD\_FUNCTION\_8BIT}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_FUNCTION\_8BIT}{LCD\_FUNCTION\_8BIT}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+8\+B\+IT~4      /$\ast$   D\+B4\+: set 8B\+IT mode (0-\/$>$4B\+IT mode) $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_aa8aeee098cb4c84ec420e00d054abcce}\label{lcd_8hpp_aa8aeee098cb4c84ec420e00d054abcce}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_FUNCTION\_8BIT\_1LINE@{LCD\_FUNCTION\_8BIT\_1LINE}}
+\index{LCD\_FUNCTION\_8BIT\_1LINE@{LCD\_FUNCTION\_8BIT\_1LINE}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_FUNCTION\_8BIT\_1LINE}{LCD\_FUNCTION\_8BIT\_1LINE}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+8\+B\+I\+T\+\_\+1\+L\+I\+NE~0x30   /$\ast$ 8-\/bit interface, single line, 5x7 dots $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a160a214f47869f8f98ad5add3a7568db}\label{lcd_8hpp_a160a214f47869f8f98ad5add3a7568db}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_FUNCTION\_8BIT\_2LINES@{LCD\_FUNCTION\_8BIT\_2LINES}}
+\index{LCD\_FUNCTION\_8BIT\_2LINES@{LCD\_FUNCTION\_8BIT\_2LINES}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_FUNCTION\_8BIT\_2LINES}{LCD\_FUNCTION\_8BIT\_2LINES}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+8\+B\+I\+T\+\_\+2\+L\+I\+N\+ES~0x38   /$\ast$ 8-\/bit interface, dual line,   5x7 dots $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a3e90d5d09ca0b33d440049c09b5ab244}\label{lcd_8hpp_a3e90d5d09ca0b33d440049c09b5ab244}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_FUNCTION\_DEFAULT@{LCD\_FUNCTION\_DEFAULT}}
+\index{LCD\_FUNCTION\_DEFAULT@{LCD\_FUNCTION\_DEFAULT}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_FUNCTION\_DEFAULT}{LCD\_FUNCTION\_DEFAULT}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+D\+E\+F\+A\+U\+LT~\mbox{\hyperlink{lcd_8hpp_ab35032ab368a8bc90798e0c547fb24c2}{L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+4\+B\+I\+T\+\_\+2\+L\+I\+N\+ES}}}
+
+\mbox{\Hypertarget{lcd_8hpp_ae0e309ccad89222eb3457f2da9f2bb8d}\label{lcd_8hpp_ae0e309ccad89222eb3457f2da9f2bb8d}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_HOME@{LCD\_HOME}}
+\index{LCD\_HOME@{LCD\_HOME}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_HOME}{LCD\_HOME}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+H\+O\+ME~1      /$\ast$ D\+B1\+: return to home position        $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_ae59a728d9dee9f12c817b29d38746ed9}\label{lcd_8hpp_ae59a728d9dee9f12c817b29d38746ed9}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_LINE\_LENGTH@{LCD\_LINE\_LENGTH}}
+\index{LCD\_LINE\_LENGTH@{LCD\_LINE\_LENGTH}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_LINE\_LENGTH}{LCD\_LINE\_LENGTH}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH~0x40}
+
+\mbox{\Hypertarget{lcd_8hpp_a01212e90283511562039db786f65ba98}\label{lcd_8hpp_a01212e90283511562039db786f65ba98}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_LINES@{LCD\_LINES}}
+\index{LCD\_LINES@{LCD\_LINES}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_LINES}{LCD\_LINES}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+L\+I\+N\+ES~2}
+
+\mbox{\Hypertarget{lcd_8hpp_a1849e2087d3034a3fffa67444beed109}\label{lcd_8hpp_a1849e2087d3034a3fffa67444beed109}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_MODE\_DEFAULT@{LCD\_MODE\_DEFAULT}}
+\index{LCD\_MODE\_DEFAULT@{LCD\_MODE\_DEFAULT}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_MODE\_DEFAULT}{LCD\_MODE\_DEFAULT}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+M\+O\+D\+E\+\_\+\+D\+E\+F\+A\+U\+LT~(\+\_\+\+BV(\mbox{\hyperlink{lcd_8hpp_ae5d757ddb6d94de8c82191b60b40e442}{L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+M\+O\+DE}}) $\vert$ \+\_\+\+BV(\mbox{\hyperlink{lcd_8hpp_ada766266a0be0d0040fbf86e23b58aa6}{L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NC}}))}
+
+\mbox{\Hypertarget{lcd_8hpp_a3f4f758b80fcfa6c9e4db58e2515c78a}\label{lcd_8hpp_a3f4f758b80fcfa6c9e4db58e2515c78a}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_MOVE@{LCD\_MOVE}}
+\index{LCD\_MOVE@{LCD\_MOVE}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_MOVE}{LCD\_MOVE}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+M\+O\+VE~4      /$\ast$ D\+B4\+: move cursor/\mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}}            $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_ac2f0ddce1daaa1bf1a016270a89a264b}\label{lcd_8hpp_ac2f0ddce1daaa1bf1a016270a89a264b}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_MOVE\_CURSOR\_LEFT@{LCD\_MOVE\_CURSOR\_LEFT}}
+\index{LCD\_MOVE\_CURSOR\_LEFT@{LCD\_MOVE\_CURSOR\_LEFT}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_MOVE\_CURSOR\_LEFT}{LCD\_MOVE\_CURSOR\_LEFT}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+L\+E\+FT~0x10   /$\ast$ move cursor left  (decrement)          $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a0ad58e39e053e97d34527fcbe936899b}\label{lcd_8hpp_a0ad58e39e053e97d34527fcbe936899b}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_MOVE\_CURSOR\_RIGHT@{LCD\_MOVE\_CURSOR\_RIGHT}}
+\index{LCD\_MOVE\_CURSOR\_RIGHT@{LCD\_MOVE\_CURSOR\_RIGHT}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_MOVE\_CURSOR\_RIGHT}{LCD\_MOVE\_CURSOR\_RIGHT}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+R\+I\+G\+HT~0x14   /$\ast$ move cursor right (increment)          $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_aaddc2afa9a02bfa748950f2c1e6a204d}\label{lcd_8hpp_aaddc2afa9a02bfa748950f2c1e6a204d}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_MOVE\_DISP@{LCD\_MOVE\_DISP}}
+\index{LCD\_MOVE\_DISP@{LCD\_MOVE\_DISP}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_MOVE\_DISP}{LCD\_MOVE\_DISP}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+SP~3      /$\ast$   D\+B3\+: move \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} (0-\/$>$ cursor) ?  $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_ab3c34ff1eee238bbe9c677215219fb8e}\label{lcd_8hpp_ab3c34ff1eee238bbe9c677215219fb8e}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_MOVE\_DISP\_LEFT@{LCD\_MOVE\_DISP\_LEFT}}
+\index{LCD\_MOVE\_DISP\_LEFT@{LCD\_MOVE\_DISP\_LEFT}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_MOVE\_DISP\_LEFT}{LCD\_MOVE\_DISP\_LEFT}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+S\+P\+\_\+\+L\+E\+FT~0x18   /$\ast$ shift \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} left                     $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a9a90bb926f5ba59378af81fe8e246ffb}\label{lcd_8hpp_a9a90bb926f5ba59378af81fe8e246ffb}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_MOVE\_DISP\_RIGHT@{LCD\_MOVE\_DISP\_RIGHT}}
+\index{LCD\_MOVE\_DISP\_RIGHT@{LCD\_MOVE\_DISP\_RIGHT}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_MOVE\_DISP\_RIGHT}{LCD\_MOVE\_DISP\_RIGHT}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+S\+P\+\_\+\+R\+I\+G\+HT~0x1C   /$\ast$ shift \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} right                    $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a97cdb19acf109ad52ab4994d2ad02cee}\label{lcd_8hpp_a97cdb19acf109ad52ab4994d2ad02cee}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_MOVE\_RIGHT@{LCD\_MOVE\_RIGHT}}
+\index{LCD\_MOVE\_RIGHT@{LCD\_MOVE\_RIGHT}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_MOVE\_RIGHT}{LCD\_MOVE\_RIGHT}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+R\+I\+G\+HT~2      /$\ast$   D\+B2\+: move right (0-\/$>$ left) ?      $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a47a809dfec086fdeca93dedc4fb83b44}\label{lcd_8hpp_a47a809dfec086fdeca93dedc4fb83b44}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_ON@{LCD\_ON}}
+\index{LCD\_ON@{LCD\_ON}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_ON}{LCD\_ON}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+ON~3      /$\ast$ D\+B3\+: turn lcd/cursor on             $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a5d76592a978537acee615098ce4d80f5}\label{lcd_8hpp_a5d76592a978537acee615098ce4d80f5}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_ON\_BLINK@{LCD\_ON\_BLINK}}
+\index{LCD\_ON\_BLINK@{LCD\_ON\_BLINK}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_ON\_BLINK}{LCD\_ON\_BLINK}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+O\+N\+\_\+\+B\+L\+I\+NK~0      /$\ast$     D\+B0\+: blinking cursor ?          $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a47638b5ebbaec9600a0ebf9a55caf802}\label{lcd_8hpp_a47638b5ebbaec9600a0ebf9a55caf802}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_ON\_CURSOR@{LCD\_ON\_CURSOR}}
+\index{LCD\_ON\_CURSOR@{LCD\_ON\_CURSOR}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_ON\_CURSOR}{LCD\_ON\_CURSOR}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+OR~1      /$\ast$   D\+B1\+: turn cursor on               $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_ae84f634b0a1661c4d5bbaafd9397732a}\label{lcd_8hpp_ae84f634b0a1661c4d5bbaafd9397732a}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_ON\_DISPLAY@{LCD\_ON\_DISPLAY}}
+\index{LCD\_ON\_DISPLAY@{LCD\_ON\_DISPLAY}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_ON\_DISPLAY}{LCD\_ON\_DISPLAY}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+O\+N\+\_\+\+D\+I\+S\+P\+L\+AY~2      /$\ast$   D\+B2\+: turn \mbox{\hyperlink{main_8cpp_a8a7953de0a2927d0d06b0edc50dd14c3}{display}} on              $\ast$/}
+
+\mbox{\Hypertarget{lcd_8hpp_a9993ce43cdf8d8cb194c2e23c3d2698d}\label{lcd_8hpp_a9993ce43cdf8d8cb194c2e23c3d2698d}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_RS\_DATA@{LCD\_RS\_DATA}}
+\index{LCD\_RS\_DATA@{LCD\_RS\_DATA}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_RS\_DATA}{LCD\_RS\_DATA}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+R\+S\+\_\+\+D\+A\+TA~true}
+
+\mbox{\Hypertarget{lcd_8hpp_a3ba526ed5c9a7fc2bc68f94ad90ff9c1}\label{lcd_8hpp_a3ba526ed5c9a7fc2bc68f94ad90ff9c1}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_RS\_INSTRUCTION@{LCD\_RS\_INSTRUCTION}}
+\index{LCD\_RS\_INSTRUCTION@{LCD\_RS\_INSTRUCTION}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_RS\_INSTRUCTION}{LCD\_RS\_INSTRUCTION}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+R\+S\+\_\+\+I\+N\+S\+T\+R\+U\+C\+T\+I\+ON~false}
+
+\mbox{\Hypertarget{lcd_8hpp_abd056d70a1488ea2eb1aef87e248e234}\label{lcd_8hpp_abd056d70a1488ea2eb1aef87e248e234}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_START\_LINE1@{LCD\_START\_LINE1}}
+\index{LCD\_START\_LINE1@{LCD\_START\_LINE1}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_START\_LINE1}{LCD\_START\_LINE1}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1~0x00}
+
+\mbox{\Hypertarget{lcd_8hpp_a7b317b21058ef031716ba040ef75430a}\label{lcd_8hpp_a7b317b21058ef031716ba040ef75430a}} 
+\index{lcd.hpp@{lcd.hpp}!LCD\_START\_LINE2@{LCD\_START\_LINE2}}
+\index{LCD\_START\_LINE2@{LCD\_START\_LINE2}!lcd.hpp@{lcd.hpp}}
+\doxysubsubsection{\texorpdfstring{LCD\_START\_LINE2}{LCD\_START\_LINE2}}
+{\footnotesize\ttfamily \#define L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2~\mbox{\hyperlink{lcd_8hpp_ae59a728d9dee9f12c817b29d38746ed9}{L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}}}
+
