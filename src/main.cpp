@@ -1,6 +1,5 @@
 #include "lcd.hpp"
 #include "keypad.hpp"
-#include "keymap.hpp"
 #include "blink.hpp"
 #include "calculator.hpp"
 #include <avr/io.h>
@@ -12,7 +11,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-//const char      cursor[] PROGMEM = { 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18 };
 const char  left_arrow[] PROGMEM = { 0x00, 0x02, 0x06, 0x0E, 0x1E, 0x0E, 0x06, 0x02 };
 const char right_arrow[] PROGMEM = { 0x00, 0x08, 0x0C, 0x0E, 0x0F, 0x0E, 0x0C, 0x08 };
 const char       title[] PROGMEM = { (char) 0xE4, 'S', 'c', 'i', '\0' };
@@ -93,72 +91,73 @@ void clear() {
     displaying = false;
 }
 
-void interpret(uint8_t key) {
+void interpret(Keypad::Key key) {
     using namespace Calculator;
+    using namespace Keypad;
     uint8_t new_token = Tokens::STOP;
 
-    switch ((Key) key) {
-        case Key::PWR:
+    switch (key) {
+        case Key::E1:
             ::clear();
             return;
-        case Key::ZERO:
+        case Key::A8:
             new_token = Tokens::ZERO;
             break;
-        case Key::ONE:
+        case Key::A7:
             new_token = Tokens::ONE;
             break;
-        case Key::TWO:
+        case Key::B7:
             new_token = Tokens::TWO;
             break;
-        case Key::THREE:
+        case Key::C7:
             new_token = Tokens::THREE;
             break;
-        case Key::FOUR:
+        case Key::A6:
             new_token = Tokens::FOUR;
             break;
-        case Key::FIVE:
+        case Key::B6:
             new_token = Tokens::FIVE;
             break;
-        case Key::SIX:
+        case Key::C6:
             new_token = Tokens::SIX;
             break;
-        case Key::SEVEN:
+        case Key::A5:
             new_token = Tokens::SEVEN;
             break;
-        case Key::EIGHT:
+        case Key::B5:
             new_token = Tokens::EIGHT;
             break;
-        case Key::NINE:
+        case Key::C5:
             new_token = Tokens::NINE;
             break;
-        case Key::DOT:
+        case Key::B8:
             new_token = Tokens::POINT;
             break;
-        case Key::EXP:
+        case Key::C8:
             new_token = Tokens::SCI;
             break;
-        case Key::ANS:
+        case Key::D8:
             new_token = Tokens::ANS;
             break;
-        case Key::PLUS:
+        case Key::D7:
             new_token = Tokens::ADD;
             break;
-        case Key::MINUS:
+        case Key::E7:
             new_token = Tokens::SUBTRACT;
             break;
-        case Key::MUL:
+        case Key::D6:
             new_token = Tokens::MULTIPLY;
             break;
-        case Key::DIV:
+        case Key::E6:
             new_token = Tokens::DIVIDE;
             break;
-        case Key::LPAR:
+        case Key::D4:
             new_token = Tokens::LEFT_PARENT;
             break;
-        case Key::RPAR:
+        case Key::E4:
             new_token = Tokens::RIGHT_PARENT;
             break;
-        case Key::ENTER:
+        case Key::E8:
             if (!displaying)
                 ::add(Tokens::STOP);
             display(Calculator::evaluate());
@@ -189,8 +188,8 @@ int main() {
     for (;;) {
         wdt_reset();
 
-        uint8_t key = Keypad::scan();
-        if (key == Keypad::NONE)
+        auto key = Keypad::scan();
+        if (key == Keypad::Key::NONE)
             continue;
         
         interpret(key);
