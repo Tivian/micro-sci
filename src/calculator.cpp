@@ -35,13 +35,13 @@ namespace {
 namespace Calculator {
     namespace {
                                                         /**123456789012345**/
-        const char                 MSG_SYNTAX[] PROGMEM = "   Syntax ERROR";
-        const char               MSG_OVERFLOW[] PROGMEM = " Overflow ERROR";
-        const char          MSG_INVALID_RANGE[] PROGMEM = "  Invalid range";
-        const char    MSG_MISMATCHED_OPERATOR[] PROGMEM = "Mismatched oper";
-        const char MSG_MISMATCHED_PARENTHESES[] PROGMEM = "  Mismatched ()";
-        const char    MSG_NESTING_NOT_ALLOWED[] PROGMEM = "   Syntax ERROR";
-        const char          MSG_OUT_OF_MEMORY[] PROGMEM = "  Out of memory";
+        const char                 MSG_SYNTAX[] PROGMEM = "    Syntax ERROR";
+        const char               MSG_OVERFLOW[] PROGMEM = "  Overflow ERROR";
+        const char          MSG_INVALID_RANGE[] PROGMEM = "   Invalid range";
+        const char    MSG_MISMATCHED_OPERATOR[] PROGMEM = "    Syntax ERROR";
+        const char MSG_MISMATCHED_PARENTHESES[] PROGMEM = "   Mismatched ()";
+        const char    MSG_NESTING_NOT_ALLOWED[] PROGMEM = "    Syntax ERROR";
+        const char          MSG_OUT_OF_MEMORY[] PROGMEM = "  Out of memory!";
     }
 
     const char* const error_msg[] PROGMEM = {
@@ -610,6 +610,6 @@ uint8_t Calculator::at() {
 }
 
 const char* Calculator::get_msg() {
-    return (const char*) pgm_read_ptr(&error_msg[(uint8_t) ::error + 2]);
+    return (const char*) pgm_read_word(&error_msg[(uint8_t) ::error - 2]);
 }
 
