@@ -2,8 +2,8 @@
 
 namespace {
     union {
-        uint8_t ints[STACK_SIZE * sizeof(double)];
-        double real[STACK_SIZE];
+        uint8_t ints[STACK_SIZE * sizeof(long double)];
+        long double real[STACK_SIZE];
     } stack;
 
     uint8_t top = 0;
@@ -13,7 +13,7 @@ void Stack::clear() {
     top = 0;
 }
 
-uint16_t Stack::size() {
+uint8_t Stack::size() {
     return top;
 }
 
@@ -23,7 +23,7 @@ uint8_t Stack::peek() {
 }
 
 template<>
-double Stack::peek() {
+long double Stack::peek() {
     return stack.real[top - 1];
 }
 
@@ -33,7 +33,7 @@ uint8_t Stack::pop() {
 }
 
 template<>
-double Stack::pop() {
+long double Stack::pop() {
     return stack.real[--top];
 }
 
@@ -43,6 +43,6 @@ void Stack::push(uint8_t val) {
 }
 
 template<>
-void Stack::push(double val) {
+void Stack::push(long double val) {
     stack.real[top++] = val;
 }

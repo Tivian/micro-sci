@@ -4,7 +4,7 @@
 #include "utility.hpp"
 #include <avr/io.h>
 
-#define KEYPAD_DEBOUNCE 10 // ms
+#define KEYPAD_DEBOUNCE 50 // ms
 
 #define KEYPAD_C1 { &PORTB, PB0 }
 #define KEYPAD_C2 { &PORTB, PB1 }
@@ -33,12 +33,10 @@ constexpr static pin_t rows[] = {
     KEYPAD_R7, KEYPAD_R8
 };
 
-enum Key : uint8_t {
-    NONE = 0xFF
-};
+constexpr uint8_t NONE = 0xFF;
 
 void init();
-Key scan();
+uint8_t scan();
 }
 
 #endif

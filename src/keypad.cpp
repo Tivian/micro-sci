@@ -3,7 +3,7 @@
 
 using namespace Keypad;
 namespace {
-    Key last = Key::NONE;
+    uint8_t last = NONE;
 }
 
 void Keypad::init() {
@@ -14,16 +14,16 @@ void Keypad::init() {
         *cols[i].port &= ~_BV(cols[i].pin);
 }
 
-Key Keypad::scan() {
+uint8_t Keypad::scan() {
     uint8_t pressed = 0;
-    Key keystroke = Key::NONE;
+    uint8_t keystroke = NONE;
 
     for (uint8_t c = 0; c < ARRAY_SIZE(cols); c++) {
         DDR(*cols[c].port) |= _BV(cols[c].pin);
 
         for (uint8_t r = 0; r < ARRAY_SIZE(rows); r++) {
             if (bit_is_clear(PIN(*rows[r].port), rows[r].pin)) {
-                keystroke = static_cast<Key>(c + r * ARRAY_SIZE(cols));
+                keystroke = c + r * ARRAY_SIZE(cols);
                 pressed++;
             }
         }

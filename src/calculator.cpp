@@ -5,24 +5,30 @@
 #include "utility.hpp"
 #include <math.h>
 
+#include "lcd.hpp"
+#include <stdlib.h>
+
 using namespace Calculator;
 
-double evaluate(bool);
+long double evaluate(bool);
+
+Tokens::Token get_token(uint8_t);
+void get_token(uint8_t, Tokens::Token&);
 
 namespace {
-    volatile uint8_t input[STACK_SIZE * 2];
-    volatile uint8_t output[STACK_SIZE * 2];
-    volatile double numbers[STACK_SIZE];
-    double args[8];
-    double vars[8];
-    double answer;
+    uint8_t input[STACK_SIZE * 2];
+    uint8_t output[STACK_SIZE * 2];
+    long double numbers[STACK_SIZE];
+    long double args[8];
+    long double vars[8];
+    long double answer;
     uint8_t raw = 0;
     uint8_t idx = 0;
     uint8_t from = 0;
     uint8_t to = 0;
     uint8_t expr_from = 0;
     uint8_t expr_to = 0;
-    const Tokens::Token* token = nullptr;
+    Tokens::Token token;
     Error error = Error::NONE;
 }
 
@@ -163,8 +169,10 @@ namespace Tokens {
 
     constexpr uint8_t NUMBER_FLAG = 0b10000000;
     constexpr uint8_t NUMBER_MASK = 0b01111111;
+    constexpr long double CONST_PI = 3.1415926535897932384626433832795L;
+    constexpr long double CONST_E  = 2.7182818284590452353602874713527L;
 
-    double eval(uint8_t id) {
+    long double eval(uint8_t id) {
         switch (id) {
             case Name::VAR_X:
             case Name::VAR_Y:
@@ -178,11 +186,11 @@ namespace Tokens {
             case Name::ANS:
                 return answer;
             case Name::RND:
-                return fmod((double) Random::next() / Random::next(), 1);
+                return fmod((long double) Random::next() / Random::next(), 1);
             case Name::EULER:
-                return M_E;
+                return CONST_E;
             case Name::PI:
-                return M_PI;
+                return CONST_PI;
             case Name::OR:
                 return (uint8_t) args[0] | (uint8_t) args[1];
             case Name::XOR:
@@ -253,10 +261,10 @@ namespace Tokens {
             case Name::SUM: {
                 args[5] = args[0];
                 args[6] = args[1];
-                double& from = args[5];
-                double& to = args[6];
-                double& result = args[7];
-                double& x = vars[Variable::X];
+                long double& from = args[5];
+                long double& to = args[6];
+                long double& result = args[7];
+                long double& x = vars[Variable::X];
 
                 if (from > to) {
                     error = Error::INVALID_RANGE;
@@ -285,23 +293,34 @@ namespace Tokens {
 
     bool is_unary() {
         uint8_t last = idx == 0 ? (uint8_t) Name::STOP : input[idx - 1];
+        auto temp = get_token(last);
         return (raw == Name::ADD || raw == Name::SUBTRACT)
             && (last != Name::RIGHT_PARENT || last == Name::STOP)
-            && !(last == Name::RIGHT_PARENT || list[last].type == Type::NUMERIC
-                || list[last].type == Type::SYMBOLIC);
+            && !(last == Name::RIGHT_PARENT || temp.type == Type::NUMERIC
+                || temp.type == Type::SYMBOLIC);
     }
     
     bool is_associative(uint8_t with) {
-        return (list[raw].assoc == Assoc::LEFT  && list[raw].order <= list[with].order)
-            || (list[raw].assoc == Assoc::RIGHT && list[raw].order <  list[with].order);
+        auto temp = get_token(with);
+        return (token.assoc == Assoc::LEFT  && token.order <= temp.order)
+            || (token.assoc == Assoc::RIGHT && token.order <  temp.order);
     }
 }
 }
 
-double parse() {
-    double& result = args[0] = 0.0;
-    double& exp = args[1] = 0.0;
-    double& power = args[2];
+long double pow10(uint8_t x) {
+    long double result = 1.0;
+    while (x--)
+        result *= 10.0;
+    return result;
+}
+
+// TODO
+//  negative exponent not implemented
+long double parse() {
+    long double& result = args[0] = 0.0;
+    long double& exp = args[1] = 0.0;
+    long double& power = args[2];
     uint8_t len = to - from;
     uint8_t i = from;
 
@@ -311,7 +330,7 @@ double parse() {
     for (; i < to && input[i] != Tokens::STOP && input[i] != Tokens::SCI; i++);
     uint8_t exp_pos = i;
 
-    power = pow(10.0, point_pos - from);
+    power = pow10(point_pos - from);
     for (i = from; i < exp_pos; i++) {
         raw = input[i];
         if (raw == Tokens::POINT) {
@@ -327,7 +346,7 @@ double parse() {
         result += power * (raw - Tokens::ZERO);
     }
 
-    power = pow(10.0, len - exp_pos - 1 - from);
+    power = pow10(len - exp_pos - 1 - from);
     for (i++; i < len; i++) {
         raw = input[i];
         if (raw == Tokens::POINT || raw == Tokens::SCI) {
@@ -339,12 +358,12 @@ double parse() {
         exp += power * (raw - Tokens::ZERO);
     }
     
-    return result * pow(10.0, exp);
+    return result * pow10(exp);
 }
 
 void to_reverse_polish_notation() {
     using Tokens::Type;
-    const Tokens::Token* last = nullptr;
+    Tokens::Token last;
 
     uint8_t out = 0;
     uint8_t num = 0;
@@ -352,30 +371,37 @@ void to_reverse_polish_notation() {
 
     Stack::clear();
     for (idx = 0; (raw = input[idx]) != Tokens::STOP; idx++) {
-        token = &Tokens::list[raw];
+        //token = &Tokens::list[raw];
+        get_token(raw, token);
 
-        if (token->type == Type::NUMERIC) {
-            if (last != nullptr && last->type == Type::SYMBOLIC)
+        if (token.type == Type::NUMERIC) {
+            if (last.len != 0 && last.type == Type::SYMBOLIC)
                 Stack::push<uint8_t>(Tokens::MULTIPLY);
 
             from = idx;
-            while ((raw = input[++idx]) != Tokens::STOP && 
-                (token = &Tokens::list[raw])->type == Type::NUMERIC);
+            /*while ((raw = input[++idx]) != Tokens::STOP && 
+                (token = &Tokens::list[raw])->type == Type::NUMERIC);*/
+            while ((raw = input[++idx]) != Tokens::STOP) {
+                get_token(raw, token);
+                if (token.type != Type::NUMERIC)
+                    break;
+            }
             to = idx--;
-            token = &Tokens::list[input[idx]];
+            //token = &Tokens::list[input[idx]];
+            get_token(input[idx], token);
 
             output[out++] = Tokens::NUMBER_FLAG | num;
             numbers[num++] = parse();
 
             if (error != Error::NONE)
                 return;
-        } else if (token->type == Type::SYMBOLIC) {
-            if (last != nullptr && (last->type == Type::SYMBOLIC || last->type == Type::NUMERIC))
+        } else if (token.type == Type::SYMBOLIC) {
+            if (last.len != 0 && (last.type == Type::SYMBOLIC || last.type == Type::NUMERIC))
                 Stack::push<uint8_t>(Tokens::MULTIPLY);
 
             output[out++] = raw;
-        } else if (token->type != Type::SPECIAL) {
-            if (token->type == Type::COMPOUND) {
+        } else if (token.type != Type::SPECIAL) {
+            if (token.type == Type::COMPOUND) {
                 if (nested) {
                     error = Error::NESTING_NOT_ALLOWED;
                     return;
@@ -385,7 +411,7 @@ void to_reverse_polish_notation() {
                 expr_from = out;
             }
 
-            if (token->type != Type::FUNCTION && token->type != Type::COMPOUND) {
+            if (token.type != Type::FUNCTION && token.type != Type::COMPOUND) {
                 if (!Tokens::is_unary()) {
                     while (Stack::size() != 0 && Stack::peek<uint8_t>() != Tokens::LEFT_PARENT 
                             && Tokens::is_associative(Stack::peek<uint8_t>()))
@@ -398,8 +424,8 @@ void to_reverse_polish_notation() {
             } else if (input[idx + 1] != Tokens::LEFT_PARENT) {
                 error = Error::MISMATCHED_PARENTHESES;
                 return;
-            } else if (last != nullptr && (last->type == Type::SYMBOLIC 
-                    || last->type == Type::NUMERIC)) {
+            } else if (last.len != 0 && (last.type == Type::SYMBOLIC 
+                    || last.type == Type::NUMERIC)) {
                 Stack::push<uint8_t>(Tokens::MULTIPLY);
             }
 
@@ -418,7 +444,7 @@ void to_reverse_polish_notation() {
                 expr_to = out;
             }
         } else if (raw == Tokens::LEFT_PARENT) {
-            if (last != nullptr && (last->type == Type::NUMERIC || last->type == Type::SYMBOLIC))
+            if (last.len != 0 && (last.type == Type::NUMERIC || last.type == Type::SYMBOLIC))
                 Stack::push<uint8_t>(Tokens::MULTIPLY);
 
             Stack::push<uint8_t>(raw);
@@ -457,7 +483,7 @@ void to_reverse_polish_notation() {
     output[out] = Tokens::STOP;
 }
 
-double evaluate(bool expr = false) {
+long double evaluate(bool expr = false) {
     if (!expr)
         Stack::clear();
 
@@ -466,20 +492,21 @@ double evaluate(bool expr = false) {
         if (raw & Tokens::NUMBER_FLAG) {
             Stack::push(numbers[raw & Tokens::NUMBER_MASK]);
         } else {
-            token = &Tokens::list[raw];
+            //token = &Tokens::list[raw];
+            get_token(raw, token);
 
             if (!expr && idx == expr_from && expr_from != expr_to) {
                 idx = expr_to - 1;
                 continue;
             }
 
-            for (int8_t i = token->args - 1; i >= 0; i--) {
+            for (int8_t i = token.args - 1; i >= 0; i--) {
                 if (Stack::size() == 0) {
                     error = Error::MISMATCHED_OPERATOR;
                     return INFINITY;
                 }
 
-                args[i] = Stack::pop<double>();
+                args[i] = Stack::pop<long double>();
             }
             
             if (!expr)
@@ -500,25 +527,52 @@ double evaluate(bool expr = false) {
             return INFINITY;
         }
 
-        answer = Stack::peek<double>();
+        answer = Stack::peek<long double>();
     }
 
-    return Stack::pop<double>();
+    return Stack::pop<long double>();
 }
 
-Tokens::Token Calculator::get(uint8_t id) {
+Tokens::Token get_token(uint8_t id) {
     return Loader::get(&Tokens::list[id]);
 }
 
-const char* Calculator::test() {
-    return Tokens::STR_SIN;
+void get_token(uint8_t id, Tokens::Token& token) {
+    Loader::read(&Tokens::list[id], token);
+}
+
+void add(uint8_t id, bool clear) {
+    static uint8_t pos = 0;
+    if (!clear)
+        input[pos++] = id;
+    else
+        input[pos = 0] = Tokens::STOP;
+}
+
+void Calculator::add(uint8_t id) {
+    ::add(id, false);
 }
 
 void Calculator::set(uint8_t id, uint8_t pos) {
     input[pos] = id;
 }
 
-double Calculator::evaluate() {
-    return ::evaluate(false);
+Tokens::Token Calculator::get(uint8_t id) {
+    return ::get_token(id);
+}
+
+void Calculator::clear() {
+    ::add(0, true);
+    Stack::clear();
+    error = Error::NONE;
+}
+
+long double Calculator::evaluate() {
+    to_reverse_polish_notation();
+    return (::error == Error::NONE) ? ::evaluate(false) : INFINITY;
+}
+
+Error Calculator::check() {
+    return ::error;
 }
 

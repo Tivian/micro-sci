@@ -7,7 +7,7 @@
 
 namespace Stack {
 void clear();
-uint16_t size();
+uint8_t size();
 template <typename T> T peek();
 template <typename T> T pop();
 template <typename T> void push(T val);

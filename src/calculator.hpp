@@ -46,10 +46,12 @@ namespace Tokens {
     };
 }
 
-Tokens::Token get(uint8_t id);
-const char* test();
+void add(uint8_t id);
 void set(uint8_t id, uint8_t pos);
-double evaluate();
+Tokens::Token get(uint8_t id);
+void clear();
+long double evaluate();
+Error check();
 }
 
 #endif
