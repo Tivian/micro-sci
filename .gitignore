@@ -1,3 +1,6 @@
 .vscode
 
 build/
+tools/*
+
+!tools/*.py

@@ -13,9 +13,9 @@ LIBS		= ${wildcard ${LIBDIR}/*.a}
 
 CXX			= avr-gcc
 OBJCOPY		= avr-objcopy
-CXXFLAGS 	= -Os -DF_CPU=${CLOCK} -mmcu=${DEVICE} -std=c++2a -Wall -Wextra -pedantic
+CXXFLAGS 	= -Os -DF_CPU=${CLOCK} -mmcu=${DEVICE} -std=c++2a -Wall -Wextra -pedantic -Wno-volatile
 
-.PHONY: all docs clean
+.PHONY: all docs keypad clean
 
 all: ${BUILDDIR}/${PROJECT}.hex
 	avr-size ${BUILDDIR}/${PROJECT}.elf
@@ -41,6 +41,9 @@ erase:
 docs:
 	@doxygen
 	@start docs/index.html
+
+keypad:
+	@py tools/generate_keypad.py
 
 clean:
 	rm -f $(BUILDDIR)/*
