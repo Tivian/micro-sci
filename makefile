@@ -44,6 +44,7 @@ docs:
 
 keypad:
 	@py tools/generate_keypad.py
+	@start tools/keypad.pdf
 
 clean:
 	rm -f $(BUILDDIR)/*
