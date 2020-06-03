@@ -33,6 +33,27 @@ namespace {
 }
 
 namespace Calculator {
+    namespace {
+                                                        /**123456789012345**/
+        const char                 MSG_SYNTAX[] PROGMEM = "   Syntax ERROR";
+        const char               MSG_OVERFLOW[] PROGMEM = " Overflow ERROR";
+        const char          MSG_INVALID_RANGE[] PROGMEM = "  Invalid range";
+        const char    MSG_MISMATCHED_OPERATOR[] PROGMEM = "Mismatched oper";
+        const char MSG_MISMATCHED_PARENTHESES[] PROGMEM = "  Mismatched ()";
+        const char    MSG_NESTING_NOT_ALLOWED[] PROGMEM = "   Syntax ERROR";
+        const char          MSG_OUT_OF_MEMORY[] PROGMEM = "  Out of memory";
+    }
+
+    const char* const error_msg[] PROGMEM = {
+        MSG_SYNTAX,
+        MSG_OVERFLOW,
+        MSG_INVALID_RANGE,
+        MSG_MISMATCHED_OPERATOR,
+        MSG_MISMATCHED_PARENTHESES,
+        MSG_NESTING_NOT_ALLOWED,
+        MSG_OUT_OF_MEMORY
+    };
+
 namespace Tokens {
     namespace {
         const char STR_COMMA[] PROGMEM = ",";
@@ -369,6 +390,11 @@ void to_reverse_polish_notation() {
     uint8_t num = 0;
     bool nested = false;
 
+    if (input[0] == Tokens::STOP) {
+        error = Error::EMPTY;
+        return;
+    }
+
     Stack::clear();
     for (idx = 0; (raw = input[idx]) != Tokens::STOP; idx++) {
         //token = &Tokens::list[raw];
@@ -530,6 +556,9 @@ long double evaluate(bool expr = false) {
         answer = Stack::peek<long double>();
     }
 
+    if (isinf(Stack::peek<long double>()))
+        error = Error::OVERFLOW;
+
     return Stack::pop<long double>();
 }
 
@@ -574,5 +603,13 @@ long double Calculator::evaluate() {
 
 Error Calculator::check() {
     return ::error;
+}
+
+uint8_t Calculator::at() {
+    return ::idx;
+}
+
+const char* Calculator::get_msg() {
+    return (const char*) pgm_read_ptr(&error_msg[(uint8_t) ::error + 2]);
 }
 

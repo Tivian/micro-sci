@@ -7,7 +7,9 @@
 namespace Calculator {
 enum class Error : uint8_t {
     NONE,
+    EMPTY,
     SYNTAX,
+    OVERFLOW,
     INVALID_RANGE,
     MISMATCHED_OPERATOR,
     MISMATCHED_PARENTHESES,
@@ -52,6 +54,8 @@ Tokens::Token get(uint8_t id);
 void clear();
 long double evaluate();
 Error check();
+uint8_t at();
+const char* get_msg();
 }
 
 #endif

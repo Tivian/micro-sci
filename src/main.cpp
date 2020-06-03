@@ -12,11 +12,12 @@
 #include <stdlib.h>
 #include <math.h>
 
-const char      cursor[] PROGMEM = { 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18 };
+//const char      cursor[] PROGMEM = { 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18 };
 const char  left_arrow[] PROGMEM = { 0x00, 0x02, 0x06, 0x0E, 0x1E, 0x0E, 0x06, 0x02 };
 const char right_arrow[] PROGMEM = { 0x00, 0x08, 0x0C, 0x0E, 0x0F, 0x0E, 0x0C, 0x08 };
 const char       title[] PROGMEM = { (char) 0xE4, 'S', 'c', 'i', '\0' };
 
+/// Shows whether the calculation result is being displayed right now.
 bool displaying = false;
 
 void show_title() {
@@ -53,10 +54,11 @@ void print(long double v) {
 }
 
 void error(Calculator::Error err) {
+    if (err == Calculator::Error::EMPTY)
+        return;
+
     LCD::clear(1);
-    LCD::puts("Syntax ERROR [");
-    LCD::putc('0' + (uint8_t) err);
-    LCD::putc(']');
+    LCD::puts_P(Calculator::get_msg());
 }
 
 void add(uint8_t id) {
@@ -71,9 +73,13 @@ void display(long double val) {
     auto err = Calculator::check();
     
     if (err == Calculator::Error::NONE) {
-        dtostrf(val, 16, 10, buffer);
-        LCD::pos(0, 1);
+        //dtostrf(val, 16, 10, buffer);
+        dtostre(val, buffer, 16, 0);
+        LCD::clear(1);
+        LCD::pos(3, 1);
         LCD::puts(buffer);
+        //LCD::pos(0, 1);
+        //print(val);
     } else {
         error(err);
     }
