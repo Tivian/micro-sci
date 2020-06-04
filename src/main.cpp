@@ -6,14 +6,23 @@
 #include <avr/interrupt.h>
 #include <avr/wdt.h>
 #include <util/delay.h>
-
-#include "loader.hpp"
 #include <stdlib.h>
-#include <math.h>
 
-const char  left_arrow[] PROGMEM = { 0x00, 0x02, 0x06, 0x0E, 0x1E, 0x0E, 0x06, 0x02 };
-const char right_arrow[] PROGMEM = { 0x00, 0x08, 0x0C, 0x0E, 0x0F, 0x0E, 0x0C, 0x08 };
+const char  left_arrow[] PROGMEM = { 0x00, 0x02, 0x06, 0x0E, 0x1E, 0x0E, 0x06, 0x02 }; // #0
+const char right_arrow[] PROGMEM = { 0x00, 0x08, 0x0C, 0x0E, 0x0F, 0x0E, 0x0C, 0x08 }; // #1
+const char euler_const[] PROGMEM = { 0x06, 0x09, 0x1A, 0x1C, 0x18, 0x19, 0x0E, 0x00 }; // #2
+const char root_symbol[] PROGMEM = { 0x07, 0x04, 0x04, 0x04, 0x04, 0x14, 0x0C, 0x04 }; // #3
+const char integral_ch[] PROGMEM = { 0x02, 0x05, 0x04, 0x04, 0x04, 0x04, 0x14, 0x08 }; // #4
+const char perm_symbol[] PROGMEM = { 0x1E, 0x19, 0x19, 0x19, 0x1E, 0x18, 0x18, 0x18 }; // #5
+const char comb_symbol[] PROGMEM = { 0x0E, 0x19, 0x18, 0x18, 0x18, 0x18, 0x19, 0x0E }; // #6
+const char    x_symbol[] PROGMEM = { 0x00, 0x19, 0x06, 0x04, 0x04, 0x0C, 0x13, 0x00 }; // #7
 const char       title[] PROGMEM = { (char) 0xE4, 'S', 'c', 'i', '\0' };
+
+const char* const symbols[] PROGMEM = {
+    left_arrow, right_arrow, euler_const,
+    root_symbol, integral_ch, perm_symbol,
+    comb_symbol, x_symbol
+};
 
 /// Shows whether the calculation result is being displayed right now.
 bool displaying = false;
@@ -26,6 +35,11 @@ void show_title() {
         wdt_reset();
     }
     LCD::clear();
+}
+
+void load_symbols() {
+    for (uint8_t i = 0; i < ARRAY_SIZE(symbols); i++)
+        LCD::define_char_P((const char*) pgm_read_word(&symbols[i]));
 }
 
 void print_hex(uint8_t v, bool space = true) {
@@ -59,10 +73,13 @@ void error(Calculator::Error err) {
     LCD::puts_P(Calculator::get_msg());
 }
 
-void add(uint8_t id) {
+void add(uint8_t id) {    
     auto token = Calculator::get(id);
     if (token.len > 0)
         LCD::puts_P(token.str);
+    if (token.type == Calculator::Tokens::Type::FUNCTION 
+     || token.type == Calculator::Tokens::Type::COMPOUND)
+        Calculator::add(Calculator::Tokens::LEFT_PARENT);
     Calculator::add(id);
 }
 
@@ -91,36 +108,91 @@ void clear() {
     displaying = false;
 }
 
+enum Modifier : uint8_t {
+    ACTIVE = 0b10000000,
+    SECOND = 0b00000001,
+    ALPHA  = 0b00000010,
+    INVERT = 0b00000100,
+    RECALL = 0b00001000,
+    STORE  = 0b00010000,
+    CLEAR  = 0b00000000
+};
+
 void interpret(Keypad::Key key) {
     using namespace Calculator;
     using namespace Keypad;
+    uint8_t modifier = Modifier::CLEAR;
     uint8_t new_token = Tokens::STOP;
 
     switch (key) {
+        case Key::A1:
+            modifier = Modifier::ACTIVE | Modifier::SECOND;
+            break;
+        case Key::B1:
+            break;
+        case Key::C1:
+            new_token = (modifier & Modifier::SECOND) ?
+                Tokens::DERIVATIVE : Tokens::INTEGRAL;
+            break;
+        case Key::D1:
+            new_token = Tokens::FACTORIAL;
+            break;
         case Key::E1:
-            ::clear();
+            if (modifier & Modifier::SECOND)
+                ;//turn_off();
+            else
+                ::clear();
             return;
-        case Key::A8:
-            new_token = Tokens::ZERO;
+
+        case Key::A2:
+            modifier = Modifier::ACTIVE | Modifier::ALPHA;
             break;
-        case Key::A7:
-            new_token = Tokens::ONE;
+        case Key::B2:
             break;
-        case Key::B7:
-            new_token = Tokens::TWO;
+        case Key::C2:
+            new_token = Tokens::SUM;
             break;
-        case Key::C7:
-            new_token = Tokens::THREE;
+        case Key::D2:
+            // cursor left
             break;
-        case Key::A6:
-            new_token = Tokens::FOUR;
+        case Key::E2:
+            // cursor right
             break;
-        case Key::B6:
-            new_token = Tokens::FIVE;
+
+        case Key::A3:
+            modifier = Modifier::ACTIVE | Modifier::STORE;
             break;
-        case Key::C6:
-            new_token = Tokens::SIX;
+        case Key::B3:
+            modifier = Modifier::ACTIVE | Modifier::INVERT;
             break;
+        case Key::C3:
+            new_token = Tokens::SINE;
+            break;
+        case Key::D3:
+            new_token = Tokens::COSINE;
+            break;
+        case Key::E3:
+            new_token = Tokens::TANGENT;
+            break;
+
+        case Key::A4:
+            modifier = Modifier::ACTIVE | Modifier::RECALL;
+            break;
+        case Key::B4:
+            new_token = (modifier & Modifier::SECOND) ? 
+                Tokens::EXPONENT : Tokens::LN;
+            break;
+        case Key::C4:
+            new_token = /*(modifier & Modifier::SECOND) ?
+                Tokens::POW10 : */Tokens::LOG10;
+            break;
+        case Key::D4:
+            new_token = Tokens::LEFT_PARENT;
+            break;
+        case Key::E4:
+            new_token = Tokens::RIGHT_PARENT;
+            break;
+
         case Key::A5:
             new_token = Tokens::SEVEN;
             break;
@@ -130,20 +202,21 @@ void interpret(Keypad::Key key) {
         case Key::C5:
             new_token = Tokens::NINE;
             break;
-        case Key::B8:
-            new_token = Tokens::POINT;
+        case Key::D5:
+            // delete
             break;
-        case Key::C8:
-            new_token = Tokens::SCI;
+        case Key::E5:
+            // clear
             break;
-        case Key::D8:
-            new_token = Tokens::ANS;
+
+        case Key::A6:
+            new_token = Tokens::FOUR;
             break;
-        case Key::D7:
-            new_token = Tokens::ADD;
+        case Key::B6:
+            new_token = Tokens::FIVE;
             break;
-        case Key::E7:
-            new_token = Tokens::SUBTRACT;
+        case Key::C6:
+            new_token = Tokens::SIX;
             break;
         case Key::D6:
             new_token = Tokens::MULTIPLY;
@@ -151,11 +224,38 @@ void interpret(Keypad::Key key) {
         case Key::E6:
             new_token = Tokens::DIVIDE;
             break;
-        case Key::D4:
-            new_token = Tokens::LEFT_PARENT;
+
+        
+        case Key::A7:
+            new_token = Tokens::ONE;
             break;
-        case Key::E4:
-            new_token = Tokens::RIGHT_PARENT;
+        case Key::B7:
+            new_token = Tokens::TWO;
+            break;
+        case Key::C7:
+            new_token = Tokens::THREE;
+            break;
+        case Key::D7:
+            new_token = Tokens::ADD;
+            break;
+        case Key::E7:
+            new_token = Tokens::SUBTRACT;
+            break;
+        
+        case Key::A8:
+            new_token = Tokens::ZERO;
+            break;
+        case Key::B8:
+            new_token = (modifier & Modifier::SECOND) ?
+                Tokens::RND : Tokens::POINT;
+            break;
+        case Key::C8:
+            new_token = (modifier & Modifier::SECOND) ? 
+                Tokens::PI : (modifier & Modifier::ALPHA) ?
+                Tokens::EULER : Tokens::SCI;
+            break;
+        case Key::D8:
+            new_token = Tokens::ANS;
             break;
         case Key::E8:
             if (!displaying)
@@ -168,6 +268,8 @@ void interpret(Keypad::Key key) {
 
     if (displaying)
         ::clear();
+    else if (modifier & Modifier::ACTIVE)
+        modifier = Modifier::CLEAR;
 
     ::add(new_token);
 }
