@@ -4,6 +4,15 @@
 #include <avr/pgmspace.h>
 #include <stdint.h>
 
+/** Place for custom symbols **/
+#define EULER_SYMBOL    0x02
+#define ROOT_SYMBOL     0x03
+#define INTEGRAL_SYMBOL 0x04
+#define PERM_SYMBOL     0x05
+#define COMBI_SYMBOL    0x06
+#define X_SYMBOL        0x07
+/******************************/
+
 namespace Calculator {
 enum class Error : uint8_t {
     NONE,

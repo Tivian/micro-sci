@@ -5,9 +5,6 @@
 #include "utility.hpp"
 #include <math.h>
 
-#include "lcd.hpp"
-#include <stdlib.h>
-
 using namespace Calculator;
 
 long double evaluate(bool);
@@ -34,7 +31,6 @@ namespace {
 
 namespace Calculator {
     namespace {
-                                                        /**123456789012345**/
         const char                 MSG_SYNTAX[] PROGMEM = "    Syntax ERROR";
         const char               MSG_OVERFLOW[] PROGMEM = "  Overflow ERROR";
         const char          MSG_INVALID_RANGE[] PROGMEM = "   Invalid range";
@@ -81,7 +77,11 @@ namespace Tokens {
         const char STR_F[]     PROGMEM = "F";
         const char STR_ANS[]   PROGMEM = "Ans";
         const char STR_RND[]   PROGMEM = "Rnd#";
+#ifdef EULER_SYMBOL
+        const char STR_EULER[] PROGMEM = { EULER_SYMBOL, '\0' };
+#else
         const char STR_EULER[] PROGMEM = "e";
+#endif
         const char STR_PI[]    PROGMEM = { (char) 0xF7, '\0' };
         const char STR_OR[]    PROGMEM = "OR";
         const char STR_XOR[]   PROGMEM = "XOR";
@@ -91,10 +91,22 @@ namespace Tokens {
         const char STR_MOD[]   PROGMEM = "%";
         const char STR_MUL[]   PROGMEM = "*";
         const char STR_DIV[]   PROGMEM = { (char) 0xFD, '\0' };
+#ifdef COMBI_SYMBOL
+        const char STR_COMBI[] PROGMEM = { COMBI_SYMBOL, '\0' };
+#else
         const char STR_COMBI[] PROGMEM = "C";
+#endif
+#ifdef PERM_SYMBOL
+        const char STR_PERMU[] PROGMEM = { PERM_SYMBOL, '\0' };
+#else
         const char STR_PERMU[] PROGMEM = "P";
+#endif
         const char STR_POW[]   PROGMEM = "^";
+#ifdef ROOT_SYMBOL
+        const char STR_ROOT[]  PROGMEM = { ROOT_SYMBOL, '\0' };
+#else
         const char STR_ROOT[]  PROGMEM = { (char) 0xE8, '\0' };
+#endif
         const char STR_INV[]   PROGMEM = { (char) 0xE9, '\0' };
         const char STR_FACTO[] PROGMEM = "!";
         const char STR_SIN[]   PROGMEM = "sin";
@@ -109,12 +121,24 @@ namespace Tokens {
         const char STR_LOG[]   PROGMEM = "log";
         const char STR_LN[]    PROGMEM = "ln";
         const char STR_SQRT[]  PROGMEM = "sqrt";
+#ifdef EULER_SYMBOL
+        const char STR_EXP[]   PROGMEM = { EULER_SYMBOL, '^', '\0' };
+#else
         const char STR_EXP[]   PROGMEM = "exp";
+#endif
         const char STR_ABS[]   PROGMEM = "Abs";
         const char STR_MIN[]   PROGMEM = "min";
         const char STR_MAX[]   PROGMEM = "max";
+#ifdef INTEGRAL_SYMBOL
+        const char STR_INT[]   PROGMEM = { INTEGRAL_SYMBOL, '\0' };
+#else
         const char STR_INT[]   PROGMEM = "int";
-        const char STR_DX[]    PROGMEM = "dx";
+#endif
+#ifdef X_SYMBOL
+        const char STR_DX[]    PROGMEM = { 'd', '/', 'd', X_SYMBOL, '\0' };
+#else
+        const char STR_DX[]    PROGMEM = "d/dx";
+#endif
         const char STR_SUM[]   PROGMEM = { (char) 0xF6, '\0' };
 
         enum Variable : uint8_t {
@@ -382,6 +406,8 @@ long double parse() {
     return result * pow10(exp);
 }
 
+// TODO
+//  handle properly negative exponent
 void to_reverse_polish_notation() {
     using Tokens::Type;
     Tokens::Token last;
@@ -397,7 +423,6 @@ void to_reverse_polish_notation() {
 
     Stack::clear();
     for (idx = 0; (raw = input[idx]) != Tokens::STOP; idx++) {
-        //token = &Tokens::list[raw];
         get_token(raw, token);
 
         if (token.type == Type::NUMERIC) {
@@ -405,15 +430,12 @@ void to_reverse_polish_notation() {
                 Stack::push<uint8_t>(Tokens::MULTIPLY);
 
             from = idx;
-            /*while ((raw = input[++idx]) != Tokens::STOP && 
-                (token = &Tokens::list[raw])->type == Type::NUMERIC);*/
             while ((raw = input[++idx]) != Tokens::STOP) {
                 get_token(raw, token);
                 if (token.type != Type::NUMERIC)
                     break;
             }
             to = idx--;
-            //token = &Tokens::list[input[idx]];
             get_token(input[idx], token);
 
             output[out++] = Tokens::NUMBER_FLAG | num;
@@ -518,7 +540,6 @@ long double evaluate(bool expr = false) {
         if (raw & Tokens::NUMBER_FLAG) {
             Stack::push(numbers[raw & Tokens::NUMBER_MASK]);
         } else {
-            //token = &Tokens::list[raw];
             get_token(raw, token);
 
             if (!expr && idx == expr_from && expr_from != expr_to) {
