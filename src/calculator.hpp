@@ -10,7 +10,7 @@
 #define INTEGRAL_SYMBOL 0x04
 #define PERM_SYMBOL     0x05
 #define COMBI_SYMBOL    0x06
-#define X_SYMBOL        0x07
+#define SCI_SYMBOL      0x07
 /******************************/
 
 namespace Calculator {
@@ -52,7 +52,8 @@ namespace Tokens {
         XOR, AND, SUBTRACT, ADD, MODULO, MULTIPLY, DIVIDE, COMBINATION,
         PERMUTATION, POWER, MINUS, PLUS, ROOT, INVERT, FACTORIAL, SINE,
         COSINE, TANGENT, ARCSIN, ARCCOS, ARCTAN, SINH, COSH, TANH, LOG10,
-        LN, SQRT, EXPONENT, ABS, MINIMUM, MAXIMUM, SUM, INTEGRAL, DERIVATIVE,
+        LN, SQRT, EXPONENT, POW10, ABS, MINIMUM, MAXIMUM, SUM, INTEGRAL, 
+        DERIVATIVE,
         LENGTH
     };
 }

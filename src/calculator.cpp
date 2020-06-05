@@ -12,6 +12,13 @@ long double evaluate(bool);
 Tokens::Token get_token(uint8_t);
 void get_token(uint8_t, Tokens::Token&);
 
+long double product(long double from, long double to) {
+    long double result = 1.0;
+    for (long double i = from; i <= to; i++)
+        result *= i;
+    return result;
+}
+
 namespace {
     uint8_t input[STACK_SIZE * 2];
     uint8_t output[STACK_SIZE * 2];
@@ -66,7 +73,11 @@ namespace Tokens {
         const char STR_EIGHT[] PROGMEM = "8";
         const char STR_NINE[]  PROGMEM = "9";
         const char STR_POINT[] PROGMEM = ".";
+#ifdef SCI_SYMBOL
+        const char STR_SCI[]   PROGMEM = { 'x', SCI_SYMBOL, '\0' };
+#else
         const char STR_SCI[]   PROGMEM = "x10";
+#endif
         const char STR_X[]     PROGMEM = "X";
         const char STR_Y[]     PROGMEM = "Y";
         const char STR_A[]     PROGMEM = "A";
@@ -88,7 +99,7 @@ namespace Tokens {
         const char STR_AND[]   PROGMEM = "AND";
         const char STR_MINUS[] PROGMEM = "-";
         const char STR_PLUS[]  PROGMEM = "+";
-        const char STR_MOD[]   PROGMEM = "%";
+        const char STR_MOD[]   PROGMEM = "mod";
         const char STR_MUL[]   PROGMEM = "*";
         const char STR_DIV[]   PROGMEM = { (char) 0xFD, '\0' };
 #ifdef COMBI_SYMBOL
@@ -126,6 +137,7 @@ namespace Tokens {
 #else
         const char STR_EXP[]   PROGMEM = "exp";
 #endif
+        const char STR_POW10[] PROGMEM = "10^";
         const char STR_ABS[]   PROGMEM = "Abs";
         const char STR_MIN[]   PROGMEM = "min";
         const char STR_MAX[]   PROGMEM = "max";
@@ -204,6 +216,7 @@ namespace Tokens {
         { 12, Type::FUNCTION, Assoc::LEFT,  1, sizeof(STR_LN),    STR_LN    },
         { 12, Type::FUNCTION, Assoc::LEFT,  1, sizeof(STR_SQRT),  STR_SQRT  },
         { 12, Type::FUNCTION, Assoc::LEFT,  1, sizeof(STR_EXP),   STR_EXP   },
+        { 12, Type::FUNCTION, Assoc::LEFT,  1, sizeof(STR_POW10), STR_POW10 },
         { 12, Type::FUNCTION, Assoc::LEFT,  1, sizeof(STR_ABS),   STR_ABS   },
         { 12, Type::FUNCTION, Assoc::LEFT,  2, sizeof(STR_MIN),   STR_MIN   },
         { 12, Type::FUNCTION, Assoc::LEFT,  2, sizeof(STR_MAX),   STR_MAX   },
@@ -237,11 +250,11 @@ namespace Tokens {
             case Name::PI:
                 return CONST_PI;
             case Name::OR:
-                return (uint8_t) args[0] | (uint8_t) args[1];
+                return (uint16_t) args[0] | (uint16_t) args[1];
             case Name::XOR:
-                return (uint8_t) args[0] ^ (uint8_t) args[1];
+                return (uint16_t) args[0] ^ (uint16_t) args[1];
             case Name::AND:
-                return (uint8_t) args[0] & (uint8_t) args[1];
+                return (uint16_t) args[0] & (uint16_t) args[1];
             case Name::SUBTRACT:
                 return args[0] - args[1];
             case Name::ADD:
@@ -252,12 +265,20 @@ namespace Tokens {
                 return args[0] * args[1];
             case Name::DIVIDE:
                 return args[0] / args[1];
-            case Name::COMBINATION:
-                // TODO
-                return 0.0;
-            case Name::PERMUTATION:
-                // TODO
-                return 0.0;
+            case Name::COMBINATION: {
+                long double& n = args[0];
+                long double& r = args[1];
+                return product(floor(fmax(r, n - r) + 1), n) / product(1.0, fmin(r, n - r));
+            }
+            case Name::PERMUTATION: {
+                long double& n = args[0];
+                long double& r = args[1];
+                if (n < r) {
+                    error = Error::SYNTAX;
+                    return INFINITY;
+                }
+                return product(floor(n - r + 1), n);
+            }
             case Name::POWER:
                 return pow(args[0], args[1]);
             case Name::MINUS:
@@ -268,9 +289,14 @@ namespace Tokens {
                 return pow(args[1], 1.0 / args[0]);
             case Name::INVERT:
                 return 1.0 / args[0];
-            case Name::FACTORIAL:
-                // TODO
-                return 0.0;
+            case Name::FACTORIAL: {
+                long double& n = args[0];
+                if (n < 0) {
+                    error = Error::SYNTAX;
+                    return INFINITY;
+                }
+                return product(1.0, n);
+            }
             case Name::SINE:
                 return sin(args[0]);
             case Name::COSINE:
@@ -297,6 +323,8 @@ namespace Tokens {
                 return sqrt(args[0]);
             case Name::EXPONENT:
                 return exp(args[0]);
+            case Name::POW10:
+                return pow(args[0], 10.0);
             case Name::ABS:
                 return fabs(args[0]);
             case Name::MINIMUM:
@@ -325,12 +353,33 @@ namespace Tokens {
 
                 return result;
             }
-            case Name::INTEGRAL:
-                // TODO
-                return 0.0;
-            case Name::DERIVATIVE:
-                // TODO
-                return 0.0;
+            case Name::INTEGRAL: {
+                constexpr long double h = 2e-10;
+                long double dh = 2 * h;
+                long double& at = args[0];
+                long double& x = vars[Variable::X];
+
+                x = at + h;
+                long double yh = ::evaluate(true);
+
+                x = at - h;
+                long double y0 = ::evaluate(true);
+
+                return yh / dh - y0 / dh;
+            }
+            case Name::DERIVATIVE: {
+                long double& from = args[0];
+                long double& to = args[1];
+                long double& x = vars[Variable::X];
+
+                x = from;
+                long double ya = ::evaluate(true);
+
+                x = to;
+                long double yb = ::evaluate(true);
+
+                return (to - from) * ((ya + yb) / 2.0);
+            }
         }
 
         return INFINITY;
@@ -633,4 +682,3 @@ uint8_t Calculator::at() {
 const char* Calculator::get_msg() {
     return (const char*) pgm_read_word(&error_msg[(uint8_t) ::error - 2]);
 }
-
