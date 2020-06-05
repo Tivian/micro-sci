@@ -231,7 +231,7 @@ namespace Tokens {
         { 12, Type::FUNCTION, Assoc::LEFT,  2, sizeof(STR_MAX),   STR_MAX   },
         { 12, Type::COMPOUND, Assoc::LEFT,  2, sizeof(STR_SUM),   STR_SUM   },
         { 12, Type::COMPOUND, Assoc::LEFT,  2, sizeof(STR_INT),   STR_INT   },
-        { 12, Type::COMPOUND, Assoc::LEFT,  2, sizeof(STR_DX),    STR_DX    },
+        { 12, Type::COMPOUND, Assoc::LEFT,  1, sizeof(STR_DX),    STR_DX    },
     };
 
     constexpr uint8_t NUMBER_FLAG = 0b10000000;
@@ -363,6 +363,19 @@ namespace Tokens {
                 return result;
             }
             case Name::INTEGRAL: {
+                long double& from = args[0];
+                long double& to = args[1];
+                long double& x = vars[Variable::X];
+
+                x = from;
+                long double ya = ::evaluate(true);
+
+                x = to;
+                long double yb = ::evaluate(true);
+
+                return (to - from) * ((ya + yb) / 2.0);
+            }
+            case Name::DERIVATIVE: {
                 constexpr long double h = 2e-10;
                 long double dh = 2 * h;
                 long double& at = args[0];
@@ -375,19 +388,6 @@ namespace Tokens {
                 long double y0 = ::evaluate(true);
 
                 return yh / dh - y0 / dh;
-            }
-            case Name::DERIVATIVE: {
-                long double& from = args[0];
-                long double& to = args[1];
-                long double& x = vars[Variable::X];
-
-                x = from;
-                long double ya = ::evaluate(true);
-
-                x = to;
-                long double yb = ::evaluate(true);
-
-                return (to - from) * ((ya + yb) / 2.0);
             }
         }
 
