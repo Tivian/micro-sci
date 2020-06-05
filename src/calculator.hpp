@@ -60,6 +60,7 @@ namespace Tokens {
 
 void add(uint8_t id);
 void set(uint8_t id, uint8_t pos);
+void remove(uint8_t pos);
 Tokens::Token get(uint8_t id);
 void clear();
 long double evaluate();

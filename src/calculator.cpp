@@ -19,6 +19,15 @@ long double product(long double from, long double to) {
     return result;
 }
 
+bool isfinite(long double v) {
+    union {
+        long double d;
+        uint64_t bits;
+    } strip;
+    strip.d = v;
+    return (strip.bits & 0x7FFFFFFFFFFFFFFFUL) < 0x7FF0000000000000UL;
+}
+
 namespace {
     uint8_t input[STACK_SIZE * 2];
     uint8_t output[STACK_SIZE * 2];
@@ -626,7 +635,7 @@ long double evaluate(bool expr = false) {
         answer = Stack::peek<long double>();
     }
 
-    if (isinf(Stack::peek<long double>()))
+    if (!isfinite(Stack::peek<long double>()))
         error = Error::OVERFLOW;
 
     return Stack::pop<long double>();
@@ -654,6 +663,11 @@ void Calculator::add(uint8_t id) {
 
 void Calculator::set(uint8_t id, uint8_t pos) {
     input[pos] = id;
+}
+
+void Calculator::remove(uint8_t pos) {
+    for (; input[pos] == Tokens::STOP; pos++)
+        input[pos] = input[pos + 1];
 }
 
 Tokens::Token Calculator::get(uint8_t id) {
