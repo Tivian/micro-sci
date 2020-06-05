@@ -63,7 +63,7 @@ alpha = [
               "",      str_10x,       str_dx,      str_rep,      str_off,
               "",      str_exp,           "",           "",           "",
               "",      str_hyp,      str_abs,      str_min,      str_max,
-              "",           "",           "",           "",           "",
+              "",           "",           "",     "\u275F",           "",
               "",           "",           "",           "",           "",
               "",           "",           "",     "\u25CB",      str_mod,
          str_and,       str_or,      str_xor,     str_perm,     str_comb,

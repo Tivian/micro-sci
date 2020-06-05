@@ -221,7 +221,8 @@ void interpret(Keypad::Key key) {
             new_token = Tokens::ROOT;
             break;
         case Key::D4:
-            new_token = (modifier & Modifier::BETA) ?
+            new_token = (modifier & Modifier::ALPHA) ?
+                Tokens::COMMA : (modifier & Modifier::BETA) ?
                 Tokens::VAR_X : Tokens::LEFT_PARENT;
             break;
         case Key::E4:
