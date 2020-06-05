@@ -27,6 +27,8 @@ const char* const symbols[] PROGMEM = {
 
 /// Shows whether the calculation result is being displayed right now.
 bool displaying = false;
+uint8_t cursor = 0;
+uint8_t pos = 0;
 
 void show_title() {
     LCD::pos(6, 0);
@@ -74,14 +76,38 @@ void error(Calculator::Error err) {
     LCD::puts_P(Calculator::get_msg());
 }
 
-void add(uint8_t id) {    
+void clear() {
+    LCD::clear();
+    Calculator::clear();
+    displaying = false;
+    cursor = 0;
+    pos = 0;
+}
+
+void add(uint8_t id) {
     auto token = Calculator::get(id);
-    if (token.len > 0)
+
+    if (displaying) {
+        clear();
+        if (token.type == Calculator::Tokens::Type::OPERATOR)
+            ::add(Calculator::Tokens::ANS);
+    }
+
+    if (token.len > 0) {
         LCD::puts_P(token.str);
+        cursor += token.len - 1;
+
+        if (cursor >= 16) {
+
+        }
+    }
+
     Calculator::add(id);
     if (token.type == Calculator::Tokens::Type::FUNCTION 
      || token.type == Calculator::Tokens::Type::COMPOUND)
         ::add(Calculator::Tokens::LEFT_PARENT);
+
+    pos++;
 }
 
 void display(long double val) {
@@ -89,25 +115,26 @@ void display(long double val) {
     auto err = Calculator::check();
     
     if (err == Calculator::Error::NONE) {
-        if (log10(fabs(val)) > 13)
-            dtostre(val, buffer, 6, 0);
-        else
-            dtostrf(val, 16, 10, buffer);
-        
         LCD::clear(1);
-        LCD::pos(16 - strlen(buffer), 1);
+
+        if (log10(fabs(val)) >= 13) {
+            dtostre(val, buffer, 10, 0);
+            LCD::pos(16 - strlen(buffer), 1);
+        } else {
+            dtostrf(val, 16, fabs(floor(val) - val) < 1e-7 ? 0 : 7, buffer);
+            uint8_t i, last;
+            for (i = 0, last = 0; buffer[i] != '\0'; i++)
+                if (buffer[i] != '0')
+                    last = i;
+            LCD::pos(15 - last, 1);
+        }
+
         LCD::puts(buffer);
     } else {
         error(err);
     }
 
     displaying = true;    
-}
-
-void clear() {
-    LCD::clear();
-    Calculator::clear();
-    displaying = false;
 }
 
 enum Modifier : uint8_t {
@@ -126,21 +153,26 @@ const char modifiers[] PROGMEM = {
 };
 
 uint8_t modifier = Modifier::CLEAR;
+void clear_modifier() {
+    modifier = Modifier::CLEAR;
+    LCD::pos(0, 1);
+    LCD::putc(' ');
+    LCD::pos(cursor, 0);
+}
+
 void set_modifier(Modifier mod) {
+    if (modifier & mod) {
+        clear_modifier();
+        return;
+    }
+
     modifier = Modifier::ACTIVE | mod;
     LCD::pos(0, 1);
     for (uint8_t i = 0, n = (uint8_t) mod; n != 0; i++, n >>= 1) {
         if (n & 1)
             LCD::putc(pgm_read_byte(&modifiers[i]));
     }
-    LCD::pos(0, 0);
-}
-
-void clear_modifier() {
-    modifier = Modifier::CLEAR;
-    LCD::pos(0, 1);
-    LCD::putc(' ');
-    LCD::pos(0, 0);
+    LCD::pos(cursor, 0);
 }
 
 void interpret(Keypad::Key key) {
@@ -321,12 +353,11 @@ void interpret(Keypad::Key key) {
             return;
     }
 
-    if (displaying)
-        ::clear();
-    else if (modifier & Modifier::ACTIVE)
+    if (modifier & Modifier::ACTIVE)
         clear_modifier();
 
-    ::add(new_token);
+    if (new_token != Tokens::STOP)
+        ::add(new_token);
 }
 
 int main() {
@@ -338,6 +369,7 @@ int main() {
     Blink::init();
     Keypad::init();
     load_symbols();
+    clear();
 
     //show_title();
     Blink::start();
@@ -363,15 +395,13 @@ ISR (WDT_vect) {
 
 /**
  * TODO
- *  - keyboard matrix support
- *  - greater long double precision
- *  - menu
- * 
- * Target
- *  10-digit precision
- * 
- * Need function for displaying the IEEE754 64-bit numbers
- *  max 16 characters, precision 10 digits
+ *  Ans is broken for some reason
+ *  cursor operations needs to be implemented
+ *  integral doesn't work
+ *  derivative gives syntax ERROR
+ *  backlight operations not implemented
+ *  store, recall not implemented
+ *  on/off not implemented
  */
 
 /**
