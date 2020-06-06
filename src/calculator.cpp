@@ -121,11 +121,15 @@ namespace Tokens {
 #else
         const char STR_PERMU[] PROGMEM = "P";
 #endif
+        const char STR_POW2[]  PROGMEM = "^2";
+        const char STR_POW3[]  PROGMEM = "^3";
         const char STR_POW[]   PROGMEM = "^";
+        const char STR_SQRT[]  PROGMEM = { (char) 0xE8, '\0' };
+        const char STR_CUBR[]  PROGMEM = { '3', (char) 0xE8, '\0' };
 #ifdef ROOT_SYMBOL
         const char STR_ROOT[]  PROGMEM = { ROOT_SYMBOL, '\0' };
 #else
-        const char STR_ROOT[]  PROGMEM = { (char) 0xE8, '\0' };
+        const char STR_ROOT[]  PROGMEM = { 0xEB, 0xE8, '\0' };
 #endif
         const char STR_INV[]   PROGMEM = { (char) 0xE9, '\0' };
         const char STR_FACTO[] PROGMEM = "!";
@@ -140,7 +144,6 @@ namespace Tokens {
         const char STR_TANH[]  PROGMEM = "tanh";
         const char STR_LOG[]   PROGMEM = "log";
         const char STR_LN[]    PROGMEM = "ln";
-        const char STR_SQRT[]  PROGMEM = "sqrt";
 #ifdef EULER_SYMBOL
         const char STR_EXP[]   PROGMEM = { EULER_SYMBOL, '^', '\0' };
 #else
@@ -161,6 +164,7 @@ namespace Tokens {
         const char STR_DX[]    PROGMEM = "d/dx";
 #endif
         const char STR_SUM[]   PROGMEM = { (char) 0xF6, '\0' };
+        const char STR_PROD[]  PROGMEM = "prod";
     }
 
     const Token list[] PROGMEM = {
@@ -202,9 +206,13 @@ namespace Tokens {
         {  6, Type::OPERATOR, Assoc::LEFT,  2, sizeof(STR_DIV),   STR_DIV   },
         {  7, Type::OPERATOR, Assoc::LEFT,  2, sizeof(STR_COMBI), STR_COMBI },
         {  7, Type::OPERATOR, Assoc::LEFT,  2, sizeof(STR_PERMU), STR_PERMU },
+        {  8, Type::OPERATOR, Assoc::RIGHT, 1, sizeof(STR_POW2),  STR_POW2  },
+        {  8, Type::OPERATOR, Assoc::RIGHT, 1, sizeof(STR_POW3),  STR_POW3  },
         {  8, Type::OPERATOR, Assoc::RIGHT, 2, sizeof(STR_POW),   STR_POW   },
         {  9, Type::OPERATOR, Assoc::RIGHT, 1, sizeof(STR_MINUS), STR_MINUS },
         {  9, Type::OPERATOR, Assoc::RIGHT, 1, sizeof(STR_PLUS),  STR_PLUS  },
+        { 10, Type::OPERATOR, Assoc::LEFT,  1, sizeof(STR_SQRT),  STR_SQRT  },
+        { 10, Type::OPERATOR, Assoc::LEFT,  1, sizeof(STR_CUBR),  STR_CUBR  },
         { 10, Type::OPERATOR, Assoc::LEFT,  2, sizeof(STR_ROOT),  STR_ROOT  },
         { 10, Type::OPERATOR, Assoc::RIGHT, 1, sizeof(STR_INV),   STR_INV   },
         { 10, Type::OPERATOR, Assoc::RIGHT, 1, sizeof(STR_FACTO), STR_FACTO },
@@ -219,7 +227,6 @@ namespace Tokens {
         { 12, Type::FUNCTION, Assoc::LEFT,  1, sizeof(STR_TANH),  STR_TANH  },
         { 12, Type::FUNCTION, Assoc::LEFT,  1, sizeof(STR_LOG),   STR_LOG   },
         { 12, Type::FUNCTION, Assoc::LEFT,  1, sizeof(STR_LN),    STR_LN    },
-        { 12, Type::FUNCTION, Assoc::LEFT,  1, sizeof(STR_SQRT),  STR_SQRT  },
         { 12, Type::FUNCTION, Assoc::LEFT,  1, sizeof(STR_EXP),   STR_EXP   },
         { 12, Type::FUNCTION, Assoc::LEFT,  1, sizeof(STR_POW10), STR_POW10 },
         { 12, Type::FUNCTION, Assoc::LEFT,  1, sizeof(STR_ABS),   STR_ABS   },
@@ -228,6 +235,7 @@ namespace Tokens {
         { 12, Type::COMPOUND, Assoc::LEFT,  2, sizeof(STR_SUM),   STR_SUM   },
         { 12, Type::COMPOUND, Assoc::LEFT,  2, sizeof(STR_INT),   STR_INT   },
         { 12, Type::COMPOUND, Assoc::LEFT,  1, sizeof(STR_DX),    STR_DX    },
+        { 12, Type::COMPOUND, Assoc::LEFT,  2, sizeof(STR_PROD),  STR_PROD  }
     };
 
     constexpr uint8_t NUMBER_FLAG = 0b10000000;
@@ -288,12 +296,20 @@ namespace Tokens {
                 }
                 return product(floor(n - r + 1), n);
             }
+            case Name::SQR_POW:
+                return pow(args[0], 2.0);
+            case Name::CUB_POW:
+                return pow(args[0], 3.0);
             case Name::POWER:
                 return pow(args[0], args[1]);
             case Name::MINUS:
                 return -args[0];
             case Name::PLUS:
                 return +args[0];
+            case Name::SQRT:
+                return sqrt(args[0]);
+            case Name::CUBE_ROOT:
+                return cbrt(args[0]);
             case Name::ROOT:
                 return pow(args[1], 1.0 / args[0]);
             case Name::INVERT:
@@ -328,8 +344,6 @@ namespace Tokens {
                 return log10(args[0]);
             case Name::LN:
                 return log(args[0]);
-            case Name::SQRT:
-                return sqrt(args[0]);
             case Name::EXPONENT:
                 return exp(args[0]);
             case Name::POW10:
@@ -388,6 +402,28 @@ namespace Tokens {
                 long double y0 = ::evaluate(true);
 
                 return yh / dh - y0 / dh;
+            }
+            case Name::PRODUCT: {
+                args[5] = args[0];
+                args[6] = args[1];
+                long double& from = args[5];
+                long double& to = args[6];
+                long double& result = args[7];
+                long double& x = vars[Variable::X];
+
+                if (from > to) {
+                    error = Error::INVALID_RANGE;
+                    return INFINITY;
+                }
+
+                result = 1.0;
+                x = round(from);
+
+                do
+                    result *= ::evaluate(true);
+                while (++x <= to);
+
+                return result;
             }
         }
 

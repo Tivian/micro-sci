@@ -75,14 +75,14 @@ void print_hex(uint8_t v, bool space = true) {
 void print(long double v) {
     union {
         long double d;
-        uint64_t raw;
+        uint64_t bits;
     } strip;
     strip.d = v;
-    
-    decltype(strip.raw) mask = 0xFF;
-    uint8_t shift = (sizeof(strip.d) * 8) - 8;
-    for (uint8_t i = 0; i < sizeof(strip.d); i++, shift -= 8)
-        print_hex((strip.raw & (mask << shift)) >> shift, false);
+
+    for (uint8_t i = 0; i < 8; i++) {
+        print_hex((strip.bits >> 56) & 0xFF, false);
+        strip.bits <<= 8;
+    }
 }
 
 void error(Calculator::Error err) {
@@ -271,10 +271,14 @@ void interpret(Keypad::Key key) {
             set_modifier(Modifier::RECALL);
             return;
         case Key::B4:
-            new_token = Tokens::POWER;
+            new_token = (modifier & Modifier::ALPHA) ?
+                Tokens::CUB_POW : (modifier & Modifier::BETA) ?
+                Tokens::POWER : Tokens::SQR_POW;
             break;
         case Key::C4:
-            new_token = Tokens::ROOT;
+            new_token = (modifier & Modifier::ALPHA) ?
+                Tokens::CUBE_ROOT : (modifier & Modifier::BETA) ?
+                Tokens::ROOT : Tokens::SQRT;
             break;
         case Key::D4:
             if (modifier & Modifier::RECALL) {
@@ -336,8 +340,8 @@ void interpret(Keypad::Key key) {
             // delete
             break;
         case Key::E5:
-            // clear
-            break;
+            ::clear();
+            return;
 
         case Key::A6:
             if (modifier & Modifier::RECALL) {
@@ -472,12 +476,10 @@ ISR (WDT_vect) {
 
 /**
  * TODO
- *  Ans is broken for some reason
+ *  number parses should handle negative exponent
  *  cursor operations needs to be implemented
- *  integral doesn't work
- *  derivative gives syntax ERROR
+ *  RPN parsing for compound functions are incorrect
  *  backlight operations not implemented
- *  store, recall not implemented
  *  on/off not implemented
  */
 
