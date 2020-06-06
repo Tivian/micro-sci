@@ -56,12 +56,18 @@ namespace Tokens {
         DERIVATIVE,
         LENGTH
     };
+
+    enum Variable : uint8_t {
+        X, Y, A, B, C, D, E, F
+    };
 }
 
 void add(uint8_t id);
 void set(uint8_t id, uint8_t pos);
 void remove(uint8_t pos);
 Tokens::Token get(uint8_t id);
+void store(uint8_t var, long double val);
+long double recall(uint8_t var);
 void clear(bool memory = false);
 long double evaluate();
 Error check();

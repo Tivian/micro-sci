@@ -128,10 +128,16 @@ void add(uint8_t id) {
     pos++;
 }
 
-void display(long double val) {
+void display(long double val, uint8_t id = Calculator::Tokens::STOP) {
     static char buffer[16];
     auto err = Calculator::check();
     
+    if (id != Calculator::Tokens::STOP) {
+        auto token = Calculator::get(id);
+        LCD::clear(0);
+        LCD::puts_P(token.str);
+    }
+
     if (err == Calculator::Error::NONE) {
         LCD::clear(1);
         
@@ -179,6 +185,15 @@ void set_modifier(Modifier mod) {
             LCD::putc(pgm_read_byte(&modifiers[i]));
     }
     LCD::pos(cursor, 0);
+}
+
+long double finalize() {
+    if (!displaying)
+        ::add(Calculator::Tokens::STOP);
+    auto result = Calculator::evaluate();
+    display(result);
+    clear_modifier();
+    return result;
 }
 
 void interpret(Keypad::Key key) {
@@ -262,27 +277,61 @@ void interpret(Keypad::Key key) {
             new_token = Tokens::ROOT;
             break;
         case Key::D4:
-            new_token = (modifier & Modifier::ALPHA) ?
-                Tokens::COMMA : (modifier & Modifier::BETA) ?
-                Tokens::VAR_X : Tokens::LEFT_PARENT;
-            break;
+            if (modifier & Modifier::RECALL) {
+                display(Calculator::recall(Tokens::Variable::X), Tokens::VAR_X);
+            } else if (modifier & Modifier::STORE) {
+                Calculator::store(Tokens::Variable::X, finalize());
+            } else {
+                new_token = (modifier & Modifier::ALPHA) ?
+                    Tokens::COMMA : (modifier & Modifier::BETA) ?
+                    Tokens::VAR_X : Tokens::LEFT_PARENT;
+                break;
+            }
+            return;
         case Key::E4:
-            new_token = (modifier & Modifier::BETA) ?
-                Tokens::VAR_Y : Tokens::RIGHT_PARENT;
-            break;
-
+            if (modifier & Modifier::RECALL) {
+                display(Calculator::recall(Tokens::Variable::Y), Tokens::VAR_Y);
+            } else if (modifier & Modifier::STORE) {
+                Calculator::store(Tokens::Variable::Y, finalize());
+            } else {
+                new_token = (modifier & Modifier::BETA) ?
+                    Tokens::VAR_Y : Tokens::RIGHT_PARENT;
+                break;
+            }
+            return;
         case Key::A5:
-            new_token = (modifier & Modifier::BETA) ?
-                Tokens::VAR_A : Tokens::SEVEN;
-            break;
+            if (modifier & Modifier::RECALL) {
+                display(Calculator::recall(Tokens::Variable::A), Tokens::VAR_A);
+            } else if (modifier & Modifier::STORE) {
+                Calculator::store(Tokens::Variable::A, finalize());
+            } else {
+                new_token = (modifier & Modifier::BETA) ?
+                    Tokens::VAR_A : Tokens::SEVEN;
+                break;
+            }
+            return;
         case Key::B5:
-            new_token = (modifier & Modifier::BETA) ?
-                Tokens::VAR_B : Tokens::EIGHT;
-            break;
+            if (modifier & Modifier::RECALL) {
+                display(Calculator::recall(Tokens::Variable::B), Tokens::VAR_B);
+            } else if (modifier & Modifier::STORE) {
+                Calculator::store(Tokens::Variable::B, finalize());
+            } else {
+                new_token = (modifier & Modifier::BETA) ?
+                    Tokens::VAR_B : Tokens::EIGHT;
+                break;
+            }
+            return;
         case Key::C5:
-            new_token = (modifier & Modifier::BETA) ?
-                Tokens::VAR_C : Tokens::NINE;
-            break;
+            if (modifier & Modifier::RECALL) {
+                display(Calculator::recall(Tokens::Variable::C), Tokens::VAR_C);
+            } else if (modifier & Modifier::STORE) {
+                Calculator::store(Tokens::Variable::X, finalize());
+            } else {
+                new_token = (modifier & Modifier::BETA) ?
+                    Tokens::VAR_C : Tokens::NINE;
+                break;
+            }
+            return;
         case Key::D5:
             // delete
             break;
@@ -291,17 +340,38 @@ void interpret(Keypad::Key key) {
             break;
 
         case Key::A6:
-            new_token = (modifier & Modifier::BETA) ?
-                Tokens::VAR_D : Tokens::FOUR;
-            break;
+            if (modifier & Modifier::RECALL) {
+                display(Calculator::recall(Tokens::Variable::D), Tokens::VAR_D);
+            } else if (modifier & Modifier::STORE) {
+                Calculator::store(Tokens::Variable::D, finalize());
+            } else {
+                new_token = (modifier & Modifier::BETA) ?
+                    Tokens::VAR_D : Tokens::FOUR;
+                break;
+            }
+            return;
         case Key::B6:
-            new_token = (modifier & Modifier::BETA) ?
-                Tokens::VAR_E : Tokens::FIVE;
-            break;
+            if (modifier & Modifier::RECALL) {
+                display(Calculator::recall(Tokens::Variable::E), Tokens::VAR_E);
+            } else if (modifier & Modifier::STORE) {
+                Calculator::store(Tokens::Variable::E, finalize());
+            } else {
+                new_token = (modifier & Modifier::BETA) ?
+                    Tokens::VAR_E : Tokens::FIVE;
+                break;
+            }
+            return;
         case Key::C6:
-            new_token = (modifier & Modifier::BETA) ?
-                Tokens::VAR_F : Tokens::SIX;
-            break;
+            if (modifier & Modifier::RECALL) {
+                display(Calculator::recall(Tokens::Variable::F), Tokens::VAR_F);
+            } else if (modifier & Modifier::STORE) {
+                Calculator::store(Tokens::Variable::F, finalize());
+            } else {
+                new_token = (modifier & Modifier::BETA) ?
+                    Tokens::VAR_F : Tokens::SIX;
+                break;
+            }
+            return;
         case Key::D6:
             if (modifier & Modifier::ALPHA) {
                 ;// turn off backlight
@@ -354,9 +424,7 @@ void interpret(Keypad::Key key) {
             new_token = Tokens::ANS;
             break;
         case Key::E8:
-            if (!displaying)
-                ::add(Tokens::STOP);
-            display(Calculator::evaluate());
+            finalize();
             return;
         default:
             return;

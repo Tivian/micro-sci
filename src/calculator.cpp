@@ -161,10 +161,6 @@ namespace Tokens {
         const char STR_DX[]    PROGMEM = "d/dx";
 #endif
         const char STR_SUM[]   PROGMEM = { (char) 0xF6, '\0' };
-
-        enum Variable : uint8_t {
-            X, Y, A, B, C, D, E, F
-        };
     }
 
     const Token list[] PROGMEM = {
@@ -674,6 +670,14 @@ void Calculator::remove(uint8_t pos) {
 
 Tokens::Token Calculator::get(uint8_t id) {
     return ::get_token(id);
+}
+
+void Calculator::store(uint8_t var, long double val) {
+    vars[var] = val;
+}
+
+long double Calculator::recall(uint8_t var) {
+    return vars[var];
 }
 
 void Calculator::clear(bool memory) {
