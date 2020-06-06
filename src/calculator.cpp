@@ -248,8 +248,12 @@ namespace Tokens {
                 return vars[id - Name::VAR_X];
             case Name::ANS:
                 return answer;
-            case Name::RND:
-                return fmod((long double) Random::next() / Random::next(), 1);
+            case Name::RND: {
+                long double a, b;
+                while ((a = Random::next()) == 0);
+                while ((b = Random::next()) == 0);
+                return fmod(a / b, 1.0);
+            }
             case Name::EULER:
                 return CONST_E;
             case Name::PI:
