@@ -25,6 +25,23 @@ const char* const symbols[] PROGMEM = {
     comb_symbol, sci_symbol
 };
 
+enum Modifier : uint8_t {
+    ACTIVE = 0b10000000,
+    ALPHA  = 0b00000001,
+    BETA   = 0b00000010,
+    INVERT = 0b00000100,
+    HYPER  = 0b00001000,
+    RECALL = 0b00010000,
+    STORE  = 0b00100000,
+    CLEAR  = 0b00000000
+};
+
+const char modifiers[] PROGMEM = {
+    (char) 0xE0, (char) 0xE2, 'I', 'h', 'R', 'S'
+};
+
+uint8_t modifier = Modifier::CLEAR;
+
 /// Shows whether the calculation result is being displayed right now.
 bool displaying = false;
 uint8_t cursor = 0;
@@ -76,10 +93,11 @@ void error(Calculator::Error err) {
     LCD::puts_P(Calculator::get_msg());
 }
 
-void clear() {
+void clear(bool memory = false) {
     LCD::clear();
-    Calculator::clear();
+    Calculator::clear(memory);
     displaying = false;
+    modifier = Modifier::CLEAR;
     cursor = 0;
     pos = 0;
 }
@@ -116,17 +134,21 @@ void display(long double val) {
     
     if (err == Calculator::Error::NONE) {
         LCD::clear(1);
-
-        if (log10(fabs(val)) >= 13) {
+        
+        uint8_t digits = fabs(floor(val) - val) < 1e-7 ? 0 : 7;
+        if (log10(fabs(val)) >= 13)
             dtostre(val, buffer, 10, 0);
-            LCD::pos(16 - strlen(buffer), 1);
-        } else {
-            dtostrf(val, 16, fabs(floor(val) - val) < 1e-7 ? 0 : 7, buffer);
+        else
+            dtostrf(val, 16, digits, buffer);
+
+        if (digits != 0) {
             uint8_t i, last;
             for (i = 0, last = 0; buffer[i] != '\0'; i++)
                 if (buffer[i] != '0')
                     last = i;
             LCD::pos(15 - last, 1);
+        } else {
+            LCD::pos(16 - strlen(buffer), 1);
         }
 
         LCD::puts(buffer);
@@ -137,22 +159,6 @@ void display(long double val) {
     displaying = true;    
 }
 
-enum Modifier : uint8_t {
-    ACTIVE = 0b10000000,
-    ALPHA  = 0b00000001,
-    BETA   = 0b00000010,
-    INVERT = 0b00000100,
-    HYPER  = 0b00001000,
-    RECALL = 0b00010000,
-    STORE  = 0b00100000,
-    CLEAR  = 0b00000000
-};
-
-const char modifiers[] PROGMEM = {
-    (char) 0xE0, (char) 0xE2, 'I', 'h', 'R', 'S'
-};
-
-uint8_t modifier = Modifier::CLEAR;
 void clear_modifier() {
     modifier = Modifier::CLEAR;
     LCD::pos(0, 1);
@@ -200,7 +206,7 @@ void interpret(Keypad::Key key) {
             if (modifier & Modifier::ALPHA)
                 ;//turn_off();
             else
-                ::clear();
+                ::clear(true);
             return;
 
         case Key::A2:
@@ -230,17 +236,20 @@ void interpret(Keypad::Key key) {
         case Key::C3:
             new_token = (modifier & Modifier::ALPHA) ?
                 Tokens::ABS : (modifier & Modifier::HYPER) ?
-                Tokens::SINH : Tokens::SINE;
+                Tokens::SINH : (modifier & Modifier::INVERT) ?
+                Tokens::ARCSIN : Tokens::SINE;
             break;
         case Key::D3:
             new_token = (modifier & Modifier::ALPHA) ? 
                 Tokens::MINIMUM : (modifier & Modifier::HYPER) ?
-                Tokens::COSH : Tokens::COSINE;
+                Tokens::COSH : (modifier & Modifier::INVERT) ?
+                Tokens::ARCCOS : Tokens::COSINE;
             break;
         case Key::E3:
             new_token = (modifier & Modifier::ALPHA) ?
                 Tokens::MAXIMUM : (modifier & Modifier::HYPER) ?
-                Tokens::TANH : Tokens::TANGENT;
+                Tokens::TANH : (modifier & Modifier::INVERT) ?
+                Tokens::ARCTAN : Tokens::TANGENT;
             break;
 
         case Key::A4:
