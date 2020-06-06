@@ -38,6 +38,10 @@ str_rnd = "\U0001D5B1\U0001D5C7\U0001D5BD\u0023"
 str_mod = "\U0001D5C6\U0001D5C8\U0001D5BD"
 str_pow = "\U0001D5D2\u02E3"
 str_root = "\u02E3\u221A"
+str_pow2 = "\U0001D465\u00B2"
+str_pow3 = "\U0001D465\u00B3"
+str_sqrt = "\u221A"
+str_crot = "\u00B3\u221A"
 str_perm = "\U0001D5C7\U0001D5E3\U0001D5CB"
 str_comb = "\U0001D5C7\U0001D5D6\U0001D5CB"
 str_xor = "\U0001D5B7\U0001D5AE\U0001D5B1"
@@ -47,12 +51,13 @@ str_rep = "\U0001D465\u207B\u00B9"
 str_abs = "\U0001D5A0\U0001D5BB\U0001D5CC"
 str_min = "\U0001D5C6\U0001D5C2\U0001D5C7"
 str_max = "\U0001D5C6\U0001D5BA\U0001D5D1"
+str_prod = "\u220F"
 
 primary = [
          str_alp,      str_log,     "\u222B",      str_fac,       str_on,
          str_bta,       str_ln,     "\u2211",    "\u25C1 ",    "\u25B7 ",
          str_sto,      str_inv,      str_sin,      str_cos,      str_tan,
-         str_rcl,      str_pow,     str_root,     "\u2768",     "\u2769",
+         str_rcl,     str_pow2,     str_sqrt,     "\u2768",     "\u2769",
     "\U0001D7E9", "\U0001D7EA", "\U0001D7EB",      str_del,      str_clr,
     "\U0001D7E6", "\U0001D7E7", "\U0001D7E8",     "\u00D7",     "\u00F7",
     "\U0001D7E3", "\U0001D7E4", "\U0001D7E5",     "\u002B",     "\u2212",
@@ -61,9 +66,9 @@ primary = [
 
 alpha = [
               "",      str_10x,       str_dx,      str_rep,      str_off,
-              "",      str_exp,           "",           "",           "",
+              "",      str_exp,     str_prod,           "",           "",
               "",      str_hyp,      str_abs,      str_min,      str_max,
-              "",           "",           "",     "\u275F",           "",
+              "",     str_pow3,     str_crot,     "\u275F",           "",
               "",           "",           "",           "",           "",
               "",           "",           "",     "\u25CB",      str_mod,
          str_and,       str_or,      str_xor,     str_perm,     str_comb,
@@ -74,7 +79,7 @@ beta = [
               "",           "",           "",           "",           "",
               "",           "",           "",           "",           "",
               "",           "",           "",           "",           "",
-              "",           "",           "", "\U0001D465", "\U0001D466",
+              "",      str_pow,     str_root, "\U0001D465", "\U0001D466",
     "\U0001D670", "\U0001D671", "\U0001D672",           "",           "",
     "\U0001D673", "\U0001D674", "\U0001D675",     "\u25CF",           "",
               "",           "",           "",           "",           "",
