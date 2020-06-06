@@ -414,8 +414,6 @@ long double pow10(uint8_t x) {
     return result;
 }
 
-// TODO
-//  negative exponent not implemented
 long double parse() {
     long double& result = args[0] = 0.0;
     long double& exp = args[1] = 0.0;
@@ -429,20 +427,24 @@ long double parse() {
     for (; i < to && input[i] != Tokens::STOP && input[i] != Tokens::SCI; i++);
     uint8_t exp_pos = i;
 
-    power = pow10(point_pos - from);
-    for (i = from; i < exp_pos; i++) {
-        raw = input[i];
-        if (raw == Tokens::POINT) {
-            if (i == point_pos) {
-                continue;
-            } else {
-                error = Error::SYNTAX;
-                return INFINITY;
+    if (from != exp_pos) {
+        power = pow10(point_pos - from);
+        for (i = from; i < exp_pos; i++) {
+            raw = input[i];
+            if (raw == Tokens::POINT) {
+                if (i == point_pos) {
+                    continue;
+                } else {
+                    error = Error::SYNTAX;
+                    return INFINITY;
+                }
             }
-        }
 
-        power /= 10.0;
-        result += power * (raw - Tokens::ZERO);
+            power /= 10.0;
+            result += power * (raw - Tokens::ZERO);
+        }
+    } else {
+        result = 1.0;
     }
 
     power = pow10(len - exp_pos - 1 - from);
@@ -460,8 +462,6 @@ long double parse() {
     return result * pow10(exp);
 }
 
-// TODO
-//  handle properly negative exponent
 void to_reverse_polish_notation() {
     using Tokens::Type;
     Tokens::Token last;
