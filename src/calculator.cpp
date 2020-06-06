@@ -48,7 +48,7 @@ namespace {
 namespace Calculator {
     namespace {
         const char                 MSG_SYNTAX[] PROGMEM = "    Syntax ERROR";
-        const char               MSG_OVERFLOW[] PROGMEM = "  Overflow ERROR";
+        const char               MSG_OVERFLOW[] PROGMEM = "      Math ERROR";
         const char          MSG_INVALID_RANGE[] PROGMEM = "   Invalid range";
         const char    MSG_MISMATCHED_OPERATOR[] PROGMEM = "    Syntax ERROR";
         const char MSG_MISMATCHED_PARENTHESES[] PROGMEM = "   Mismatched ()";
@@ -333,7 +333,7 @@ namespace Tokens {
             case Name::EXPONENT:
                 return exp(args[0]);
             case Name::POW10:
-                return pow(args[0], 10.0);
+                return pow(10.0, args[0]);
             case Name::ABS:
                 return fabs(args[0]);
             case Name::MINIMUM:
@@ -626,6 +626,11 @@ long double evaluate(bool expr = false) {
         }
     }
 
+    if (!isfinite(Stack::peek<long double>())) {
+        error = Error::OVERFLOW;
+        return INFINITY;
+    }
+
     if (!expr) {
         if (Stack::size() > 1) {
             error = Error::MISMATCHED_OPERATOR;
@@ -634,9 +639,6 @@ long double evaluate(bool expr = false) {
 
         answer = Stack::peek<long double>();
     }
-
-    if (!isfinite(Stack::peek<long double>()))
-        error = Error::OVERFLOW;
 
     return Stack::pop<long double>();
 }
@@ -674,10 +676,14 @@ Tokens::Token Calculator::get(uint8_t id) {
     return ::get_token(id);
 }
 
-void Calculator::clear() {
+void Calculator::clear(bool memory) {
     ::add(0, true);
     Stack::clear();
     error = Error::NONE;
+    if (memory) {
+        for (uint8_t i = 0; i < 8; i++)
+            vars[i] = 0.0;
+    }
 }
 
 long double Calculator::evaluate() {
