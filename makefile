@@ -11,7 +11,7 @@ SOURCES 	= ${wildcard ${SOURCEDIR}/*.cpp}
 OBJECTS 	= ${patsubst ${SOURCEDIR}/%.cpp,${BUILDDIR}/%.o,${SOURCES}}
 LIBS		= ${wildcard ${LIBDIR}/*.a}
 
-CXX			= avr-gcc
+CXX			= avr-g++
 OBJCOPY		= avr-objcopy
 CXXFLAGS 	= -Os -DF_CPU=${CLOCK} -mmcu=${DEVICE} -std=c++2a -Wall -Wextra -pedantic -Wno-volatile
 
