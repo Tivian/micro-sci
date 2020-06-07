@@ -65,14 +65,15 @@ namespace Tokens {
 void add(uint8_t id);
 void set(uint8_t id, uint8_t pos);
 void remove(uint8_t pos);
+uint8_t at(uint8_t pos);
 Tokens::Token get(uint8_t id);
 void store(uint8_t var, long double val);
 long double recall(uint8_t var);
 void clear(bool memory = false);
 long double evaluate();
 Error check();
-uint8_t at();
-const char* get_msg();
+uint8_t error_at();
+const char* get_err_msg();
 }
 
 #endif

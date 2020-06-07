@@ -90,7 +90,7 @@ void error(Calculator::Error err) {
         return;
 
     LCD::clear(1);
-    LCD::puts_P(Calculator::get_msg());
+    LCD::puts_P(Calculator::get_err_msg());
 }
 
 void clear(bool memory = false) {
@@ -232,7 +232,8 @@ void interpret(Keypad::Key key) {
                 Tokens::EXPONENT : Tokens::LN;
             break;
         case Key::C2:
-            new_token = Tokens::SUM;
+            new_token = (modifier & Modifier::ALPHA) ?
+                Tokens::PRODUCT : Tokens::SUM;
             break;
         case Key::D2:
             // cursor left
@@ -481,6 +482,7 @@ ISR (WDT_vect) {
  *  RPN parsing for compound functions are incorrect
  *  backlight operations not implemented
  *  on/off not implemented
+ *  proper print for float64
  */
 
 /**

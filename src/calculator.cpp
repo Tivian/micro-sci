@@ -706,6 +706,10 @@ void Calculator::remove(uint8_t pos) {
         input[pos] = input[pos + 1];
 }
 
+uint8_t Calculator::at(uint8_t pos) {
+    return input[pos];
+}
+
 Tokens::Token Calculator::get(uint8_t id) {
     return ::get_token(id);
 }
@@ -737,10 +741,10 @@ Error Calculator::check() {
     return ::error;
 }
 
-uint8_t Calculator::at() {
+uint8_t Calculator::error_at() {
     return ::idx;
 }
 
-const char* Calculator::get_msg() {
+const char* Calculator::get_err_msg() {
     return (const char*) pgm_read_word(&error_msg[(uint8_t) ::error - 2]);
 }
