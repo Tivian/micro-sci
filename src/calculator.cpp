@@ -631,15 +631,13 @@ long double evaluate(bool expr = false) {
 
     for (idx = expr ? expr_from : 0; raw = output[idx], 
             expr ? idx < expr_to : raw != Tokens::STOP; idx++) {
-        if (raw & Tokens::NUMBER_FLAG) {
+        if (!expr && idx == expr_from && expr_from != expr_to) {
+            idx = expr_to - 1;
+            continue;
+        } else if (raw & Tokens::NUMBER_FLAG) {
             Stack::push(numbers[raw & Tokens::NUMBER_MASK]);
         } else {
             get_token(raw, token);
-
-            if (!expr && idx == expr_from && expr_from != expr_to) {
-                idx = expr_to - 1;
-                continue;
-            }
 
             for (int8_t i = token.args - 1; i >= 0; i--) {
                 if (Stack::size() == 0) {
@@ -649,7 +647,7 @@ long double evaluate(bool expr = false) {
 
                 args[i] = Stack::pop<long double>();
             }
-            
+
             if (!expr)
                 from = idx;
 
