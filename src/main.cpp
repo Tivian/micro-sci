@@ -107,6 +107,25 @@ void clear(bool memory = false) {
     pos = 0;
 }
 
+void print_expr() {
+    using namespace Calculator;
+    Tokens::Token token;
+    uint8_t start = 0, line = 16;
+
+    LCD::clear(0);
+    if (window != 0) {
+        LCD::putc(LEFT_ARROW);
+        start = 1;
+        line = 15;
+    }
+
+    for (uint8_t i = window, cursor = start; 
+            (token = Calculator::at(i)).len != 0 && cursor < line; i++) {
+        cursor += token.len - 1;
+        LCD::puts_P(token.str);
+    }
+}
+
 void add(uint8_t id) {
     using namespace Calculator;
     auto token = Calculator::get(id);
@@ -123,20 +142,14 @@ void add(uint8_t id) {
     if (token.len > 0) {
         cursor += token.len - 1;
         if (cursor >= 16) {
-            Tokens::Token old_token;
-
             if (window == 0)
                 cursor++;
 
-            for (; (old_token = Calculator::at(window)).len != 0 && cursor > 15; window++)
+            for (Tokens::Token old_token; 
+                    (old_token = Calculator::at(window)).len != 0 && cursor > 15; window++)
                 cursor -= old_token.len - 1;
 
-            LCD::clear(0);
-            LCD::putc(LEFT_ARROW);
-            for (uint8_t i = window, cursor = 1; (old_token = Calculator::at(i)).len != 0 && cursor < 15; i++) {
-                cursor += old_token.len - 1;
-                LCD::puts_P(old_token.str);
-            }
+            print_expr();
         }
 
         LCD::puts_P(token.str);
@@ -148,6 +161,15 @@ void add(uint8_t id) {
         ::add(Tokens::LEFT_PARENT);
 
     pos++;
+}
+
+void remove() {
+    if (pos == 0)
+        return;
+
+    Calculator::remove(window + cursor - 1);
+    pos--;
+    print_expr();
 }
 
 void display(long double val, uint8_t id = Calculator::Tokens::STOP) {
@@ -360,7 +382,7 @@ void interpret(Keypad::Key key) {
             }
             return;
         case Key::D5:
-            // delete
+            remove();
             break;
         case Key::E5:
             ::clear();
