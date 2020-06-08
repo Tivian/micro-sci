@@ -690,23 +690,24 @@ uint8_t Calculator::capacity() {
     return ARRAY_SIZE(input);
 }
 
+namespace {
+    uint8_t pos = 0;
+}
 void Calculator::add(uint8_t id) {
-    static uint8_t pos = 0;
-    if (id == 0xFF)
-        input[pos = 0] = Tokens::STOP;
-    else
-        input[pos++] = id;
+    input[pos++] = id;
 }
 
 void Calculator::insert(uint8_t id, uint8_t pos) {
     for (uint8_t i = pos; input[i] != Tokens::STOP; i++)
         input[i + 1] = input[i];
     input[pos] = id;
+    ::pos++;
 }
 
 void Calculator::remove(uint8_t pos) {
     for (; input[pos] != Tokens::STOP; pos++)
         input[pos] = input[pos + 1];
+    ::pos--;
 }
 
 Tokens::Token Calculator::at(uint8_t pos) {
@@ -726,15 +727,25 @@ long double Calculator::recall(uint8_t var) {
 }
 
 void Calculator::clear(bool memory) {
-    ::add(0xFF);
+    ::pos = 0;
     Stack::clear();
     error = Error::NONE;
 
-    for (uint8_t i = 0; i < ARRAY_SIZE(input); i++)
+    raw = 0;
+    idx = 0;
+    from = 0;
+    to = 0;
+    expr_from = 0;
+    expr_to = 0;
+
+    for (uint8_t i = 0; i < ARRAY_SIZE(input); i++) {
         input[i] = Tokens::STOP;
+        output[i] = Tokens::STOP;
+    }
 
     if (memory) {
-        for (uint8_t i = 0; i < 8; i++)
+        answer = 0.0;
+        for (uint8_t i = 0; i < ARRAY_SIZE(vars); i++)
             vars[i] = 0.0;
     }
 }
