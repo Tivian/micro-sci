@@ -9,8 +9,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char  left_arrow[] PROGMEM = { 0x00, 0x02, 0x06, 0x0E, 0x1E, 0x0E, 0x06, 0x02 }; // #0
-const char right_arrow[] PROGMEM = { 0x00, 0x08, 0x0C, 0x0E, 0x0F, 0x0E, 0x0C, 0x08 }; // #1
+const char  left_arrow[] PROGMEM = { 0x02, 0x06, 0x0E, 0x1E, 0x0E, 0x06, 0x02, 0x00 }; // #0
+const char right_arrow[] PROGMEM = { 0x08, 0x0C, 0x0E, 0x0F, 0x0E, 0x0C, 0x08, 0x00 }; // #1
 const char euler_const[] PROGMEM = { 0x06, 0x09, 0x1A, 0x1C, 0x18, 0x19, 0x0E, 0x00 }; // #2
 const char root_symbol[] PROGMEM = { 0x07, 0x04, 0x04, 0x04, 0x04, 0x14, 0x0C, 0x04 }; // #3
 const char integral_ch[] PROGMEM = { 0x02, 0x05, 0x04, 0x04, 0x04, 0x04, 0x14, 0x08 }; // #4
@@ -24,6 +24,9 @@ const char* const symbols[] PROGMEM = {
     root_symbol, integral_ch, perm_symbol,
     comb_symbol, sci_symbol
 };
+
+constexpr char LEFT_ARROW  = 0x00;
+constexpr char RIGHT_ARROW = 0x01;
 
 enum Modifier : uint8_t {
     ACTIVE = 0b10000000,
@@ -45,6 +48,7 @@ uint8_t modifier = Modifier::CLEAR;
 /// Shows whether the calculation result is being displayed right now.
 bool displaying = false;
 uint8_t cursor = 0;
+uint8_t window = 0;
 uint8_t pos = 0;
 
 void show_title() {
@@ -99,31 +103,49 @@ void clear(bool memory = false) {
     displaying = false;
     modifier = Modifier::CLEAR;
     cursor = 0;
+    window = 0;
     pos = 0;
 }
 
 void add(uint8_t id) {
+    using namespace Calculator;
     auto token = Calculator::get(id);
 
+    if (pos >= Calculator::capacity() - 2)
+        return;
+
     if (displaying) {
-        clear();
-        if (token.type == Calculator::Tokens::Type::OPERATOR)
-            ::add(Calculator::Tokens::ANS);
+        ::clear();
+        if (token.type == Tokens::Type::OPERATOR)
+            ::add(Tokens::ANS);
     }
 
     if (token.len > 0) {
-        LCD::puts_P(token.str);
         cursor += token.len - 1;
-
         if (cursor >= 16) {
+            Tokens::Token old_token;
 
+            if (window == 0)
+                cursor++;
+
+            for (; (old_token = Calculator::at(window)).len != 0 && cursor > 15; window++)
+                cursor -= old_token.len - 1;
+
+            LCD::clear(0);
+            LCD::putc(LEFT_ARROW);
+            for (uint8_t i = window, cursor = 1; (old_token = Calculator::at(i)).len != 0 && cursor < 15; i++) {
+                cursor += old_token.len - 1;
+                LCD::puts_P(old_token.str);
+            }
         }
+
+        LCD::puts_P(token.str);
     }
 
     Calculator::add(id);
-    if (token.type == Calculator::Tokens::Type::FUNCTION 
-     || token.type == Calculator::Tokens::Type::COMPOUND)
-        ::add(Calculator::Tokens::LEFT_PARENT);
+    if (token.type == Tokens::Type::FUNCTION 
+     || token.type == Tokens::Type::COMPOUND)
+        ::add(Tokens::LEFT_PARENT);
 
     pos++;
 }
@@ -442,11 +464,16 @@ void interpret(Keypad::Key key) {
         ::add(new_token);
 }
 
-int main() {
+void init() {
     MCUSR &= ~_BV(WDRF);
     WDTCSR |= _BV(WDCE) | _BV(WDIE);
     WDTCSR = _BV(WDE) | _BV(WDP3) | _BV(WDP0);
 
+    PRR = _BV(PRTWI) | _BV(PRSPI) | _BV(PRUSART0) | _BV(PRADC);
+}
+
+int main() {
+    init();
     LCD::init();
     Blink::init();
     Keypad::init();
@@ -479,7 +506,6 @@ ISR (WDT_vect) {
  * TODO
  *  number parses should handle negative exponent
  *  cursor operations needs to be implemented
- *  RPN parsing for compound functions are incorrect
  *  backlight operations not implemented
  *  on/off not implemented
  *  proper print for float64
@@ -492,3 +518,37 @@ ISR (WDT_vect) {
  *  M -1234567890123
  *  M -1.234567e+300
  */
+
+/*
+
+Cursor scrolling example:
+|0123456789012345| pos | cur | win |
+|_               |  0  |  0  |  0  |
+|sin(_           |  2  |  4  |  0  |
+|sin(2_          |  3  |  5  |  0  |
+|sin(2x_         |  4  |  6  |  0  |
+|sin(2x+_        |  5  |  7  |  0  |
+|sin(2x+5_       |  6  |  8  |  0  |
+|sin(2x+5+_      |  7  |  9  |  0  |
+|sin(2x+5+1_     |  8  | 10  |  0  |
+|sin(2x+5+1+_    |  9  | 11  |  0  |
+|sin(2x+5+1+2_   | 10  | 12  |  0  |
+|sin(2x+5+1+2+_  | 11  | 13  |  0  |
+|sin(2x+5+1+2+3_ | 12  | 14  |  0  |
+|sin(2x+5+1+2+3+_| 13  | 15  |  0  |
+|<(2x+5+1+2+3+4_ | 14  | 14  |  1  |
+|<(2x+5+1+2+3+4+_| 15  | 15  |  1  |
+|<5+1+2+3+4+cos(_| 16  | 15  |  5  |
+|<+1+2+3+4+cos(3_| 17  | 15  |  6  |
+|<+2+3+4+cos(3^2_| 18  | 15  |  8  |
+
+|0123456789012345| pos | cur | win |
+|_               |  0  |  0  |  0  |
+|sin(_           |  2  |  4  |  0  |
+|sin(cos(_       |  4  |  8  |  0  |
+|sin(cos(tan(_   |  6  |  C  |  0  |
+|<(cos(tan(sin(_ |  8  |  E  |  1  |
+|<(cos(tan(sin(2_|  9  |  F  |  1  |
+|<cos(tan(sin(2X_|  A  |  F  |  2  |
+
+*/
