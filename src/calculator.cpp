@@ -4,6 +4,7 @@
 #include "stack.hpp"
 #include "utility.hpp"
 #include <math.h>
+#include <string.h>
 
 using namespace Calculator;
 
@@ -685,19 +686,18 @@ void get_token(uint8_t id, Tokens::Token& token) {
     Loader::read(&Tokens::list[id], token);
 }
 
-void add(uint8_t id, bool clear) {
-    static uint8_t pos = 0;
-    if (!clear)
-        input[pos++] = id;
-    else
-        input[pos = 0] = Tokens::STOP;
+uint8_t Calculator::capacity() {
+    return ARRAY_SIZE(input);
 }
 
 void Calculator::add(uint8_t id) {
-    ::add(id, false);
+    static uint8_t pos = 0;
+    input[pos++] = id;
 }
 
-void Calculator::set(uint8_t id, uint8_t pos) {
+void Calculator::insert(uint8_t id, uint8_t pos) {
+    for (uint8_t i = pos; input[i] != Tokens::STOP; i++)
+        input[i + 1] = input[i];
     input[pos] = id;
 }
 
@@ -706,8 +706,8 @@ void Calculator::remove(uint8_t pos) {
         input[pos] = input[pos + 1];
 }
 
-uint8_t Calculator::at(uint8_t pos) {
-    return input[pos];
+Tokens::Token Calculator::at(uint8_t pos) {
+    return get(input[pos]);
 }
 
 Tokens::Token Calculator::get(uint8_t id) {
@@ -723,9 +723,11 @@ long double Calculator::recall(uint8_t var) {
 }
 
 void Calculator::clear(bool memory) {
-    ::add(0, true);
     Stack::clear();
     error = Error::NONE;
+
+    memset(input, 0, ARRAY_SIZE(input));
+
     if (memory) {
         for (uint8_t i = 0; i < 8; i++)
             vars[i] = 0.0;
