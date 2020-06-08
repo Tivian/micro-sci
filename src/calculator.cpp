@@ -702,7 +702,7 @@ void Calculator::insert(uint8_t id, uint8_t pos) {
 }
 
 void Calculator::remove(uint8_t pos) {
-    for (; input[pos] == Tokens::STOP; pos++)
+    for (; input[pos] != Tokens::STOP; pos++)
         input[pos] = input[pos + 1];
 }
 
