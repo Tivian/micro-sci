@@ -692,7 +692,10 @@ uint8_t Calculator::capacity() {
 
 void Calculator::add(uint8_t id) {
     static uint8_t pos = 0;
-    input[pos++] = id;
+    if (id == 0xFF)
+        input[pos = 0] = Tokens::STOP;
+    else
+        input[pos++] = id;
 }
 
 void Calculator::insert(uint8_t id, uint8_t pos) {
@@ -723,10 +726,12 @@ long double Calculator::recall(uint8_t var) {
 }
 
 void Calculator::clear(bool memory) {
+    ::add(0xFF);
     Stack::clear();
     error = Error::NONE;
 
-    memset(input, 0, ARRAY_SIZE(input));
+    for (uint8_t i = 0; i < ARRAY_SIZE(input); i++)
+        input[i] = Tokens::STOP;
 
     if (memory) {
         for (uint8_t i = 0; i < 8; i++)
