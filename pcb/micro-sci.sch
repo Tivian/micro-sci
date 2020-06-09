@@ -1,29 +1,19 @@
 EESchema Schematic File Version 4
+LIBS:micro-sci-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
 Title "MicroSci"
-Date "2020-06-07"
-Rev "0.9"
+Date "2020-06-09"
+Rev "1.0"
 Comp "Paweł Kania"
 Comment1 ""
 Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-$Comp
-L MCU_Microchip_ATmega:ATmega328P-PU U1
-U 1 1 5EDD3B9E
-P 2950 3300
-F 0 "U1" H 2309 3346 50  0000 R CNN
-F 1 "ATmega328P-PU" H 2309 3255 50  0000 R CNN
-F 2 "Package_DIP:DIP-28_W7.62mm" H 2950 3300 50  0001 C CIN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega328_P%20AVR%20MCU%20with%20picoPower%20Technology%20Data%20Sheet%2040001984A.pdf" H 2950 3300 50  0001 C CNN
-	1    2950 3300
-	1    0    0    -1  
-$EndComp
 $Comp
 L Device:C C2
 U 1 1 5EDD3C44
@@ -989,4 +979,145 @@ Wire Wire Line
 Connection ~ 4100 4950
 Wire Wire Line
 	4100 4950 5250 4950
+Wire Wire Line
+	4850 4250 4850 4500
+Wire Wire Line
+	4850 4500 3550 4500
+Wire Wire Line
+	4850 4150 4750 4150
+Wire Wire Line
+	4750 4150 4750 4400
+Wire Wire Line
+	4750 4400 3550 4400
+Wire Wire Line
+	4850 4050 4650 4050
+Wire Wire Line
+	4650 4050 4650 4300
+Wire Wire Line
+	4650 4300 3550 4300
+Wire Wire Line
+	4850 3950 4550 3950
+Wire Wire Line
+	4550 3950 4550 4200
+Wire Wire Line
+	4550 4200 3550 4200
+Wire Wire Line
+	4850 3250 4750 3250
+Wire Wire Line
+	4750 3250 4750 3850
+Wire Wire Line
+	4750 3850 4450 3850
+Wire Wire Line
+	4450 3850 4450 4100
+Wire Wire Line
+	4450 4100 3550 4100
+Wire Wire Line
+	4850 3050 4650 3050
+Wire Wire Line
+	4650 3050 4650 3750
+Wire Wire Line
+	4650 3750 4350 3750
+Wire Wire Line
+	4350 3750 4350 4000
+Wire Wire Line
+	4350 4000 3550 4000
+Text GLabel 4950 1650 0    50   Output ~ 0
+RESET
+$Comp
+L power:+5V #PWR?
+U 1 1 5EE54026
+P 4800 1000
+F 0 "#PWR?" H 4800 850 50  0001 C CNN
+F 1 "+5V" H 4815 1173 50  0000 C CNN
+F 2 "" H 4800 1000 50  0001 C CNN
+F 3 "" H 4800 1000 50  0001 C CNN
+	1    4800 1000
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5EE5EAD3
+P 4800 1150
+F 0 "#PWR?" H 4800 900 50  0001 C CNN
+F 1 "GND" H 4805 977 50  0000 C CNN
+F 2 "" H 4800 1150 50  0001 C CNN
+F 3 "" H 4800 1150 50  0001 C CNN
+	1    4800 1150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4950 1150 4950 1000
+Wire Wire Line
+	4950 1000 4800 1000
+Wire Wire Line
+	4950 1250 4800 1250
+Wire Wire Line
+	4800 1250 4800 1150
+Text GLabel 3550 3600 2    50   Input ~ 0
+RESET
+Wire Wire Line
+	3550 2200 5900 2200
+Wire Wire Line
+	5900 2200 5900 3450
+Wire Wire Line
+	5900 3450 5650 3450
+$Comp
+L MCU_Microchip_ATmega:ATmega328P-PU U1
+U 1 1 5EDD3B9E
+P 2950 3300
+F 0 "U1" H 2309 3346 50  0000 R CNN
+F 1 "ATmega328P-PU" H 2309 3255 50  0000 R CNN
+F 2 "Package_DIP:DIP-28_W7.62mm" H 2950 3300 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega328_P%20AVR%20MCU%20with%20picoPower%20Technology%20Data%20Sheet%2040001984A.pdf" H 2950 3300 50  0001 C CNN
+	1    2950 3300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3550 2400 4100 2400
+Wire Wire Line
+	3550 2500 4200 2500
+Wire Wire Line
+	3750 2600 3750 2250
+Wire Wire Line
+	3750 2250 4000 2250
+Wire Wire Line
+	3550 2600 3750 2600
+Text GLabel 3550 2100 2    50   BiDi ~ 0
+C1
+Text GLabel 3550 2300 2    50   BiDi ~ 0
+C2
+Text GLabel 3550 3000 2    50   BiDi ~ 0
+R1
+Text GLabel 3550 3100 2    50   BiDi ~ 0
+R2
+Text GLabel 3550 3200 2    50   BiDi ~ 0
+R3
+Text GLabel 3550 3300 2    50   BiDi ~ 0
+R4
+Text GLabel 3550 3400 2    50   BiDi ~ 0
+R5
+Text GLabel 3550 3500 2    50   BiDi ~ 0
+R6
+Text GLabel 3550 3800 2    50   BiDi ~ 0
+R7
+Text GLabel 3550 3900 2    50   BiDi ~ 0
+R8
+Wire Wire Line
+	4000 1350 4950 1350
+Wire Wire Line
+	4000 1350 4000 2250
+Wire Wire Line
+	4100 1450 4950 1450
+Wire Wire Line
+	4100 1450 4100 2400
+Wire Wire Line
+	4200 1550 4950 1550
+Wire Wire Line
+	4200 1550 4200 2500
+Text Label 4950 1350 2    50   ~ 0
+SCK
+Text Label 4950 1450 2    50   ~ 0
+MOSI
+Text Label 4950 1550 2    50   ~ 0
+MISO
 $EndSCHEMATC
