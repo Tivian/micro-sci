@@ -65,8 +65,9 @@ namespace Tokens {
 uint8_t capacity();
 void add(uint8_t id);
 void insert(uint8_t id, uint8_t pos);
-void remove(uint8_t pos);
+Tokens::Token remove(uint8_t pos);
 Tokens::Token at(uint8_t pos);
+uint8_t size();
 Tokens::Token get(uint8_t id);
 void store(uint8_t var, long double val);
 long double recall(uint8_t var);

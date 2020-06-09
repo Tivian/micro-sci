@@ -704,14 +704,20 @@ void Calculator::insert(uint8_t id, uint8_t pos) {
     ::pos++;
 }
 
-void Calculator::remove(uint8_t pos) {
+Tokens::Token Calculator::remove(uint8_t pos) {
+    auto token = at(pos);
     for (; input[pos] != Tokens::STOP; pos++)
         input[pos] = input[pos + 1];
     ::pos--;
+    return token;
 }
 
 Tokens::Token Calculator::at(uint8_t pos) {
     return get(input[pos]);
+}
+
+uint8_t Calculator::size() {
+    return pos;
 }
 
 Tokens::Token Calculator::get(uint8_t id) {

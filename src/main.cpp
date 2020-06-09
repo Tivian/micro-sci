@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+namespace {
 const char  left_arrow[] PROGMEM = { 0x02, 0x06, 0x0E, 0x1E, 0x0E, 0x06, 0x02, 0x00 }; // #0
 const char right_arrow[] PROGMEM = { 0x08, 0x0C, 0x0E, 0x0F, 0x0E, 0x0C, 0x08, 0x00 }; // #1
 const char euler_const[] PROGMEM = { 0x06, 0x09, 0x1A, 0x1C, 0x18, 0x19, 0x0E, 0x00 }; // #2
@@ -49,7 +50,7 @@ uint8_t modifier = Modifier::CLEAR;
 bool displaying = false;
 uint8_t cursor = 0;
 uint8_t window = 0;
-uint8_t pos = 0;
+}
 
 void show_title() {
     LCD::pos(6, 0);
@@ -104,7 +105,6 @@ void clear(bool memory = false) {
     modifier = Modifier::CLEAR;
     cursor = 0;
     window = 0;
-    pos = 0;
 }
 
 void print_expr() {
@@ -130,7 +130,7 @@ void add(uint8_t id) {
     using namespace Calculator;
     auto token = Calculator::get(id);
 
-    if (pos >= Calculator::capacity() - 2)
+    if (Calculator::size() >= Calculator::capacity() - 2)
         return;
 
     if (displaying) {
@@ -159,16 +159,14 @@ void add(uint8_t id) {
     if (token.type == Tokens::Type::FUNCTION 
      || token.type == Tokens::Type::COMPOUND)
         ::add(Tokens::LEFT_PARENT);
-
-    pos++;
 }
 
 void remove() {
-    if (pos == 0)
+    if (Calculator::size() == 0)
         return;
 
-    Calculator::remove(window + cursor - 1);
-    pos--;
+    auto token = Calculator::remove(window + cursor - 1);
+    cursor -= token.len - 1;
     print_expr();
 }
 
@@ -194,7 +192,7 @@ void display(long double val, uint8_t id = Calculator::Tokens::STOP) {
         if (digits != 0) {
             uint8_t i, last;
             for (i = 0, last = 0; buffer[i] != '\0'; i++)
-                if (buffer[i] != '0')
+                if (buffer[i] != '0' && buffer[i] != '.')
                     last = i;
             LCD::pos(15 - last, 1);
         } else {
