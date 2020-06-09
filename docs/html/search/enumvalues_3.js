@@ -1,10 +1,14 @@
 var searchData=
 [
-  ['c_485',['C',['../namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03.html#af943073206cc121835a660ca4b67ac15aed4bb8e3ff0176f1540dba3bfa90ff40',1,'Calculator::Tokens::anonymous_namespace{calculator.cpp}']]],
-  ['combination_486',['COMBINATION',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a90a24176016e099eefececd15635d614',1,'Calculator::Tokens']]],
-  ['comma_487',['COMMA',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a17cb8dcd1a9e51bad16bde37a2c58de4',1,'Calculator::Tokens']]],
-  ['compound_488',['COMPOUND',['../namespace_calculator_1_1_tokens.html#aa2c51d9b2a0736700ee2542f128c576da756a113833040dfb33e27830fba5e901',1,'Calculator::Tokens']]],
-  ['cos_489',['COS',['../keymap_8hpp.html#a8c91b08661656e1fbbfc7c1309c154c5aef23ef1d426ae1a73a7eed399cef707d',1,'keymap.hpp']]],
-  ['cosh_490',['COSH',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97af4fe73ee0807eaa1673130048d17bf60',1,'Calculator::Tokens']]],
-  ['cosine_491',['COSINE',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97aa39635a228fdd2da185f5e3b7c629aa0',1,'Calculator::Tokens']]]
+  ['d_596',['D',['../namespace_calculator_1_1_tokens.html#abf40f7f436bba6953d9885fbd27301cea56007640ffb9f64ca3444fd848f39074',1,'Calculator::Tokens']]],
+  ['d1_597',['D1',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716a4a4079e06eb2f7ba7a12821c7c58a3f6',1,'Keypad']]],
+  ['d2_598',['D2',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716ac4d62b6dcca08e5caf06c01889282859',1,'Keypad']]],
+  ['d3_599',['D3',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716aa3deb6e481689f1d3303caecb8a6c401',1,'Keypad']]],
+  ['d4_600',['D4',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716a2521dc256a4368da87585c936b451dd7',1,'Keypad']]],
+  ['d5_601',['D5',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716aea8ea3bfaa27cf4c2f61470447c87eea',1,'Keypad']]],
+  ['d6_602',['D6',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716ae06ae0fa0b466d7a0d9696a11fc3246a',1,'Keypad']]],
+  ['d7_603',['D7',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716a94f5a64e61ba849a9213f6b6f62b151d',1,'Keypad']]],
+  ['d8_604',['D8',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716ab1522194d726a396729c3148c2b3a0bd',1,'Keypad']]],
+  ['derivative_605',['DERIVATIVE',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a40d2986448c0a87c6797c95091c323fb',1,'Calculator::Tokens']]],
+  ['divide_606',['DIVIDE',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a9d9309c8b27a862fd3242a76caf10dcb',1,'Calculator::Tokens']]]
 ];

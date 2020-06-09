@@ -6,8 +6,7 @@
 {\ttfamily \#include \char`\"{}stack.\+hpp\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}utility.\+hpp\char`\"{}}\newline
 {\ttfamily \#include $<$math.\+h$>$}\newline
-{\ttfamily \#include \char`\"{}lcd.\+hpp\char`\"{}}\newline
-{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
 \doxysubsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -21,27 +20,16 @@
 \item 
  \mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}}}
 \end{DoxyCompactItemize}
-\doxysubsection*{Enumerations}
-\begin{DoxyCompactItemize}
-\item 
-enum \mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::\+Variable}} \+: uint8\+\_\+t \{ \newline
-\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15af0eb7d3744a505b30d39a341351faa3d}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::X}}, 
-\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15a1b9724b5cd2d2e4dac6370cca919e668}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::Y}}, 
-\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15ae799c1230323d96cbb91c2e4cd420989}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::A}}, 
-\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15af528e3538ddbb500a88620b0ab4fa56d}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::B}}, 
-\newline
-\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15aed4bb8e3ff0176f1540dba3bfa90ff40}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::C}}, 
-\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15adf068067ed6909e8b7b23ba46f6d392d}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::D}}, 
-\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15ac090d5ec90a39f246c35c8833476121a}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::E}}, 
-\mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_af943073206cc121835a660ca4b67ac15a117648e77895ef2c81e43ae2f1cba37e}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::F}}
- \}
-\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 long double \mbox{\hyperlink{calculator_8cpp_a8d660775d7c88e70b54126ec1544d16b}{evaluate}} (bool)
 \item 
 void \mbox{\hyperlink{calculator_8cpp_ad06271b0762cda2ab4572531d199447a}{get\+\_\+token}} (uint8\+\_\+t, \mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} \&)
+\item 
+long double \mbox{\hyperlink{calculator_8cpp_a65861b7e8b3c26ea532ab5440bbe42d5}{product}} (long double from, long double to)
+\item 
+bool \mbox{\hyperlink{calculator_8cpp_a1ce46d0359de068e60969c2ad6a95d71}{isfinite}} (long double v)
 \item 
 long double \mbox{\hyperlink{namespace_calculator_1_1_tokens_acbebc26fa9a0a61a53781c906bb77906}{Calculator\+::\+Tokens\+::eval}} (uint8\+\_\+t id)
 \item 
@@ -56,8 +44,6 @@ long double \mbox{\hyperlink{calculator_8cpp_aaedd0a7306a6f29b72b385afadab085c}{
 void \mbox{\hyperlink{calculator_8cpp_a77c2d4697961f2c81bd37a085dfc65a9}{to\+\_\+reverse\+\_\+polish\+\_\+notation}} ()
 \item 
 \mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} \mbox{\hyperlink{calculator_8cpp_a4b1f02b7b513d7cad5688f4680f5d9e6}{get\+\_\+token}} (uint8\+\_\+t id)
-\item 
-void \mbox{\hyperlink{calculator_8cpp_af158da034aeab1686ed09a9cd6a07816}{add}} (uint8\+\_\+t id, bool \mbox{\hyperlink{main_8cpp_ac8bb3912a3ce86b15842e79d0b421204}{clear}})
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -90,13 +76,13 @@ uint8\+\_\+t \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03
 \item 
 \mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_a292cb320028a155d010615fca6f3cda5}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::token}}
 \item 
-\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0}{Error}} \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_a194fda778b1633ef9f44afd37c27c3ba}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::error}} = \mbox{\hyperlink{keymap_8hpp_a8c91b08661656e1fbbfc7c1309c154c5ab50339a10e1de285ac99d4c3990b8693}{Error\+::\+N\+O\+NE}}
+\mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0}{Error}} \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_a194fda778b1633ef9f44afd37c27c3ba}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::error}} = Error\+::\+N\+O\+NE
 \item 
 const char M\+S\+G\+\_\+\+S\+Y\+N\+T\+AX\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{namespace_calculator_1_1anonymous__namespace_02calculator_8cpp_03_a6006f2a52c307568ca8d12aceb6b5549}{Calculator\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::\+P\+R\+O\+G\+M\+EM}} = \char`\"{} Syntax E\+R\+R\+OR\char`\"{}
-\begin{DoxyCompactList}\small\item\em 123456789012345 \end{DoxyCompactList}\item 
+\item 
 const char $\ast$const error\+\_\+msg\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{namespace_calculator_a1bd437e9bbd2486985bde3a4cc85d184}{Calculator\+::\+P\+R\+O\+G\+M\+EM}}
 \item 
-const char S\+T\+R\+\_\+\+C\+O\+M\+MA\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_ab5c3a03e8857f0e19d246da0a2cc2ff6}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::\+P\+R\+O\+G\+M\+EM}} = \char`\"{},\char`\"{}
+const char S\+T\+R\+\_\+\+C\+O\+M\+MA\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03_aef2ae2166e8eccef7e9765ca14faa105}{Calculator\+::\+Tokens\+::anonymous\+\_\+namespace\{calculator.\+cpp\}\+::\+P\+R\+O\+G\+M\+EM}} = \char`\"{},\char`\"{}
 \item 
 const Token list\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{namespace_calculator_1_1_tokens_ab3951d0c483306a814a911769a0f5abc}{Calculator\+::\+Tokens\+::\+P\+R\+O\+G\+M\+EM}}
 \item 
@@ -107,16 +93,12 @@ constexpr uint8\+\_\+t \mbox{\hyperlink{namespace_calculator_1_1_tokens_ad464f20
 constexpr long double \mbox{\hyperlink{namespace_calculator_1_1_tokens_aea08773e484d348eddba2e66a95130dd}{Calculator\+::\+Tokens\+::\+C\+O\+N\+S\+T\+\_\+\+PI}} = 3.\+1415926535897932384626433832795L
 \item 
 constexpr long double \mbox{\hyperlink{namespace_calculator_1_1_tokens_ada2d3c50f5ab455e0917863d3aaca881}{Calculator\+::\+Tokens\+::\+C\+O\+N\+S\+T\+\_\+E}} = 2.\+7182818284590452353602874713527L
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespaceanonymous__namespace_02calculator_8cpp_03_a5fa103aa2d82fbb86daf5a0eeb026e0e}{anonymous\+\_\+namespace\{calculator.\+cpp\}\+::pos}} = 0
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{calculator_8cpp_af158da034aeab1686ed09a9cd6a07816}\label{calculator_8cpp_af158da034aeab1686ed09a9cd6a07816}} 
-\index{calculator.cpp@{calculator.cpp}!add@{add}}
-\index{add@{add}!calculator.cpp@{calculator.cpp}}
-\doxysubsubsection{\texorpdfstring{add()}{add()}}
-{\footnotesize\ttfamily void add (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{id,  }\item[{bool}]{clear }\end{DoxyParamCaption})}
-
 \mbox{\Hypertarget{calculator_8cpp_a8d660775d7c88e70b54126ec1544d16b}\label{calculator_8cpp_a8d660775d7c88e70b54126ec1544d16b}} 
 \index{calculator.cpp@{calculator.cpp}!evaluate@{evaluate}}
 \index{evaluate@{evaluate}!calculator.cpp@{calculator.cpp}}
@@ -135,6 +117,12 @@ constexpr long double \mbox{\hyperlink{namespace_calculator_1_1_tokens_ada2d3c50
 \doxysubsubsection{\texorpdfstring{get\_token()}{get\_token()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily void get\+\_\+token (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{id,  }\item[{\mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} \&}]{token }\end{DoxyParamCaption})}
 
+\mbox{\Hypertarget{calculator_8cpp_a1ce46d0359de068e60969c2ad6a95d71}\label{calculator_8cpp_a1ce46d0359de068e60969c2ad6a95d71}} 
+\index{calculator.cpp@{calculator.cpp}!isfinite@{isfinite}}
+\index{isfinite@{isfinite}!calculator.cpp@{calculator.cpp}}
+\doxysubsubsection{\texorpdfstring{isfinite()}{isfinite()}}
+{\footnotesize\ttfamily bool isfinite (\begin{DoxyParamCaption}\item[{long double}]{v }\end{DoxyParamCaption})}
+
 \mbox{\Hypertarget{calculator_8cpp_aaedd0a7306a6f29b72b385afadab085c}\label{calculator_8cpp_aaedd0a7306a6f29b72b385afadab085c}} 
 \index{calculator.cpp@{calculator.cpp}!parse@{parse}}
 \index{parse@{parse}!calculator.cpp@{calculator.cpp}}
@@ -146,6 +134,12 @@ constexpr long double \mbox{\hyperlink{namespace_calculator_1_1_tokens_ada2d3c50
 \index{pow10@{pow10}!calculator.cpp@{calculator.cpp}}
 \doxysubsubsection{\texorpdfstring{pow10()}{pow10()}}
 {\footnotesize\ttfamily long double pow10 (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{x }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{calculator_8cpp_a65861b7e8b3c26ea532ab5440bbe42d5}\label{calculator_8cpp_a65861b7e8b3c26ea532ab5440bbe42d5}} 
+\index{calculator.cpp@{calculator.cpp}!product@{product}}
+\index{product@{product}!calculator.cpp@{calculator.cpp}}
+\doxysubsubsection{\texorpdfstring{product()}{product()}}
+{\footnotesize\ttfamily long double product (\begin{DoxyParamCaption}\item[{long double}]{from,  }\item[{long double}]{to }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{calculator_8cpp_a77c2d4697961f2c81bd37a085dfc65a9}\label{calculator_8cpp_a77c2d4697961f2c81bd37a085dfc65a9}} 
 \index{calculator.cpp@{calculator.cpp}!to\_reverse\_polish\_notation@{to\_reverse\_polish\_notation}}

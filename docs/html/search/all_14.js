@@ -1,13 +1,5 @@
 var searchData=
 [
-  ['var_5fa_306',['VAR_A',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97abccc354c38a3fa5cf3da3d04be347eaa',1,'Calculator::Tokens']]],
-  ['var_5fb_307',['VAR_B',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97ad30f13d782a7009463a765becd05875e',1,'Calculator::Tokens']]],
-  ['var_5fc_308',['VAR_C',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97ae89e50b61940df1c01e1cdef477b1a24',1,'Calculator::Tokens']]],
-  ['var_5fd_309',['VAR_D',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a8aea19f342d3f30e009756e336d38f77',1,'Calculator::Tokens']]],
-  ['var_5fe_310',['VAR_E',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a81cf27835161a297d0ffd045ed5b1f46',1,'Calculator::Tokens']]],
-  ['var_5ff_311',['VAR_F',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a792d56b08c980e1080ec639fc3bf7eb5',1,'Calculator::Tokens']]],
-  ['var_5fx_312',['VAR_X',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a57b98ae7e623459d9f7c70130ee15f00',1,'Calculator::Tokens']]],
-  ['var_5fy_313',['VAR_Y',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97aedb8837dcfdfccc5cff97fb5758a8676',1,'Calculator::Tokens']]],
-  ['variable_314',['Variable',['../namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03.html#af943073206cc121835a660ca4b67ac15',1,'Calculator::Tokens::anonymous_namespace{calculator.cpp}']]],
-  ['vars_315',['vars',['../namespaceanonymous__namespace_02calculator_8cpp_03.html#afdfacc2147d5f1690c58cb78e93e6f78',1,'anonymous_namespace{calculator.cpp}']]]
+  ['window_373',['window',['../namespaceanonymous__namespace_02main_8cpp_03.html#a4a0ec5a33bf75367ea433d4a0cab7332',1,'anonymous_namespace{main.cpp}']]],
+  ['write_374',['write',['../namespaceanonymous__namespace_02lcd_8cpp_03.html#a5d3f3078d360ca54e92d7ce6467a076f',1,'anonymous_namespace{lcd.cpp}']]]
 ];

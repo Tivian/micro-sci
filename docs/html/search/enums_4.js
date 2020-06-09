@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_473',['Type',['../namespace_calculator_1_1_tokens.html#aa2c51d9b2a0736700ee2542f128c576d',1,'Calculator::Tokens']]]
+  ['name_548',['Name',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97',1,'Calculator::Tokens']]]
 ];

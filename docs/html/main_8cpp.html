@@ -66,6 +66,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -74,35 +76,68 @@ $(function() {
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="lcd_8hpp_source.html">lcd.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="keypad_8hpp_source.html">keypad.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="keymap_8hpp_source.html">keymap.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="blink_8hpp_source.html">blink.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="calculator_8hpp_source.html">calculator.hpp</a>&quot;</code><br />
 <code>#include &lt;avr/io.h&gt;</code><br />
 <code>#include &lt;avr/interrupt.h&gt;</code><br />
 <code>#include &lt;avr/wdt.h&gt;</code><br />
 <code>#include &lt;util/delay.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="loader_8hpp_source.html">loader.hpp</a>&quot;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceanonymous__namespace_02main_8cpp_03"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html">anonymous_namespace{main.cpp}</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a8dee3af4747688a3ac25ffa2f183aace"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a8dee3af4747688a3ac25ffa2f183aace">anonymous_namespace{main.cpp}::Modifier</a> : uint8_t { <br />
+&#160;&#160;<a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a8dee3af4747688a3ac25ffa2f183aacea5cfe19b6ca842d0db572324f7620e7e6">anonymous_namespace{main.cpp}::ACTIVE</a> = 0b10000000, 
+<a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a8dee3af4747688a3ac25ffa2f183aacea981e14645ca7a435dd9067ad1f9cf949">anonymous_namespace{main.cpp}::ALPHA</a> = 0b00000001, 
+<a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a8dee3af4747688a3ac25ffa2f183aaceaff6385cea1f54701a9ea71a39d29777c">anonymous_namespace{main.cpp}::BETA</a> = 0b00000010, 
+<a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a8dee3af4747688a3ac25ffa2f183aacea6ff6eee4508b76d98342d279d86d135e">anonymous_namespace{main.cpp}::INVERT</a> = 0b00000100, 
+<br />
+&#160;&#160;<a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a8dee3af4747688a3ac25ffa2f183aacea290bdbd2d6832bb7539579b5ad598e05">anonymous_namespace{main.cpp}::HYPER</a> = 0b00001000, 
+<a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a8dee3af4747688a3ac25ffa2f183aaceac286816cda4f50134726e1bb04ea98c1">anonymous_namespace{main.cpp}::RECALL</a> = 0b00010000, 
+<a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a8dee3af4747688a3ac25ffa2f183aacea055af6cf6c3e8505628b61deea80ff26">anonymous_namespace{main.cpp}::STORE</a> = 0b00100000, 
+<a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a8dee3af4747688a3ac25ffa2f183aacea2d1269ce6e59eccac8df3addd0f4c5bc">anonymous_namespace{main.cpp}::CLEAR</a> = 0b00000000
+<br />
+ }</td></tr>
+<tr class="separator:a8dee3af4747688a3ac25ffa2f183aace"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a79c69d27a952133625892ec8161d311b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a79c69d27a952133625892ec8161d311b">show_title</a> ()</td></tr>
 <tr class="separator:a79c69d27a952133625892ec8161d311b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09834917107e2cf0822a8a2f07f03033"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a09834917107e2cf0822a8a2f07f03033">load_symbols</a> ()</td></tr>
+<tr class="separator:a09834917107e2cf0822a8a2f07f03033"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d034c35be9fc2c7bae579d1a8ee4bfe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a2d034c35be9fc2c7bae579d1a8ee4bfe">print_hex</a> (uint8_t v, bool space=true)</td></tr>
 <tr class="separator:a2d034c35be9fc2c7bae579d1a8ee4bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad78215648d9fe8a6c8ff7c35c62ce42d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ad78215648d9fe8a6c8ff7c35c62ce42d">print</a> (long double v)</td></tr>
 <tr class="separator:ad78215648d9fe8a6c8ff7c35c62ce42d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9403ab7e3644453b7d960cf0a2986b3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a9403ab7e3644453b7d960cf0a2986b3b">error</a> (<a class="el" href="namespace_calculator.html#ae3dc383840752aeba78f365b9674d2c0">Calculator::Error</a> err)</td></tr>
 <tr class="separator:a9403ab7e3644453b7d960cf0a2986b3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa3af9e6c69eccda7f6b73ecbf3ee404"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aaa3af9e6c69eccda7f6b73ecbf3ee404">clear</a> (bool memory=false)</td></tr>
+<tr class="separator:aaa3af9e6c69eccda7f6b73ecbf3ee404"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfe7778276ea61f74b642649968932e9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#adfe7778276ea61f74b642649968932e9">print_expr</a> ()</td></tr>
+<tr class="separator:adfe7778276ea61f74b642649968932e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3ddaf553561ad00ad661cb330fed158"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aa3ddaf553561ad00ad661cb330fed158">add</a> (uint8_t id)</td></tr>
 <tr class="separator:aa3ddaf553561ad00ad661cb330fed158"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a7953de0a2927d0d06b0edc50dd14c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a8a7953de0a2927d0d06b0edc50dd14c3">display</a> (long double val)</td></tr>
-<tr class="separator:a8a7953de0a2927d0d06b0edc50dd14c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8bb3912a3ce86b15842e79d0b421204"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ac8bb3912a3ce86b15842e79d0b421204">clear</a> ()</td></tr>
-<tr class="separator:ac8bb3912a3ce86b15842e79d0b421204"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff6af5d8e6a73c7a528868a2abdc0ad3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aff6af5d8e6a73c7a528868a2abdc0ad3">interpret</a> (uint8_t key)</td></tr>
-<tr class="separator:aff6af5d8e6a73c7a528868a2abdc0ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fcb45e5d2428352eb36b487d1d4eea3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a1fcb45e5d2428352eb36b487d1d4eea3">remove</a> ()</td></tr>
+<tr class="separator:a1fcb45e5d2428352eb36b487d1d4eea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9632eebc0d52eb90928804d74604d94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#af9632eebc0d52eb90928804d74604d94">display</a> (long double val, uint8_t id=<a class="el" href="namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97ae4b45484e30bd7af6060ee95c8f2a57a">Calculator::Tokens::STOP</a>)</td></tr>
+<tr class="separator:af9632eebc0d52eb90928804d74604d94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1e6039f0661894fde35b0e2d4af5e21"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ab1e6039f0661894fde35b0e2d4af5e21">clear_modifier</a> ()</td></tr>
+<tr class="separator:ab1e6039f0661894fde35b0e2d4af5e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84e01e7c74d0da21154df2b0f8520a58"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a84e01e7c74d0da21154df2b0f8520a58">set_modifier</a> (Modifier mod)</td></tr>
+<tr class="separator:a84e01e7c74d0da21154df2b0f8520a58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a973309e6f658fdb25b22ce7948dd6bdf"><td class="memItemLeft" align="right" valign="top">long double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a973309e6f658fdb25b22ce7948dd6bdf">finalize</a> ()</td></tr>
+<tr class="separator:a973309e6f658fdb25b22ce7948dd6bdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdf66000a92e908ae4d74273471bc6cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#abdf66000a92e908ae4d74273471bc6cd">interpret</a> (<a class="el" href="namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716">Keypad::Key</a> key)</td></tr>
+<tr class="separator:abdf66000a92e908ae4d74273471bc6cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02fd73d861ef2e4aabb38c0c9ff82947"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a02fd73d861ef2e4aabb38c0c9ff82947">init</a> ()</td></tr>
+<tr class="separator:a02fd73d861ef2e4aabb38c0c9ff82947"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43905d6fb5c4d433a49f527fa6ab811f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a43905d6fb5c4d433a49f527fa6ab811f">ISR</a> (WDT_vect)</td></tr>
@@ -110,11 +145,21 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:a31c584a8c2c9efec04cdcca8494288fb"><td class="memItemLeft" align="right" valign="top">const char left_arrow[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a31c584a8c2c9efec04cdcca8494288fb">PROGMEM</a> = { 0x00, 0x02, 0x06, 0x0E, 0x1E, 0x0E, 0x06, 0x02 }</td></tr>
-<tr class="separator:a31c584a8c2c9efec04cdcca8494288fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b217b97599067df311467b9f4eaa8a7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a6b217b97599067df311467b9f4eaa8a7">displaying</a> = false</td></tr>
-<tr class="memdesc:a6b217b97599067df311467b9f4eaa8a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows whether the calculation result is being displayed right now.  <a href="main_8cpp.html#a6b217b97599067df311467b9f4eaa8a7">More...</a><br /></td></tr>
-<tr class="separator:a6b217b97599067df311467b9f4eaa8a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02f429aea26bce8056d86138eead108d"><td class="memItemLeft" align="right" valign="top">const char left_arrow[]&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a02f429aea26bce8056d86138eead108d">anonymous_namespace{main.cpp}::PROGMEM</a> = { 0x02, 0x06, 0x0E, 0x1E, 0x0E, 0x06, 0x02, 0x00 }</td></tr>
+<tr class="separator:a02f429aea26bce8056d86138eead108d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab28fe8898011d501b13fb4a546c86796"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#ab28fe8898011d501b13fb4a546c86796">anonymous_namespace{main.cpp}::LEFT_ARROW</a> = 0x00</td></tr>
+<tr class="separator:ab28fe8898011d501b13fb4a546c86796"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ea6a56a6041d61d323d1232803ae4d2"><td class="memItemLeft" align="right" valign="top">constexpr char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a0ea6a56a6041d61d323d1232803ae4d2">anonymous_namespace{main.cpp}::RIGHT_ARROW</a> = 0x01</td></tr>
+<tr class="separator:a0ea6a56a6041d61d323d1232803ae4d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c9bd64dae2a50425d898ff781df3acc"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a3c9bd64dae2a50425d898ff781df3acc">anonymous_namespace{main.cpp}::modifier</a> = Modifier::CLEAR</td></tr>
+<tr class="separator:a3c9bd64dae2a50425d898ff781df3acc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2544eb02f13b52617c45b8e9d411efb5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a2544eb02f13b52617c45b8e9d411efb5">anonymous_namespace{main.cpp}::displaying</a> = false</td></tr>
+<tr class="memdesc:a2544eb02f13b52617c45b8e9d411efb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows whether the calculation result is being displayed right now.  <a href="namespaceanonymous__namespace_02main_8cpp_03.html#a2544eb02f13b52617c45b8e9d411efb5">More...</a><br /></td></tr>
+<tr class="separator:a2544eb02f13b52617c45b8e9d411efb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e33641f08e5554b2f01c318fc7b43fa"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a6e33641f08e5554b2f01c318fc7b43fa">anonymous_namespace{main.cpp}::cursor</a> = 0</td></tr>
+<tr class="separator:a6e33641f08e5554b2f01c318fc7b43fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a0ec5a33bf75367ea433d4a0cab7332"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceanonymous__namespace_02main_8cpp_03.html#a4a0ec5a33bf75367ea433d4a0cab7332">anonymous_namespace{main.cpp}::window</a> = 0</td></tr>
+<tr class="separator:a4a0ec5a33bf75367ea433d4a0cab7332"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="aa3ddaf553561ad00ad661cb330fed158"></a>
@@ -135,14 +180,32 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ac8bb3912a3ce86b15842e79d0b421204"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8bb3912a3ce86b15842e79d0b421204">&#9670;&nbsp;</a></span>clear()</h2>
+<a id="aaa3af9e6c69eccda7f6b73ecbf3ee404"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa3af9e6c69eccda7f6b73ecbf3ee404">&#9670;&nbsp;</a></span>clear()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void clear </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>memory</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1e6039f0661894fde35b0e2d4af5e21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1e6039f0661894fde35b0e2d4af5e21">&#9670;&nbsp;</a></span>clear_modifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void clear_modifier </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -152,8 +215,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a8a7953de0a2927d0d06b0edc50dd14c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a7953de0a2927d0d06b0edc50dd14c3">&#9670;&nbsp;</a></span>display()</h2>
+<a id="af9632eebc0d52eb90928804d74604d94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9632eebc0d52eb90928804d74604d94">&#9670;&nbsp;</a></span>display()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -162,8 +225,18 @@ Variables</h2></td></tr>
           <td class="memname">void display </td>
           <td>(</td>
           <td class="paramtype">long double&#160;</td>
-          <td class="paramname"><em>val</em></td><td>)</td>
+          <td class="paramname"><em>val</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>id</em> = <code><a class="el" href="namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97ae4b45484e30bd7af6060ee95c8f2a57a">Calculator::Tokens::STOP</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -188,8 +261,42 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="aff6af5d8e6a73c7a528868a2abdc0ad3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff6af5d8e6a73c7a528868a2abdc0ad3">&#9670;&nbsp;</a></span>interpret()</h2>
+<a id="a973309e6f658fdb25b22ce7948dd6bdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a973309e6f658fdb25b22ce7948dd6bdf">&#9670;&nbsp;</a></span>finalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">long double finalize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a02fd73d861ef2e4aabb38c0c9ff82947"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02fd73d861ef2e4aabb38c0c9ff82947">&#9670;&nbsp;</a></span>init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abdf66000a92e908ae4d74273471bc6cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdf66000a92e908ae4d74273471bc6cd">&#9670;&nbsp;</a></span>interpret()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -197,7 +304,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void interpret </td>
           <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramtype"><a class="el" href="namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716">Keypad::Key</a>&#160;</td>
           <td class="paramname"><em>key</em></td><td>)</td>
           <td></td>
         </tr>
@@ -216,6 +323,23 @@ Variables</h2></td></tr>
           <td class="memname">ISR </td>
           <td>(</td>
           <td class="paramtype">WDT_vect&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a09834917107e2cf0822a8a2f07f03033"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09834917107e2cf0822a8a2f07f03033">&#9670;&nbsp;</a></span>load_symbols()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void load_symbols </td>
+          <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
@@ -259,6 +383,23 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="adfe7778276ea61f74b642649968932e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfe7778276ea61f74b642649968932e9">&#9670;&nbsp;</a></span>print_expr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void print_expr </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a2d034c35be9fc2c7bae579d1a8ee4bfe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2d034c35be9fc2c7bae579d1a8ee4bfe">&#9670;&nbsp;</a></span>print_hex()</h2>
 
@@ -287,6 +428,41 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a1fcb45e5d2428352eb36b487d1d4eea3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fcb45e5d2428352eb36b487d1d4eea3">&#9670;&nbsp;</a></span>remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void remove </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a84e01e7c74d0da21154df2b0f8520a58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84e01e7c74d0da21154df2b0f8520a58">&#9670;&nbsp;</a></span>set_modifier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_modifier </td>
+          <td>(</td>
+          <td class="paramtype">Modifier&#160;</td>
+          <td class="paramname"><em>mod</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a79c69d27a952133625892ec8161d311b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79c69d27a952133625892ec8161d311b">&#9670;&nbsp;</a></span>show_title()</h2>
 
@@ -298,37 +474,6 @@ Variables</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="a6b217b97599067df311467b9f4eaa8a7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b217b97599067df311467b9f4eaa8a7">&#9670;&nbsp;</a></span>displaying</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool displaying = false</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Shows whether the calculation result is being displayed right now. </p>
-
-</div>
-</div>
-<a id="a31c584a8c2c9efec04cdcca8494288fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31c584a8c2c9efec04cdcca8494288fb">&#9670;&nbsp;</a></span>PROGMEM</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char title [] PROGMEM = { 0x00, 0x02, 0x06, 0x0E, 0x1E, 0x0E, 0x06, 0x02 }</td>
         </tr>
       </table>
 </div><div class="memdoc">

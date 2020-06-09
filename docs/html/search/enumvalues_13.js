@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y_575',['Y',['../namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03.html#af943073206cc121835a660ca4b67ac15a1b9724b5cd2d2e4dac6370cca919e668',1,'Calculator::Tokens::anonymous_namespace{calculator.cpp}']]]
+  ['y_691',['Y',['../namespace_calculator_1_1_tokens.html#abf40f7f436bba6953d9885fbd27301ceaa523415441d59d7b9e8caa1cd7860c25',1,'Calculator::Tokens']]]
 ];

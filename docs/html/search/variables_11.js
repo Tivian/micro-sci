@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x_467',['x',['../namespaceanonymous__namespace_02rand_8cpp_03.html#a18f43aecef4fb35ef30ee084d38a34d2',1,'anonymous_namespace{rand.cpp}']]]
+  ['vars_540',['vars',['../namespaceanonymous__namespace_02calculator_8cpp_03.html#afdfacc2147d5f1690c58cb78e93e6f78',1,'anonymous_namespace{calculator.cpp}']]]
 ];

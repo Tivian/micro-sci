@@ -1,11 +1,13 @@
 var searchData=
 [
-  ['a_476',['A',['../namespace_calculator_1_1_tokens_1_1anonymous__namespace_02calculator_8cpp_03.html#af943073206cc121835a660ca4b67ac15ae799c1230323d96cbb91c2e4cd420989',1,'Calculator::Tokens::anonymous_namespace{calculator.cpp}']]],
-  ['abs_477',['ABS',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a07cba0dc7c8b4494e5f01697902326e6',1,'Calculator::Tokens']]],
-  ['add_478',['ADD',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a07a486785ae39423fcc1e2916dd32901',1,'Calculator::Tokens']]],
-  ['and_479',['AND',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a9135bb332b72e051952e8dc2dd8e5aaf',1,'Calculator::Tokens']]],
-  ['ans_480',['ANS',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a49219930e3e7b509fa15796419f0ba29',1,'Calculator::Tokens::ANS()'],['../keymap_8hpp.html#a8c91b08661656e1fbbfc7c1309c154c5a4e062fc2814c180a9e08b1d204ab31bd',1,'ANS():&#160;keymap.hpp']]],
-  ['arccos_481',['ARCCOS',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a58ea3fea1d48f104baa6cce562415e6a',1,'Calculator::Tokens']]],
-  ['arcsin_482',['ARCSIN',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a43f5567e1e6b8b33f9c6baae50d4c5d2',1,'Calculator::Tokens']]],
-  ['arctan_483',['ARCTAN',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a9d6864bacb2f4fb0b870622caf047b0c',1,'Calculator::Tokens']]]
+  ['b_569',['B',['../namespace_calculator_1_1_tokens.html#abf40f7f436bba6953d9885fbd27301cea6a0c595b834a818a205ed9a6cda26799',1,'Calculator::Tokens']]],
+  ['b1_570',['B1',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716ac9512565ef6194ca664dc41ec0de7a53',1,'Keypad']]],
+  ['b2_571',['B2',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716abbd97b00c539801e32317ab550867ec4',1,'Keypad']]],
+  ['b3_572',['B3',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716a0c4ecd7b59ebc5b9f47974cb9845fd02',1,'Keypad']]],
+  ['b4_573',['B4',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716ad5d4cc7b09d1843517acc9361f8f665e',1,'Keypad']]],
+  ['b5_574',['B5',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716a2a1ab298edf0162a3305e599b47cbeee',1,'Keypad']]],
+  ['b6_575',['B6',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716a68b1f1cc15d8987eafe633c9488bdc05',1,'Keypad']]],
+  ['b7_576',['B7',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716ad8498108dd603522047564a8da7be94c',1,'Keypad']]],
+  ['b8_577',['B8',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716ac897976b22b91e2937555adb85d779fc',1,'Keypad']]],
+  ['beta_578',['BETA',['../namespaceanonymous__namespace_02main_8cpp_03.html#a8dee3af4747688a3ac25ffa2f183aaceaff6385cea1f54701a9ea71a39d29777c',1,'anonymous_namespace{main.cpp}']]]
 ];

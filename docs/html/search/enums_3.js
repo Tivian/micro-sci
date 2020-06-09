@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['name_472',['Name',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97',1,'Calculator::Tokens']]]
+  ['modifier_547',['Modifier',['../namespaceanonymous__namespace_02main_8cpp_03.html#a8dee3af4747688a3ac25ffa2f183aace',1,'anonymous_namespace{main.cpp}']]]
 ];

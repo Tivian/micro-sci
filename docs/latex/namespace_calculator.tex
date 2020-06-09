@@ -28,21 +28,33 @@ enum \mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0}{Er
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+uint8\+\_\+t \mbox{\hyperlink{namespace_calculator_aa068531b4e6a572f0dbffeac39fcbb22}{capacity}} ()
+\item 
 void \mbox{\hyperlink{namespace_calculator_a78a49e09996aca67a416719a7688e0ea}{add}} (uint8\+\_\+t id)
 \item 
-void \mbox{\hyperlink{namespace_calculator_a1b09cd6efe57e49f66b193a15b5a97d5}{set}} (uint8\+\_\+t id, uint8\+\_\+t pos)
+void \mbox{\hyperlink{namespace_calculator_a42652d258203bd5940c198250da19afc}{insert}} (uint8\+\_\+t id, uint8\+\_\+t pos)
+\item 
+\mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} \mbox{\hyperlink{namespace_calculator_aed47d86edbe5b2311e7d15efed861a4b}{remove}} (uint8\+\_\+t pos)
+\item 
+\mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} \mbox{\hyperlink{namespace_calculator_acdefd5649d2237f3a5e1ab295172d229}{at}} (uint8\+\_\+t pos)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{namespace_calculator_a807d12a1f820cf9b77e4ced2d74dff67}{size}} ()
 \item 
 \mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} \mbox{\hyperlink{namespace_calculator_ae4061965a67ca667b1f2f670dbbc629a}{get}} (uint8\+\_\+t id)
 \item 
-void \mbox{\hyperlink{namespace_calculator_ac4a03e4c7d48d4d9bbb3d1c3708dd01f}{clear}} ()
+void \mbox{\hyperlink{namespace_calculator_a09b6d03e4e5e570e59a553fe1eb8f75a}{store}} (uint8\+\_\+t var, long double val)
+\item 
+long double \mbox{\hyperlink{namespace_calculator_ac800c7fcaacfcf927274123c3a1fa854}{recall}} (uint8\+\_\+t var)
+\item 
+void \mbox{\hyperlink{namespace_calculator_a5f128100afa4c482e6dfd4bc6510faf6}{clear}} (bool memory=false)
 \item 
 long double \mbox{\hyperlink{namespace_calculator_a0740d3083036e7320cd70150b836f259}{evaluate}} ()
 \item 
 \mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0}{Error}} \mbox{\hyperlink{namespace_calculator_ade24dae66f776266038a28272f44b3b7}{check}} ()
 \item 
-uint8\+\_\+t \mbox{\hyperlink{namespace_calculator_ad0ef1827bd447b68eb531fcd74d4bc07}{at}} ()
+uint8\+\_\+t \mbox{\hyperlink{namespace_calculator_a62848d72aa347169df37c36e41caf12a}{error\+\_\+at}} ()
 \item 
-const char $\ast$ \mbox{\hyperlink{namespace_calculator_a02ae523911fcccd9b150dea927e83755}{get\+\_\+msg}} ()
+const char $\ast$ \mbox{\hyperlink{namespace_calculator_ac52e0d990e8f882c3d7ddcbc3a1882c5}{get\+\_\+err\+\_\+msg}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -109,11 +121,17 @@ U\+N\+K\+N\+O\+WN&\\
 \doxysubsubsection{\texorpdfstring{add()}{add()}}
 {\footnotesize\ttfamily void Calculator\+::add (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{id }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespace_calculator_ad0ef1827bd447b68eb531fcd74d4bc07}\label{namespace_calculator_ad0ef1827bd447b68eb531fcd74d4bc07}} 
+\mbox{\Hypertarget{namespace_calculator_acdefd5649d2237f3a5e1ab295172d229}\label{namespace_calculator_acdefd5649d2237f3a5e1ab295172d229}} 
 \index{Calculator@{Calculator}!at@{at}}
 \index{at@{at}!Calculator@{Calculator}}
 \doxysubsubsection{\texorpdfstring{at()}{at()}}
-{\footnotesize\ttfamily uint8\+\_\+t Calculator\+::at (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} Calculator\+::at (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_calculator_aa068531b4e6a572f0dbffeac39fcbb22}\label{namespace_calculator_aa068531b4e6a572f0dbffeac39fcbb22}} 
+\index{Calculator@{Calculator}!capacity@{capacity}}
+\index{capacity@{capacity}!Calculator@{Calculator}}
+\doxysubsubsection{\texorpdfstring{capacity()}{capacity()}}
+{\footnotesize\ttfamily uint8\+\_\+t Calculator\+::capacity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{namespace_calculator_ade24dae66f776266038a28272f44b3b7}\label{namespace_calculator_ade24dae66f776266038a28272f44b3b7}} 
 \index{Calculator@{Calculator}!check@{check}}
@@ -121,11 +139,17 @@ U\+N\+K\+N\+O\+WN&\\
 \doxysubsubsection{\texorpdfstring{check()}{check()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{namespace_calculator_ae3dc383840752aeba78f365b9674d2c0}{Error}} Calculator\+::check (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespace_calculator_ac4a03e4c7d48d4d9bbb3d1c3708dd01f}\label{namespace_calculator_ac4a03e4c7d48d4d9bbb3d1c3708dd01f}} 
+\mbox{\Hypertarget{namespace_calculator_a5f128100afa4c482e6dfd4bc6510faf6}\label{namespace_calculator_a5f128100afa4c482e6dfd4bc6510faf6}} 
 \index{Calculator@{Calculator}!clear@{clear}}
 \index{clear@{clear}!Calculator@{Calculator}}
 \doxysubsubsection{\texorpdfstring{clear()}{clear()}}
-{\footnotesize\ttfamily void Calculator\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Calculator\+::clear (\begin{DoxyParamCaption}\item[{bool}]{memory = {\ttfamily false} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_calculator_a62848d72aa347169df37c36e41caf12a}\label{namespace_calculator_a62848d72aa347169df37c36e41caf12a}} 
+\index{Calculator@{Calculator}!error\_at@{error\_at}}
+\index{error\_at@{error\_at}!Calculator@{Calculator}}
+\doxysubsubsection{\texorpdfstring{error\_at()}{error\_at()}}
+{\footnotesize\ttfamily uint8\+\_\+t Calculator\+::error\+\_\+at (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \mbox{\Hypertarget{namespace_calculator_a0740d3083036e7320cd70150b836f259}\label{namespace_calculator_a0740d3083036e7320cd70150b836f259}} 
 \index{Calculator@{Calculator}!evaluate@{evaluate}}
@@ -139,17 +163,41 @@ U\+N\+K\+N\+O\+WN&\\
 \doxysubsubsection{\texorpdfstring{get()}{get()}}
 {\footnotesize\ttfamily \mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} Calculator\+::get (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{id }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespace_calculator_a02ae523911fcccd9b150dea927e83755}\label{namespace_calculator_a02ae523911fcccd9b150dea927e83755}} 
-\index{Calculator@{Calculator}!get\_msg@{get\_msg}}
-\index{get\_msg@{get\_msg}!Calculator@{Calculator}}
-\doxysubsubsection{\texorpdfstring{get\_msg()}{get\_msg()}}
-{\footnotesize\ttfamily const char $\ast$ Calculator\+::get\+\_\+msg (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{namespace_calculator_ac52e0d990e8f882c3d7ddcbc3a1882c5}\label{namespace_calculator_ac52e0d990e8f882c3d7ddcbc3a1882c5}} 
+\index{Calculator@{Calculator}!get\_err\_msg@{get\_err\_msg}}
+\index{get\_err\_msg@{get\_err\_msg}!Calculator@{Calculator}}
+\doxysubsubsection{\texorpdfstring{get\_err\_msg()}{get\_err\_msg()}}
+{\footnotesize\ttfamily const char $\ast$ Calculator\+::get\+\_\+err\+\_\+msg (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\mbox{\Hypertarget{namespace_calculator_a1b09cd6efe57e49f66b193a15b5a97d5}\label{namespace_calculator_a1b09cd6efe57e49f66b193a15b5a97d5}} 
-\index{Calculator@{Calculator}!set@{set}}
-\index{set@{set}!Calculator@{Calculator}}
-\doxysubsubsection{\texorpdfstring{set()}{set()}}
-{\footnotesize\ttfamily void Calculator\+::set (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{id,  }\item[{uint8\+\_\+t}]{pos }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{namespace_calculator_a42652d258203bd5940c198250da19afc}\label{namespace_calculator_a42652d258203bd5940c198250da19afc}} 
+\index{Calculator@{Calculator}!insert@{insert}}
+\index{insert@{insert}!Calculator@{Calculator}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily void Calculator\+::insert (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{id,  }\item[{uint8\+\_\+t}]{pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_calculator_ac800c7fcaacfcf927274123c3a1fa854}\label{namespace_calculator_ac800c7fcaacfcf927274123c3a1fa854}} 
+\index{Calculator@{Calculator}!recall@{recall}}
+\index{recall@{recall}!Calculator@{Calculator}}
+\doxysubsubsection{\texorpdfstring{recall()}{recall()}}
+{\footnotesize\ttfamily long double Calculator\+::recall (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_calculator_aed47d86edbe5b2311e7d15efed861a4b}\label{namespace_calculator_aed47d86edbe5b2311e7d15efed861a4b}} 
+\index{Calculator@{Calculator}!remove@{remove}}
+\index{remove@{remove}!Calculator@{Calculator}}
+\doxysubsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_calculator_1_1_tokens_1_1_token}{Tokens\+::\+Token}} Calculator\+::remove (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_calculator_a807d12a1f820cf9b77e4ced2d74dff67}\label{namespace_calculator_a807d12a1f820cf9b77e4ced2d74dff67}} 
+\index{Calculator@{Calculator}!size@{size}}
+\index{size@{size}!Calculator@{Calculator}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily uint8\+\_\+t Calculator\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{namespace_calculator_a09b6d03e4e5e570e59a553fe1eb8f75a}\label{namespace_calculator_a09b6d03e4e5e570e59a553fe1eb8f75a}} 
+\index{Calculator@{Calculator}!store@{store}}
+\index{store@{store}!Calculator@{Calculator}}
+\doxysubsubsection{\texorpdfstring{store()}{store()}}
+{\footnotesize\ttfamily void Calculator\+::store (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{var,  }\item[{long double}]{val }\end{DoxyParamCaption})}
 
 
 

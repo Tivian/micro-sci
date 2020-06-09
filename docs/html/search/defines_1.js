@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ddr_578',['DDR',['../utility_8hpp.html#acf5495926a719aad80975feec317be4b',1,'utility.hpp']]]
+  ['combi_5fsymbol_694',['COMBI_SYMBOL',['../calculator_8hpp.html#ac31d50fc46676662408f4faa2182cf2d',1,'calculator.hpp']]]
 ];
