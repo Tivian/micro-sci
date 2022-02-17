@@ -11,7 +11,7 @@ var searchData=
   ['a8_8',['A8',['../namespace_keypad.html#a857d7e8de9fecf64c24f241b2a334716afd301d675be7b677ba979a430a80c010',1,'Keypad']]],
   ['abs_9',['ABS',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a07cba0dc7c8b4494e5f01697902326e6',1,'Calculator::Tokens']]],
   ['active_10',['ACTIVE',['../namespaceanonymous__namespace_02main_8cpp_03.html#a8dee3af4747688a3ac25ffa2f183aacea5cfe19b6ca842d0db572324f7620e7e6',1,'anonymous_namespace{main.cpp}']]],
-  ['add_11',['add',['../namespace_calculator.html#a78a49e09996aca67a416719a7688e0ea',1,'Calculator::add()'],['../main_8cpp.html#aa3ddaf553561ad00ad661cb330fed158',1,'add():&#160;main.cpp'],['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a07a486785ae39423fcc1e2916dd32901',1,'Calculator::Tokens::ADD()']]],
+  ['add_11',['ADD',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a07a486785ae39423fcc1e2916dd32901',1,'Calculator::Tokens::ADD()'],['../namespace_calculator.html#a78a49e09996aca67a416719a7688e0ea',1,'Calculator::add()'],['../main_8cpp.html#aa3ddaf553561ad00ad661cb330fed158',1,'add():&#160;main.cpp']]],
   ['alpha_12',['ALPHA',['../namespaceanonymous__namespace_02main_8cpp_03.html#a8dee3af4747688a3ac25ffa2f183aacea981e14645ca7a435dd9067ad1f9cf949',1,'anonymous_namespace{main.cpp}']]],
   ['and_13',['AND',['../namespace_calculator_1_1_tokens.html#a652f16a2d099531395e928aed542fa97a9135bb332b72e051952e8dc2dd8e5aaf',1,'Calculator::Tokens']]],
   ['anonymous_5fnamespace_7bcalculator_2ecpp_7d_14',['anonymous_namespace{calculator.cpp}',['../namespaceanonymous__namespace_02calculator_8cpp_03.html',1,'']]],
