@@ -10,6 +10,8 @@ namespace {
 	inline void rs_low()   { LCD_RS_PORT  &= ~_BV(LCD_RS_PIN);  }
 	inline void e_high()   { LCD_E_PORT   |=  _BV(LCD_E_PIN);   }
 	inline void e_low()    { LCD_E_PORT   &= ~_BV(LCD_E_PIN);   }
+    inline void vo_high()  { LCD_VO_PORT  |=  _BV(LCD_VO_PIN);  }
+    inline void vo_low()   { LCD_VO_PORT  &= ~_BV(LCD_VO_PIN);  }
 	inline void db4_high() { LCD_DB4_PORT |=  _BV(LCD_DB4_PIN); }
 	inline void db4_low()  { LCD_DB4_PORT &= ~_BV(LCD_DB4_PIN); }
 	inline void db5_high() { LCD_DB5_PORT |=  _BV(LCD_DB5_PIN); }
@@ -70,8 +72,10 @@ namespace {
 void LCD::init() {
     DDR(LCD_RS_PORT) |= _BV(LCD_RS_PIN);
     DDR(LCD_E_PORT)  |= _BV(LCD_E_PIN);
+    DDR(LCD_VO_PORT) |= _BV(LCD_VO_PIN);
     data_output();
     
+    vo_low();
     _delay_us(LCD_DELAY_BOOTUP);
 
     data_set(0b0011);

@@ -500,7 +500,7 @@ int main() {
     load_symbols();
     clear();
 
-    //show_title();
+    show_title();
     Blink::start();
     sei();
 
@@ -525,6 +525,7 @@ ISR (WDT_vect) {
 /**
  * TODO
  *  number parses should handle negative exponent
+ *  incorrect way of determining if the operator is unary
  *  cursor operations needs to be implemented
  *  backlight operations not implemented
  *  on/off not implemented

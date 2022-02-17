@@ -1,22 +1,25 @@
 #ifndef LCD_CUSTOM_HPP
 #define LCD_CUSTOM_HPP
 
-#define LCD_RS_PORT     PORTD
-#define LCD_RS_PIN      PD5
+#define LCD_RS_PORT     PORTC
+#define LCD_RS_PIN      PC1
 
-#define LCD_E_PORT      PORTB
-#define LCD_E_PIN       PB6
+#define LCD_E_PORT      PORTC
+#define LCD_E_PIN       PC0
 
-#define LCD_DB4_PORT    PORTC
-#define LCD_DB4_PIN     PC2
+#define LCD_VO_PORT     PORTC
+#define LCD_VO_PIN      PC2
 
-#define LCD_DB5_PORT    PORTC
-#define LCD_DB5_PIN     PC3
+#define LCD_DB4_PORT    PORTB
+#define LCD_DB4_PIN     PB5
 
-#define LCD_DB6_PORT    PORTC
-#define LCD_DB6_PIN     PC4
+#define LCD_DB5_PORT    PORTB
+#define LCD_DB5_PIN     PB4
 
-#define LCD_DB7_PORT    PORTC
-#define LCD_DB7_PIN     PC5
+#define LCD_DB6_PORT    PORTB
+#define LCD_DB6_PIN     PB3
+
+#define LCD_DB7_PORT    PORTB
+#define LCD_DB7_PIN     PB2
 
 #endif
